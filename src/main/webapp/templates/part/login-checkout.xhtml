@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <article id="login-co">
+        <h2><span>#{msg.login}</span> #{msg.checkout}</h2>
+        <hr/><hr/>
+        <form id="login">
+            <label for="user">#{msg.user_name}</label>
+            <input type="text" name="user" id="user" placeholder="#{msg.placeholder_name}"/>
+            <label for="password">#{msg.password}</label>
+            <input type="password" name="password" id="password" placeholder="*******"/>
+            <button id="login-btn">#{msg.proceed_to_checkout}</button>
+        </form>
+    </article>
+</f:view>
+</html>

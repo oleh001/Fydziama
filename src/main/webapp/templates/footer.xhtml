@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+>
+
+<h:head>
+    <!--jQuery-->
+    <h:outputScript name="js/jquery-1.11.1.min.js"/>
+    <!--bxSlider-->
+    <h:outputScript name="js/jquery.bxslider.min.js"/>
+    <!--imgLiquid-->
+    <h:outputScript name="js/imgLiquid-min.js"/>
+    <!-- Tooltipster -->
+    <h:outputScript name="js/jquery.tooltipster.min.js"/>
+    <!--easyPieChart-->
+    <h:outputScript name="js/jquery.easypiechart.min.js"/>
+    <!--Waypoints-->
+    <h:outputScript name="js/waypoints.min.js"/>
+    <!--WoW Animations-->
+    <h:outputScript name="js/wow.min.js"/>
+    <!--Menu-->
+    <h:outputScript name="js/menu.js"/>
+    <!--Main-->
+    <h:outputScript name="js/main.js"/>
+    <!--Contact-->
+    <h:outputScript name="js/contact.js"/>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js"/>
+    <!-- Google Maps Config -->
+    <h:outputScript name="js/gmaps.js"/>
+    <!--Shop-->
+    <!--<h:outputScript name="js/shop.js"/>-->
+    <!--Checkout-->
+    <!--<h:outputScript name="js/checkout.js"/>-->
+    <!--Login/Register/Reset Forms-->
+    <h:outputScript name="js/forms.js"/>
+    <!--Profile-->
+    <!--<h:outputScript name="js/profile.js"/>-->
+</h:head>
+
+<f:view>
+    <!--FOOTER-->
+    <div id="footer-wrap">
+        <footer>
+            <a href="#header-top">
+                <o:graphicImage styleClass="wow fadeIn" name="images/to-top.png" alt="home-pin" dataURI="true"/>
+            </a>
+            <article>
+                <p>#{msg.the} <span>#{msg.shopName} </span><span class="copy">- #{msg.all_rights_reserved}</span></p>
+                <ul class="social">
+                    <li><a href="#" class="social-icon fb"/></li>
+                    <li><a href="#" class="social-icon twt"/></li>
+                    <li><a href="#" class="social-icon gplus"/></li>
+                    <li><a href="#" class="social-icon rss"/></li>
+                    <li><a href="#" class="social-icon vimeo"/></li>
+                    <li><a href="#" class="social-icon flickr"/></li>
+                </ul>
+            </article>
+        </footer>
+    </div>
+    <!--/FOOTER-->
+</f:view>
+</html>

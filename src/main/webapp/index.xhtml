@@ -1,11 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+
+<ui:composition template="templates/template.xhtml">
+    <ui:define name="content">
+        <f:view>
+
+            <!--TOP-DISHES-->
+            <ui:include src="templates/part/topDish.xhtml"/>
+            <!--/TOP-DISHES-->
+
+            <!--SPECIALS-->
+            <ui:include src="templates/part/specialDish.xhtml"/>
+            <!--/SPECIALS-->
+
+            <!--TEAM-->
+            <ui:include src="templates/part/team.xhtml"/>
+            <!--/TEAM-->
+
+            <!--HISTORY-->
+            <ui:include src="templates/part/history.xhtml"/>
+            <!--HISTORY-->
+
+            <!--PHONE-ORDER-->
+            <ui:include src="templates/part/phoneOrder.xhtml"/>
+            <!--/PHONE-ORDER-->
+
+            <!--COMBOS-->
+            <ui:include src="templates/part/combos.xhtml"/>
+            <!--/COMBOS-->
+
+            <!--REVIEWS-->
+            <ui:include src="templates/part/reviews.xhtml"/>
+            <!--/REVIEWS-->
+
+            <!--STATS-->
+            <ui:include src="templates/part/stats.xhtml"/>
+            <!--/STATS-->
+
+            <!--CONTACT-->
+            <ui:include src="templates/part/contact.xhtml"/>
+            <!--/CONTACT-->
+
+            <!--MAP-->
+            <section id="map"/>
+            <!--/MAP-->
+
+        </f:view>
+    </ui:define>
+</ui:composition>
 </html>

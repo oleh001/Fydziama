@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view>
+    <!--CONTACT-->
+    <div id="contact-wrap">
+        <section id="contact">
+            <h2><span>#{msg.contact}</span> #{msg.us}</h2>
+            <hr/><hr/>
+            <ul>
+                <!--CONTACT ITEM-->
+                <li class="wow fadeInLeft">
+                    <div class="circle medium">
+                        <div class="fill"/>
+                    </div>
+                    <article>
+                        <h6>#{msg.home_city1}</h6>
+                        <p>#{msg.home_city_detail1}</p>
+                        <h6>#{msg.home_city2}</h6>
+                        <p>#{msg.home_city_detail2}</p>
+                    </article>
+                </li>
+                <!--/CONTACT ITEM-->
+
+                <!--CONTACT ITEM-->
+                <li class="wow fadeInDown">
+                    <div class="circle medium">
+                        <div class="fill"/>
+                    </div>
+                    <article>
+                        <h6>#{msg.home_city1}</h6>
+                        <p>#{msg.home_city1_phone}</p>
+                        <h6>#{msg.home_city2}</h6>
+                        <p>#{msg.home_city2_phone}</p>
+                    </article>
+                </li>
+                <!--/CONTACT ITEM-->
+
+                <!--CONTACT ITEM-->
+                <li class="wow fadeInRight">
+                    <div class="circle medium">
+                        <div class="fill"/>
+                    </div>
+                    <article>
+                        <h6>#{msg.home_city1}</h6>
+                        <p>#{msg.home_city1_mail}</p>
+                        <h6>#{msg.home_city2}</h6>
+                        <p>#{msg.home_city2_mail}</p>
+                    </article>
+                </li>
+                <!--/CONTACT ITEM-->
+            </ul>
+            <div class="cleaner"/>
+            <!--CONTACT FORM-->
+            <form id="ctc">
+                <!--ERROR MSGS-->
+                <label for="email" class="error email-wrng">#{msg.contact_you_have_to_enter_a_valid_email}</label>
+                <label for="message" class="error msg-wrng">#{msg.contact_you_have_to_enter_a_message}</label>
+                <!--/ERROR MSGS-->
+                <div>
+                    <label for="name">#{msg.your_name}</label>
+                    <input type="text" placeholder="#{msg.placeholder_name}" id="name" name="name"/>
+                    <label for="email">#{msg.your_email_address}</label>
+                    <input type="text" placeholder="#{msg.placeholder_mail}" id="email" name="email"/>
+                    <label for="subject">Your Subject</label>
+                    <input type="text" placeholder="#{msg.placeholder_subject}" id="subject" name="subject"/>
+                </div>
+                <div>
+                    <label for="message">#{msg.your_message}</label>
+                    <textarea name="message" id="message" placeholder="#{msg.placeholder_message}"/>
+                </div>
+            </form>
+            <button id="ctc-submit" form="ctc">#{msg.contact_send_message}</button>
+            <!--CONTACT FORM-->
+        </section>
+    </div>
+    <!--/CONTACT-->
+</f:view>
+</html>

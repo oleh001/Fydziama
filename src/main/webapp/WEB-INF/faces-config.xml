@@ -9,7 +9,7 @@
         <resource-handler>org.omnifaces.resourcehandler.UnmappedResourceHandler</resource-handler>
 
         <locale-config>
-            <default-locale>en</default-locale>
+            <default-locale>ukr</default-locale>
         </locale-config>
 
         <resource-bundle>

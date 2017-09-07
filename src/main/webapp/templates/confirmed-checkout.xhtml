@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Red Samurai | Shop</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+</head>
+
+<ui:composition template="template.xhtml">
+    <ui:define name="content">
+        <f:view>
+
+
+            <!--CHECKOUT-->
+            <div id="checkout-wrap">
+                <section id="checkout">
+                    <article class="left">
+
+                        <!--CART-->
+                        <ui:include src="part/cart.xhtml"/>
+                        <!--/CART-->
+
+                        <article id="payment">
+                            <h2><span>Payment</span> Info</h2>
+                            <hr/>
+                            <hr/>
+                            <input type="radio" name="payment" form="delivery-info" id="paypal" value="paypal"/>
+                            <label for="paypal">Paypal</label>
+                            <input type="radio" name="payment" form="delivery-info" id="cash" value="cash"
+                                   checked="checked"/>
+                            <label for="cash">Cash on Delivery</label>
+                            <input type="radio" name="payment" form="delivery-info" id="credit" value="credit"/>
+                            <label for="credit">Credit Card on Delivery</label>
+                            <p>Credit Cards Accepted:</p>
+                            <ul>
+                                <li><o:graphicImage name="images/cc-visa.png" alt="cc" dataURI="true"/></li>
+                                <li><o:graphicImage name="images/cc-master.png" alt="cc" dataURI="true"/></li>
+                                <li><o:graphicImage name="images/cc-amex.png" alt="cc" dataURI="true"/></li>
+                                <li><o:graphicImage name="images/cc-paypal.png" alt="cc" dataURI="true"/></li>
+                                <li><o:graphicImage name="images/cc-discover.png" alt="cc" dataURI="true"/></li>
+                                <li><o:graphicImage name="images/cc-maestro.png" alt="cc" dataURI="true"/></li>
+                            </ul>
+                        </article>
+
+                        <article id="zone">
+                            <h2><span>#{msg.zone}</span> #{msg.checkout_cart_zone_selection}</h2>
+                            <hr/>
+                            <hr/>
+                            <input type="radio" name="zone" form="delivery-info" id="zone1" value="1"
+                                   checked="checked"/>
+                            <label for="zone1">#{msg.zone_map_zone1}</label>
+                            <input type="radio" name="zone" form="delivery-info" id="zone2" value="2"/>
+                            <label for="zone2">#{msg.zone_map_zone2}</label>
+                            <input type="radio" name="zone" form="delivery-info" id="zone3" value="3"/>
+                            <label for="zone3">#{msg.zone_map_zone3}</label>
+                            <p><span>#{msg.remember}</span> #{msg.checkout_cart_zone_remember_text}</p>
+                        </article>
+
+                        <div class="cleaner"/>
+                        <article>
+                            <h2><span>#{msg.checkout_cart_delivery}</span> #{msg.checkout_cart_delivery_info}</h2>
+                            <hr/>
+                            <hr/>
+                            <form id="delivery-info">
+                                <div>
+                                    <label for="name">#{msg.your_name}</label>
+                                    <input type="text" id="name" name="name" placeholder="#{msg.placeholder_name}"/>
+                                </div>
+                                <div>
+                                    <label for="surname">#{msg.your_surname}</label>
+                                    <input type="text" id="surname" name="surname"
+                                           placeholder="#{msg.placeholder_surname}"/>
+                                </div>
+                                <div>
+                                    <label for="email">#{msg.your_email_address}</label>
+                                    <input type="text" placeholder="#{msg.placeholder_mail}" id="email"
+                                           name="email"/>
+                                </div>
+                                <div>
+                                    <label for="phone">#{msg.your_phone_number}</label>
+                                    <input type="text" placeholder="#{msg.placeholder_phone_number}" id="phone"
+                                           name="phone"/>
+                                </div>
+                                <div>
+                                    <label for="address">Your Delivery Address</label>
+                                    <input type="text" placeholder="Fake Street 123" id="address" name="address"/>
+                                </div>
+                                <div>
+                                    <label for="apartament">#{msg.checkout_cart_house_apartament}</label>
+                                    <input type="text" placeholder="#{msg.checkout_cart_placeholder_house_apartament}"
+                                           id="apartament"
+                                           name="apartament"/>
+                                </div>
+                                <div>
+                                    <label for="city">#{msg.checkout_cart_town_sity}</label>
+                                    <input type="text" placeholder="#{msg.checkout_cart_placeholder_town_sity}"
+                                           id="city" name="city"/>
+                                </div>
+                                <div>
+                                    <label for="phone_alt">#{msg.checkout_cart_additional_phone_number}</label>
+                                    <input type="text"
+                                           placeholder="#{msg.checkout_cart_placeholder_additional_phone_number}"
+                                           id="phone_alt" name="phone_alt"/>
+                                </div>
+                                <label for="specifications">#{msg.checkout_cart_addition_specification}</label>
+                                <textarea id="specifications" name="specifications"
+                                          placeholder="#{msg.checkout_cart_placeholder_addition_specification}"/>
+                                <input type="checkbox" name="autocomplete" id="autocomplete" checked="checked"/>
+                                <label for="autocomplete">#{msg.checkout_cart_autocomplete}</label>
+                            </form>
+                        </article>
+                    </article>
+
+                    <aside class="right">
+                        <h2><span>#{msg.checkout_cart_total}</span></h2>
+                        <hr/>
+                        <hr/>
+                        <article class="ticket">
+                            <o:graphicImage name="images/ticket-serrated-border.png" alt="serrated-border" dataURI="true"/>
+                            <h6>#{msg.checkout_cart_your_order_ticket}</h6>
+                            <p>#{msg.checkout_cart_subtotal}:<span>$353.50</span></p>
+                            <p>#{msg.checkout_cart_delivery_subtotal}:<span>$5.50</span></p>
+                            <p class="total">#{msg.checkout_cart_total}:<span>$359.00</span></p>
+                            <a href="#" class="button confirmed">#{msg.order_successfully_sent}</a>
+                            <p>#{msg.an_email_has_been_sent_to}<br/><span>jhonny.envato@yourdomain.com</span></p>
+                            <p>#{msg.your_confirmation_code}:<br/><span>RSON15632A</span></p>
+                            <o:graphicImage name="images/cart-logo.png" alt="cart-logo" dataURI="true"/>
+                            <p>#{msg.checkout_cart_thanks}</p>
+                        </article>
+                        <o:graphicImage name="images/delivery-banner.jpg" alt="delivery-banner" dataURI="true"/>
+                    </aside>
+                    <div class="cleaner"/>
+                </section>
+            </div>
+            <!--/CHECKOUT-->
+
+            <!--ZONE-MAP-->
+            <ui:include src="part/zoneMap.xhtml"/>
+            <!--/ZONE-MAP-->
+
+        </f:view>
+    </ui:define>
+</ui:composition>
+</html>

@@ -36,6 +36,7 @@ public class BrandService implements BrandDao {
 
     @Override
     public List<Brand> search(String... searchString) {
+
         return brandRepository.findByBrandContainingIgnoreCaseOrderByBrand(searchString[0]);
     }
 
@@ -58,5 +59,6 @@ public class BrandService implements BrandDao {
     public void delete(Brand brand) {
         brandRepository.delete(brand);
     }
+
 }
 

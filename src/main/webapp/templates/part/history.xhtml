@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+
+<f:view>
+    <!--HISTORY-->
+    <div id="history-wrap">
+        <section id="history">
+            <h2>#{msg.our} <span>#{msg.history}</span></h2>
+            <hr/><hr/>
+            <!--HISTORY-ITEM-->
+            <article>
+                <figure>
+                    <o:graphicImage name="images/oh-01.jpg" alt="history" dataURI="true"/>
+                </figure>
+                <article>
+                    <h4>#{msg.history_beginning_name} <span class="remarked">#{msg.shopName}</span></h4>
+                    <p>#{msg.history_beginning_text1}</p>
+                    <p>#{msg.history_beginning_text2}</p>
+                </article>
+            </article>
+            <!--/HISTORY-ITEM-->
+
+            <!--HISTORY-ITEM-->
+            <article>
+                <figure>
+                    <o:graphicImage name="images/oh-02.jpg" alt="history" dataURI="true"/>
+                </figure>
+                <article>
+                    <h4>#{msg.the} <span class="remarked">#{msg.shopName}</span> #{msg.history_today_name}</h4>
+                    <p>#{msg.history_today_text1}</p>
+                    <p>#{msg.history_today_text2}</p></article>
+            </article>
+            <!--/HISTORY-ITEM-->
+        </section>
+    </div>
+    <!--HISTORY-->
+</f:view>
+</html>
