@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <!--REVIEW INPUT-->
+    <h:form id="reviewDishForm">
+        <article id="review-input">
+            <h2>#{msg.write} <span>#{msg.review}</span></h2>
+            <hr/>
+            <hr/>
+            <p>You must be logged in to write a review. Don’t you have an account yet? <a
+                    href="#">click here</a> to register!</p>
+
+            <label for="review">#{msg.dish_review} - #{reviewController.selectedReview.good.name}</label>
+
+            <h:message id="mes_rev" for="review" class="error msg-wrng"/>
+            <p:inputTextarea required="true" rows="5" cols="30" counter="display" maxlength="255"
+                             counterTemplate="{0} #{msg.characters_remaining}."
+                             requiredMessage="#{msg.contact_you_have_to_enter_a_message}"
+                             autoResize="false" name="review" id="review"
+                             placeholder="#{msg.write_your_product_review_here}"
+                             value="#{reviewController.selectedReview.review}">
+                <!--<p:ajax event="blur" update="mes_rev review"/>-->
+            </p:inputTextarea>
+            <h:outputText id="display"/>
+
+            <article id="reviewRating">
+                <p>#{msg.stars_review}: </p>
+                <p:rating class="rate stars red" value="#{reviewController.selectedReview.rating}" stars="5"
+                          cancel="false" rendered="#{reviewController.selectedReview.good.hits=='FALSE'}"/>
+                <p:rating class="rate hearts gold" value="#{reviewController.selectedReview.rating}" stars="5"
+                          cancel="false" rendered="#{reviewController.selectedReview.good.hits=='TRUE'}"/>
+
+                <p:commandLink class="button red"
+                               action="#{reviewController.save()}"
+                               update="@([id$=reviewDishForm])">
+                    #{msg.post_your_review}
+                </p:commandLink>
+                <!--<a href="#" class="button red">#{msg.post_your_review}</a>-->
+            </article>
+        </article>
+    </h:form>
+    <!--/REVIEW INPUT-->
+</f:view>
+</html>

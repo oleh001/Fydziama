@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:o="http://omnifaces.org/ui">
 
 <f:view>
@@ -9,148 +11,186 @@
     <div id="specials-wrap">
         <section id="specials">
             <h2>#{msg.shopName} <span>#{msg.special}</span></h2>
-            <hr/><hr/>
+            <hr/>
+            <hr/>
             <ul class="dishes grid">
+
                 <!--DISH-->
-                <li class="wow fadeInLeft">
-                    <div class="circle medium">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-00.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip">
-                                <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
+                <h:form id="specialDishForm">
+                    <p:repeat value="#{goodController.specialDish}" var="goods">
+                        <li class="ul_dishes_li ul_dishes_grid_li wow #{goodController.getStyleFadeIn()} animated">
+                            <div class="circle medium">
+                                <figure class="imgLiquidFill">
+                                    <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
+                                </figure>
+                                <div class="shadow"/>
+                                <p:commandLink actionListener="#" update="" rendered="#{goods.hits=='FALSE'}">
+                                    <div class="fill red cart-tip toWishlist">
+                                        <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
+                                    </div>
+                                </p:commandLink>
+
+                                <p:commandLink actionListener="#" update="" rendered="#{goods.hits=='TRUE'}">
+                                    <div class="fill gold cart-tip toWishlist">
+                                        <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
+                                    </div>
+                                </p:commandLink>
+
                             </div>
-                        </a>
-                    </div>
-                    <article>
-                        <a href="salmon-rolls.html"><h6>Salmon Rolls</h6></a>
-                        <ul class="rate stars">
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li class="empty"/>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
-                    </article>
-                    <div class="price">
-                        <div>
-                            <p class="quantity">1</p>
-                            <p class="measure">srv</p>
-                        </div>
-                        <p>$45.00</p>
-                    </div>
-                    <a href="#" class="button red">Add to Cart</a>
-                </li>
+                            <article>
+
+                                <p:outputLabel styleClass="ribbonLabel" rendered="#{goods.news=='TRUE'}">
+                                    <span class="ribbon featured"/>
+                                </p:outputLabel>
+                                <p:outputLabel styleClass="ribbonLabel" rendered="#{goods.hits=='TRUE'}">
+                                    <span class="ribbon new"/>
+                                </p:outputLabel>
+
+                                <p:commandLink actionListener="#"
+                                               update="">
+                                    <h6>#{goods.name}</h6>
+                                </p:commandLink>
+
+                                <p:rating class="rate stars red" value="#{goods.avgRating}" stars="5" cancel="false"
+                                          rendered="#{goods.hits=='FALSE'}"/>
+                                <p:rating class="rate hearts gold" value="#{goods.avgRating}" stars="5" cancel="false"
+                                          rendered="#{goods.hits=='TRUE'}"/>
+
+                                <!--<ul class="rate stars">-->
+                                <!--<li/>-->
+                                <!--<li/>-->
+                                <!--<li/>-->
+                                <!--<li/>-->
+                                <!--<li class="empty"/>-->
+                                <!--</ul>-->
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
+                            </article>
+                            <div class="price">
+                                <div>
+                                    <p class="quantity">#{goods.gram}</p>
+                                    <p class="measure">#{msg.gram}</p>
+                                </div>
+                                <p>$ #{goods.price} &#8372;</p>
+                            </div>
+                            <p:commandLink styleClass="button red" actionListener="#" update=""
+                                           rendered="#{goods.hits=='FALSE'}">
+                                <p:outputLabel value="#{msg.add_to_cart}"/>
+                            </p:commandLink>
+
+                            <p:commandLink styleClass="button gold" actionListener="#" update=""
+                                           rendered="#{goods.hits=='TRUE'}">
+                                <p:outputLabel value="#{msg.add_to_cart}"/>
+                            </p:commandLink>
+                        </li>
+                    </p:repeat>
+                </h:form>
                 <!--/DISH-->
 
                 <!--DISH-->
-                <li class="wow fadeInLeft">
-                    <div class="circle medium">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-01.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip">
-                                <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <article>
-                        <span class="ribbon new"/>
-                        <a href="roudon-soup.html"><h6>Roudon Soup</h6></a>
-                        <ul class="rate stars">
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li class="empty"/>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
-                    </article>
-                    <div class="price">
-                        <div>
-                            <p class="quantity">1</p>
-                            <p class="measure">srv</p>
-                        </div>
-                        <p>$67.00</p>
-                    </div>
-                    <a href="#" class="button red">Add to Cart</a>
-                </li>
+                <!--<li class="wow fadeInLeft">-->
+                <!--<div class="circle medium">-->
+                <!--<figure class="imgLiquidFill">-->
+                <!--<o:graphicImage name="images/menu-01.jpg" alt="dish" dataURI="true"/>-->
+                <!--</figure>-->
+                <!--<div class="shadow"/>-->
+                <!--<a href="#">-->
+                <!--<div class="fill red tooltip">-->
+                <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
+                <!--</div>-->
+                <!--</a>-->
+                <!--</div>-->
+                <!--<article>-->
+                <!--<span class="ribbon new"/>-->
+                <!--<a href="roudon-soup.html"><h6>Roudon Soup</h6></a>-->
+                <!--<ul class="rate stars">-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li class="empty"/>-->
+                <!--</ul>-->
+                <!--<p> 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
+                <!--</article>-->
+                <!--<div class="price">-->
+                <!--<div>-->
+                <!--<p class="quantity">1</p>-->
+                <!--<p class="measure">srv</p>-->
+                <!--</div>-->
+                <!--<p>$67.00</p>-->
+                <!--</div>-->
+                <!--<a href="#" class="button red">Add to Cart</a>-->
+                <!--</li>-->
                 <!--/DISH-->
 
                 <!--DISH-->
-                <li class="wow fadeInLeft">
-                    <div class="circle medium">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-02.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip">
-                                <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <article>
-                        <a href="springtime-sushi.html"><h6>Springtime Sushi</h6></a>
-                        <ul class="rate stars">
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li class="empty"/>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
-                    </article>
-                    <div class="price">
-                        <div>
-                            <p class="quantity">15</p>
-                            <p class="measure">pcs</p>
-                        </div>
-                        <p>$69.00</p>
-                    </div>
-                    <a href="#" class="button red">Add to Cart</a>
-                </li>
+                <!--<li class="wow fadeInLeft">-->
+                <!--<div class="circle medium">-->
+                <!--<figure class="imgLiquidFill">-->
+                <!--<o:graphicImage name="images/menu-02.jpg" alt="dish" dataURI="true"/>-->
+                <!--</figure>-->
+                <!--<div class="shadow"/>-->
+                <!--<a href="#">-->
+                <!--<div class="fill red tooltip">-->
+                <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
+                <!--</div>-->
+                <!--</a>-->
+                <!--</div>-->
+                <!--<article>-->
+                <!--<a href="springtime-sushi.html"><h6>Springtime Sushi</h6></a>-->
+                <!--<ul class="rate stars">-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li class="empty"/>-->
+                <!--</ul>-->
+                <!--<p> 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
+                <!--</article>-->
+                <!--<div class="price">-->
+                <!--<div>-->
+                <!--<p class="quantity">15</p>-->
+                <!--<p class="measure">pcs</p>-->
+                <!--</div>-->
+                <!--<p>$69.00</p>-->
+                <!--</div>-->
+                <!--<a href="#" class="button red">Add to Cart</a>-->
+                <!--</li>-->
                 <!--/DISH-->
 
                 <!--DISH-->
-                <li class="wow fadeInLeft">
-                    <div class="circle medium">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-03.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill gold tooltip">
-                                <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <article>
-                        <span class="ribbon featured"/>
-                        <a href="kerinachi-rice.html"><h6>Kerinachi Rice</h6></a>
-                        <ul class="rate stars gold">
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li class="empty"/>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
-                    </article>
-                    <div class="price">
-                        <div>
-                            <p class="quantity">1</p>
-                            <p class="measure">srv</p>
-                        </div>
-                        <p>$47.50</p>
-                    </div>
-                    <a href="#" class="button gold">Add to Cart</a>
-                </li>
+                <!--<li class="wow fadeInLeft">-->
+                <!--<div class="circle medium">-->
+                <!--<figure class="imgLiquidFill">-->
+                <!--<o:graphicImage name="images/menu-03.jpg" alt="dish" dataURI="true"/>-->
+                <!--</figure>-->
+                <!--<div class="shadow"/>-->
+                <!--<a href="#">-->
+                <!--<div class="fill gold tooltip">-->
+                <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
+                <!--</div>-->
+                <!--</a>-->
+                <!--</div>-->
+                <!--<article>-->
+                <!--<span class="ribbon featured"/>-->
+                <!--<a href="kerinachi-rice.html"><h6>Kerinachi Rice</h6></a>-->
+                <!--<ul class="rate stars gold">-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li/>-->
+                <!--<li class="empty"/>-->
+                <!--</ul>-->
+                <!--<p> 4 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
+                <!--</article>-->
+                <!--<div class="price">-->
+                <!--<div>-->
+                <!--<p class="quantity">1</p>-->
+                <!--<p class="measure">srv</p>-->
+                <!--</div>-->
+                <!--<p>$47.50</p>-->
+                <!--</div>-->
+                <!--<a href="#" class="button gold">Add to Cart</a>-->
+                <!--</li>-->
                 <!--/DISH-->
 
                 <!--DISH-->
@@ -161,7 +201,7 @@
                         </figure>
                         <div class="shadow"/>
                         <a href="#">
-                            <div class="fill red tooltip">
+                            <div class="fill red tooltip toWishlist" title="Add to Wishlist">
                                 <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
                             </div>
                         </a>
@@ -175,7 +215,7 @@
                             <li/>
                             <li class="empty"/>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
+                        <p> 5 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
                     </article>
                     <div class="price">
                         <div>
@@ -211,7 +251,7 @@
                             <li/>
                             <li class="empty"/>
                         </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
+                        <p> 6 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
                     </article>
                     <div class="price">
                         <div>
@@ -298,7 +338,10 @@
             <div class="cleaner"/>
             <h6>#{msg.and_this_is_just_a_peek}</h6>
             <h3>#{msg.check_out_all_the_delicious_dishes_we_have_in} <span class="remarked">#{msg.our_menu}</span></h3>
-            <a href="shopr.html" class="button red">#{msg.сlick_here_to_enter_the_shop}</a>
+            <a href="#{request.contextPath}/templates/shopr.xhtml"
+               class="button red">#{msg.сlick_here_to_enter_the_shop}
+            </a>
+
         </section>
     </div>
     <!--/SPECIALS-->

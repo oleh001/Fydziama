@@ -20,6 +20,16 @@ public class ReviewService implements ReviewDao {
     private ReviewRepository reviewRepository;
 
     @Override
+    public String isVisibility(List<Review> obj, int count) {
+        return obj.size()>count?"true":"false";
+    }
+
+    @Override
+    public String isVisibility(Page<Review> obj, int count) {
+        return obj.getTotalPages()>count?"true":"false";
+    }
+
+    @Override
     public List<Review> getAll() {
         return reviewRepository.findAll();
     }
@@ -57,6 +67,16 @@ public class ReviewService implements ReviewDao {
     @Override
     public void delete(Review review) {
         reviewRepository.delete(review);
+    }
+
+    @Override
+    public List<Review> searchGood(long idGood) {
+        return reviewRepository.findByGoodIdGoodOrderByReviewDate(idGood);
+    }
+
+    @Override
+    public Page<Review> searchGood(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, long idGood) {
+        return reviewRepository.findByGoodIdGoodOrderByReviewDate(idGood, new PageRequest(pageNumber, pageSize, new Sort(sortDirection, sortField)));
     }
 }
 

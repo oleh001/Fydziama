@@ -20,6 +20,16 @@ public class UserService implements UserDao {
     private UserRepository userRepository;
 
     @Override
+    public String isVisibility(List<User> obj, int count) {
+        return obj.size()>count?"true":"false";
+    }
+
+    @Override
+    public String isVisibility(Page<User> obj, int count) {
+        return obj.getTotalPages()>count?"true":"false";
+    }
+
+    @Override
     public List<User> getAll() {
         return userRepository.findAll();
     }

@@ -20,6 +20,16 @@ public class PageService implements PageDao{
     private PagesRepository pagesRepository;
 
     @Override
+    public String isVisibility(List<Pages> obj, int count) {
+        return obj.size()>count?"true":"false";
+    }
+
+    @Override
+    public String isVisibility(Page<Pages> obj, int count) {
+        return obj.getTotalPages()>count?"true":"false";
+    }
+
+    @Override
     public List<Pages> getAll() {
         return pagesRepository.findAll();
     }

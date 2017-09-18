@@ -20,6 +20,16 @@ public class OrderDetailService implements OrderDetailDao {
     private OrderDetailRepository orderDetailRepository;
 
     @Override
+    public String isVisibility(List<OrderDetail> obj, int count) {
+        return obj.size()>count?"true":"false";
+    }
+
+    @Override
+    public String isVisibility(Page<OrderDetail> obj, int count) {
+        return obj.getTotalPages()>count?"true":"false";
+    }
+
+    @Override
     public List<OrderDetail> getAll() {
         return orderDetailRepository.findAll();
     }
@@ -42,6 +52,10 @@ public class OrderDetailService implements OrderDetailDao {
     @Override
     public Page<OrderDetail> search(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, String... searchString) {
         return orderDetailRepository.findByGoodNameContainingIgnoreCaseOrderByGoodName(searchString[0], new PageRequest(pageNumber, pageSize, new Sort(sortDirection, sortField)));
+    }
+
+    public List<OrderDetail> searchUser(long idUser) {
+        return orderDetailRepository.findByOrderUserIdUserOrderByGoodName(idUser);
     }
 
     @Override

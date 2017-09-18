@@ -52,6 +52,9 @@ public class Good {
     private GoodVisible news;
 
     @Enumerated(EnumType.STRING)
+    private GoodVisible specials;
+
+    @Enumerated(EnumType.STRING)
     private GoodVisible sale;
 
     private float price;
@@ -78,6 +81,10 @@ public class Good {
     @Basic(fetch = FetchType.LAZY)
     @OneToMany(mappedBy = "good")
     private List<Vote> votes;
+
+    @Basic(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "good")
+    private List<Review> review;
 
     @Override
     public String toString() {

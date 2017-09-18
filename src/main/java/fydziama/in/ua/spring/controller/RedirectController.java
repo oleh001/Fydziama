@@ -16,7 +16,7 @@ public class RedirectController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String baseUrlRedirect(HttpServletRequest request,
                                   HttpServletResponse httpServletResponse) {
-//return "ok";
+
         return "redirect:" + request.getRequestURL().append("index.xhtml").toString();
     }
 }

@@ -6,6 +6,11 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 
 public interface GeneralDao<T> {
+
+    String isVisibility(List<T> obj, int count);
+
+    String isVisibility(Page<T> obj, int count);
+
     // получение всех записей (без постраничности)
     List<T> getAll();
 

@@ -14,31 +14,35 @@ import javax.persistence.*;
 @Table(catalog = "fydziama_db_new")
 
 // Lombok
-@EqualsAndHashCode(of = "idOrderDetail")
+@EqualsAndHashCode(of = "idMessage")
 @Getter
 @Setter
 
+// аннотации Hibernate
 @DynamicUpdate
 @DynamicInsert
 @SelectBeforeUpdate
-public class OrderDetail {
+public class Message {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY) // autoincrement
     @Id
-    @Column(name = "id_order_detail")
-    private Long idOrderDetail;
+    @Column(name = "id_message")
+    private Long idMessage;
 
-    @ManyToOne
-    @JoinColumn(name = "id_order")
-    private Order order;
+    @JoinColumn(name = "user_name")
+    private String userName;
 
-    @ManyToOne
-    @JoinColumn(name = "id_good")
-    private Good good;
+    @JoinColumn(name = "user_email")
+    private String userEmail;
 
-    private int quantity;
+    @JoinColumn(name = "user_subject")
+    private String userSubject;
+
+    @JoinColumn(name = "user_message")
+    private String userMessage;
 
     @Override
     public String toString() {
-        return good + " - " + quantity;
+        return userName + " - " + userMessage;
     }
 }

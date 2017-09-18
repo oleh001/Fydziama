@@ -8,6 +8,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 // JPA
 @Entity
@@ -34,6 +36,40 @@ public class Review {
 
     private String review;
     private String name;
+
+    @Column(name = "date")
+    private Date reviewDate;
+
+    @ManyToOne
+    @JoinColumn(name = "id_good")
+    private Good good;
+
+    private int rating;
+
+    public Review() {
+    }
+
+    public Review(String name, int rating) {
+        this.name = name;
+        this.rating = rating;
+    }
+
+    public Review(int rating) {
+        this.rating = rating;
+    }
+
+    public Review(User user, String name, int rating) {
+        this.user = user;
+        this.name = name;
+        this.rating = rating;
+    }
+
+    public Review(User user, String name, Good good, int rating) {
+        this.user = user;
+        this.name = name;
+        this.good = good;
+        this.rating = rating;
+    }
 
     @Override
     public String toString() {

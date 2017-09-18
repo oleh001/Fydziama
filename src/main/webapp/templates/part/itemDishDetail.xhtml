@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:form id="itemDetailForm">
+        <!--ITEM DETAIL-->
+        <article id="item-detail">
+            <h2><span>#{msg.shop_category}</span> Name (Якась категорія)</h2>
+            <hr/>
+            <hr/>
+            <div class="circle large">
+                <figure class="imgLiquidFill">
+                    <o:graphicImage name="images/menu-05.jpg" alt="item" dataURI="true"/>
+                </figure>
+                <div class="shadow"/>
+                <div class="fill"/>
+            </div>
+            <article>
+                <h3>#{goodController.selectedGood.name}<span>$#{goodController.selectedGood.price}</span></h3>
+
+                <p:rating readonly="true" class="rate stars red" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
+                <p:rating readonly="true" class="rate hearts gold" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in endein uptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint.</p>
+
+                <div class="quantity cart_ul_li_div_quantity itemQuantity">
+                    <p>Quantity</p>
+                    <p:spinner min="0" max="99" id="cartQuantity" value="#{orderDetailController.quantity}" styleClass="counter">
+                        <p:ajax update="itemDetailForm" process="@this" />
+                    </p:spinner>
+
+                </div>
+                <!-- facebook like button -->
+                <div class="fb-like" data-href="http://www.your-domain123.com"
+                     data-layout="button_count" data-action="like" data-show-faces="false"
+                     data-share="false"/>
+                <!-- twitter share button -->
+                <a class="twitter-share-button" href="https://twitter.com/share">Tweet</a>
+                <!-- google +1 button -->
+                <div class="google-btn">
+                    <div class="g-plusone" data-size="medium"
+                         data-href="http://www.your-domain123.com"/>
+                </div>
+                <div class="cleaner"/>
+                <a href="#" class="button red">#{msg.add_to_cart}</a>
+                <p class="quantity">#{orderDetailController.quantity} #{msg.quantity_name}</p>
+                <a href="#" class="button wishlist red">#{msg.add_to_wishlist}</a>
+            </article>
+            <div class="cleaner"/>
+        </article>
+        <!--/ITEM DETAIL-->
+    </h:form>
+</f:view>
+</html>

@@ -2,6 +2,7 @@ package fydziama.in.ua.dao.impl;
 
 import fydziama.in.ua.dao.GoodDao;
 import fydziama.in.ua.entity.Good;
+import fydziama.in.ua.entity.GoodVisible;
 import fydziama.in.ua.spring.repository.GoodRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,16 @@ public class GoodService implements GoodDao {
 
     @Autowired
     private GoodRepository goodRepository;
+
+    @Override
+    public String isVisibility(List<Good> obj, int count) {
+        return obj.size()>count?"true":"false";
+    }
+
+    @Override
+    public String isVisibility(Page<Good> obj, int count) {
+        return obj.getTotalPages()>count?"true":"false";
+    }
 
     @Override
     public List<Good> getAll() {
@@ -64,6 +75,22 @@ public class GoodService implements GoodDao {
     public Page<Good> findByBrand(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, long genreId) {
         return goodRepository.findByBrandIdBrand(genreId, new PageRequest(pageNumber, pageSize, new Sort(sortDirection, sortField)));
     }
+
+//    @Override
+//    public List<Good> findNewDish() {
+//        return bookRepository.findTopBooks(new PageRequest(0,limit, new Sort(Sort.Direction.DESC, "viewCount")));
+//
+//    }
+    @Override
+    public List<Good> findByNewsEquals() {
+        return goodRepository.findByNewsEquals(GoodVisible.TRUE);
+    }
+
+    @Override
+    public List<Good> findBySpecialsEquals() {
+        return goodRepository.findBySpecialsEquals(GoodVisible.TRUE);
+    }
+
 
     @Override
     public void updateRating(long totalRating, long totalVoteCount, int avgRating, long id) {

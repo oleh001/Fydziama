@@ -3,20 +3,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <!--CATEGORIES-->
-    <article>
-        <h2><span>#{msg.menu_categories}</span></h2>
-        <hr/><hr/>
-        <ul class="cat-menu">
-            <li><a href="sushi-rolls.html">Sushi and Rolls</a></li>
-            <li><a href="cold-entrees.html">Cold Entrees</a></li>
-            <li><a href="soups-dishes.html">Soups and Hot Dishes</a></li>
-            <li><a href="sweets-desserts.html">Sweets and Desserts</a></li>
-            <li><a href="beverages-drinks.html">Beverages and Drinks</a></li>
-        </ul>
-    </article>
+    <h:form>
+        <article>
+            <h2><span>#{msg.menu_categories}</span></h2>
+            <hr/>
+            <hr/>
+            <ul class="cat-menu">
+                <li>
+                    <p:commandLink class="cat-menu-a"
+                                   actionListener="#{goodController.showAll()}"
+                                   update="@([id$=goodList])"
+                    >
+                        <p:outputLabel value="#{msg.all_dishes}" styleClass="brand-name"/>
+                    </p:commandLink>
+                </li>
+                <p:repeat value="#{brandController.all}" var="brands">
+
+                    <li>
+                        <p:commandLink class="cat-menu-a"
+                                       actionListener="#{goodController.showGoodsByBrand(brands.idBrand)}"
+                                       update="@([id$=goodList])">
+                            <p:outputLabel value="#{brands.brand}" styleClass="brand-name"/>
+                        </p:commandLink>
+                    </li>
+                </p:repeat>
+
+                <li><a href="sushi-rolls.html">Sushi and Rolls</a></li>
+                <!--<li><a href="cold-entrees.html">Cold Entrees</a></li>-->
+                <!--<li><a href="soups-dishes.html">Soups and Hot Dishes</a></li>-->
+                <!--<li><a href="sweets-desserts.html">Sweets and Desserts</a></li>-->
+                <!--<li><a href="beverages-drinks.html">Beverages and Drinks</a></li>-->
+            </ul>
+        </article>
+    </h:form>
     <!--/CATEGORIES-->
 </f:view>
 </html>

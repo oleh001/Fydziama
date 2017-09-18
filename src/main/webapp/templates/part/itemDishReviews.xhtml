@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <!--ITEM REVIEWS-->
+    <article id="item-reviews">
+        <h2>#{msg.dish} <span>#{msg.reviews}</span></h2>
+        <hr/>
+        <hr/>
+        <!--REVIEW-->
+        <h:form id="dishReviewForm">
+            <p:dataList id="reviewList" var="reviews" value="#{reviewController.lazyModel}"
+                        styleClass="reviewList #{reviewController.visiblePaginator}"
+                        paginator="true"
+                        rows="#{reviewController.rowsCount}"
+                        emptyMessage=""
+                        rowIndexVar="rowIndexVar"
+                        rowsPerPageTemplate="6,12,24,48,96"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        lazy="true"
+            >
+                <article>
+                    <h6>#{reviews.name} - <span>#{reviews.reviewDate}</span></h6>
+
+                    <p:rating readonly="true" class="rate stars red" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
+                    <p:rating readonly="true" class="rate hearts gold" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
+
+                    <p>#{reviews.review}</p>
+                </article>
+            </p:dataList>
+        </h:form>
+        <!--/REVIEW-->
+    </article>
+    <!--/ITEM REVIEWS-->
+</f:view>
+</html>

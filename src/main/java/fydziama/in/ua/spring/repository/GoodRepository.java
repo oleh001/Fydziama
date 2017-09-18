@@ -1,6 +1,7 @@
 package fydziama.in.ua.spring.repository;
 
 import fydziama.in.ua.entity.Good;
+import fydziama.in.ua.entity.GoodVisible;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,6 +19,12 @@ public interface GoodRepository extends JpaRepository<Good, Long> {
 
     Page<Good> findByBrandIdBrand(long idBrand, Pageable pageable);
 
+
+    List<Good> findByNewsEquals(GoodVisible bool);
+    Page<Good> findByNewsEquals(GoodVisible bool, Pageable pageable);
+
+    List<Good> findBySpecialsEquals(GoodVisible bool);
+    Page<Good> findBySpecialsEquals(GoodVisible bool, Pageable pageable);
 
     // на основании имени метода будет построен Hibernate запрос
     List<Good> findByNameContainingIgnoreCaseOrBrandBrandContainingIgnoreCaseOrderByName(String name, String brand);

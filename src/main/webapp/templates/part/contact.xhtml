@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <f:view>
@@ -8,7 +10,8 @@
     <div id="contact-wrap">
         <section id="contact">
             <h2><span>#{msg.contact}</span> #{msg.us}</h2>
-            <hr/><hr/>
+            <hr/>
+            <hr/>
             <ul>
                 <!--CONTACT ITEM-->
                 <li class="wow fadeInLeft">
@@ -54,25 +57,58 @@
             </ul>
             <div class="cleaner"/>
             <!--CONTACT FORM-->
-            <form id="ctc">
+            <h:form id="ctc">
                 <!--ERROR MSGS-->
-                <label for="email" class="error email-wrng">#{msg.contact_you_have_to_enter_a_valid_email}</label>
-                <label for="message" class="error msg-wrng">#{msg.contact_you_have_to_enter_a_message}</label>
+
                 <!--/ERROR MSGS-->
+
                 <div>
                     <label for="name">#{msg.your_name}</label>
-                    <input type="text" placeholder="#{msg.placeholder_name}" id="name" name="name"/>
+                    <h:message id="mes_name" for="name" class="error msg-wrng"/>
+                    <p:inputText type="text" required="true" id="name" name="name"
+                                 requiredMessage="#{msg.contact_you_have_to_enter_a_name}"
+                                 placeholder="#{msg.placeholder_name}"
+                                 value="#{messageController.selectedMessage.userName}">
+                        <!--<p:ajax event="blur" update="mes_name name"/>-->
+                    </p:inputText>
+
                     <label for="email">#{msg.your_email_address}</label>
-                    <input type="text" placeholder="#{msg.placeholder_mail}" id="email" name="email"/>
-                    <label for="subject">Your Subject</label>
-                    <input type="text" placeholder="#{msg.placeholder_subject}" id="subject" name="subject"/>
+                    <h:message id="mes_ema" for="email" class="error msg-wrng"/>
+                    <p:inputText type="email" required="true" id="email" name="email"
+                                 requiredMessage="#{msg.contact_you_have_to_enter_a_valid_email}"
+                                 placeholder="#{msg.placeholder_mail}"
+                                 value="#{messageController.selectedMessage.userEmail}">
+                        <!--<p:ajax event="blur" update="mes_ema email" />-->
+                    </p:inputText>
+
+                    <label for="subject">#{msg.your_subject}</label>
+                    <h:message id="mes_sub" for="subject" class="error msg-wrng"/>
+                    <p:inputText type="text" required="true" id="subject" name="subject"
+                                 requiredMessage="#{msg.contact_you_have_to_enter_a_subject}"
+                                 placeholder="#{msg.placeholder_subject}"
+                                 value="#{messageController.selectedMessage.userSubject}">
+                        <!--<p:ajax event="blur" update="mes_sub subject"/>-->
+                    </p:inputText>
                 </div>
-                <div>
+
+                <div class="div_mess">
                     <label for="message">#{msg.your_message}</label>
-                    <textarea name="message" id="message" placeholder="#{msg.placeholder_message}"/>
+                    <h:message id="mes_mes" for="message" class="error msg-wrng"/>
+                    <p:inputTextarea required="true" rows="5" cols="30" counter="display" maxlength="255"
+                                     counterTemplate="{0} #{msg.characters_remaining}."
+                                     requiredMessage="#{msg.contact_you_have_to_enter_a_message}"
+                                     autoResize="false" name="message" id="message"
+                                     placeholder="#{msg.placeholder_message}"
+                                     value="#{messageController.selectedMessage.userMessage}">
+                        <!--<p:ajax event="blur" update="mes_mes message"/>-->
+                    </p:inputTextarea>
+                    <h:outputText id="display"/>
                 </div>
-            </form>
-            <button id="ctc-submit" form="ctc">#{msg.contact_send_message}</button>
+            </h:form>
+            <p:commandButton id="ctc-submit" form="ctc" value="#{msg.contact_send_message}"
+                             actionListener="#{messageController.save}"
+                             update="@([id$=ctc])">
+            </p:commandButton>
             <!--CONTACT FORM-->
         </section>
     </div>

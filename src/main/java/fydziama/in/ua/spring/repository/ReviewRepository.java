@@ -14,4 +14,9 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findByReviewContainingIgnoreCaseOrUserNameContainingIgnoreCaseOrderByUserName(String review, String name);
 
     Page<Review> findByReviewContainingIgnoreCaseOrUserNameContainingIgnoreCaseOrderByUserName(String review, String name, Pageable pageable);
+
+    List<Review> findByGoodIdGoodOrderByReviewDate(long idGood);
+
+    Page<Review> findByGoodIdGoodOrderByReviewDate(long idGood, Pageable pageable);
+
 }

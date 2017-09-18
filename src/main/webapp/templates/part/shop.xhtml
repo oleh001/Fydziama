@@ -4,10 +4,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <!--SHOP-->
-    <h2><span>#{msg.shop_category}</span> Name (Якась категорія)</h2>
+    <h2 id="qwe">#{msg.founded}: #{goodController.lazyModel.rowCount}
+        <span>#{msg.shop_category}</span> Name (Якась категорія)</h2>
     <hr/>
     <hr/>
     <article id="views">
@@ -20,14 +22,88 @@
             </select>
         </form>
         <ul class="views">
-            <li class="selected"><a href="#" class="grid tooltip" title="Grid View"/></li>
-            <li><a href="#" class="detail tooltip" title="Detail View"/></li>
-            <li><a href="#" class="list tooltip" title="List View"/></li>
+            <li class="selected"><a href="#" class="grid tooltip toGrid" title="Grid View"/></li>
+            <li><a href="#" class="detail tooltip toDetail" title="Detail View"/></li>
+            <li><a href="#" class="list tooltip toList" title="List View"/></li>
         </ul>
     </article>
 
     <ul class="dishes grid">
         <!--DISH-->
+
+        <h:form id="goodsForm">
+            <p:dataGrid id="goodList" var="goods" value="#{goodController.lazyModel}"
+                        paginatorPosition="bottom"
+                        styleClass="goodsList #{goodController.visiblePaginator}"
+                        paginator="true"
+                        rows="#{goodController.rowsCount}"
+                        emptyMessage=""
+                        rowIndexVar="rowIndexVar"
+                        rowsPerPageTemplate="6,12,24,48,96"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        lazy="true"
+            >
+
+                <li class="ul_dishes_li ul_dishes_grid_li">
+                    <div class="circle medium">
+                        <figure class="imgLiquidFill">
+                            <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
+                        </figure>
+                        <div class="shadow"/>
+                        <p:commandLink actionListener="#" update="" rendered="#{goods.hits=='FALSE'}">
+                            <div class="fill red cart-tip toWishlist">
+                                <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
+                            </div>
+                        </p:commandLink>
+
+                        <p:commandLink actionListener="#" update="" rendered="#{goods.hits=='TRUE'}">
+                            <div class="fill gold cart-tip toWishlist">
+                                <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
+                            </div>
+                        </p:commandLink>
+
+                    </div>
+                    <article>
+
+                        <p:outputLabel value="" styleClass="ribbon new" rendered="#{goods.news=='TRUE'}"/>
+                        <p:outputLabel value="" styleClass="ribbon featured" rendered="#{goods.hits=='TRUE'}"/>
+
+                        <p:commandLink action="#{reviewController.editAction()}">
+                            <h6>#{goods.name}</h6>
+                            <f:setPropertyActionListener value="#{goods}" target="#{goodController.selectedGood}"/>
+                            <f:setPropertyActionListener value="#{goods}" target="#{reviewController.selectedReview.good}"/>
+                        </p:commandLink>
+
+
+                        <p:rating  class="rate stars red" value="#{goods.avgRating}" stars="5" cancel="false" rendered="#{goods.hits=='FALSE'}"/>
+                        <p:rating  class="rate hearts gold" value="#{goods.avgRating}" stars="5" cancel="false" rendered="#{goods.hits=='TRUE'}"/>
+
+                        <!--<ul class="rate stars">-->
+                            <!--<li/>-->
+                            <!--<li/>-->
+                            <!--<li/>-->
+                            <!--<li/>-->
+                            <!--<li class="empty"/>-->
+                        <!--</ul>-->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
+                    </article>
+                    <div class="price">
+                        <div>
+                            <p class="quantity">#{goods.gram}</p>
+                            <p class="measure">#{msg.gram}</p>
+                        </div>
+                        <p>$ #{goods.price} &#8372;</p>
+                    </div>
+                    <p:commandLink styleClass="button red" actionListener="#" update="" rendered="#{goods.hits=='FALSE'}">
+                        <p:outputLabel value="#{msg.add_to_cart}" />
+                    </p:commandLink>
+
+                    <p:commandLink styleClass="button gold" actionListener="#" update="" rendered="#{goods.hits=='TRUE'}">
+                        <p:outputLabel value="#{msg.add_to_cart}" />
+                    </p:commandLink>
+                </li>
+            </p:dataGrid>
+        </h:form>
         <li>
             <div class="circle medium">
                 <figure class="imgLiquidFill">

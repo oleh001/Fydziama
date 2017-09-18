@@ -14,4 +14,10 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
     List<OrderDetail> findByGoodNameContainingIgnoreCaseOrderByGoodName(String name);
 
     Page<OrderDetail> findByGoodNameContainingIgnoreCaseOrderByGoodName(String name, Pageable pageable);
+
+    List<OrderDetail> findByOrderUserIdUserOrderByGoodName(long idBrand);
+
+    Page<OrderDetail> findByOrderUserIdUserOrderByGoodName(long idBrand, Pageable pageable);
+
+
 }
