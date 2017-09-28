@@ -71,12 +71,12 @@ public class ReviewService implements ReviewDao {
 
     @Override
     public List<Review> searchGood(long idGood) {
-        return reviewRepository.findByGoodIdGoodOrderByReviewDate(idGood);
+        return reviewRepository.findByGoodIdGoodOrderByReviewDateDesc(idGood);
     }
 
     @Override
     public Page<Review> searchGood(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, long idGood) {
-        return reviewRepository.findByGoodIdGoodOrderByReviewDate(idGood, new PageRequest(pageNumber, pageSize, new Sort(sortDirection, sortField)));
+        return reviewRepository.findByGoodIdGoodOrderByReviewDateDesc(idGood, new PageRequest(pageNumber, pageSize, new Sort(sortDirection, sortField)));
     }
 }
 

@@ -8,46 +8,38 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 // JPA
 @Entity
 @Table(catalog = "fydziama_db_new")
 
 // Lombok
-@EqualsAndHashCode(of = "idOrderDetail")
+@EqualsAndHashCode(of = "idFaq")
 @Getter
 @Setter
 
+// аннотации Hibernate
 @DynamicUpdate
 @DynamicInsert
 @SelectBeforeUpdate
-public class OrderDetail {
+public class Faq {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // autoincrement
     @Id
-    @Column(name = "id_order_detail")
-    private Long idOrderDetail;
+    @Column(name = "id_faq")
+    private Long idFaq;
 
-    @ManyToOne
-    @JoinColumn(name = "id_order")
-    private Order order;
+    private String name;
+    private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "id_good")
-    private Good good;
+    private int position;
 
-    private int quantity;
+    @Column(name = "step")
+    @Enumerated(EnumType.STRING)
+    private GoodVisible step;
 
     @Override
     public String toString() {
-        return good + " - " + quantity;
-    }
-
-    public OrderDetail() {
-    }
-
-    public OrderDetail(Order order, Good good, int quantity) {
-        this.order = order;
-        this.good = good;
-        this.quantity = quantity;
+        return name;
     }
 }

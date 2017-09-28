@@ -1,5 +1,6 @@
 package fydziama.in.ua.jsfui.controller;
 
+import fydziama.in.ua.dao.GoodDao;
 import fydziama.in.ua.dao.ReviewDao;
 import fydziama.in.ua.dao.UserDao;
 import fydziama.in.ua.entity.Good;
@@ -27,7 +28,7 @@ import java.util.List;
 @Log
 public class ReviewController  extends AbstractController<Review> {
 
-    public static final String REVIEW_SEARCH_COLUMN = "name";
+    public static final String REVIEW_SEARCH_COLUMN = "reviewDate";
     public static final Sort.Direction REVIEW_SORT_DIRECTION= Sort.Direction.DESC;
 
     private static final int DEFAULT_PAGE_SIZE = 6;
@@ -39,9 +40,16 @@ public class ReviewController  extends AbstractController<Review> {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private GoodDao goodDao;
+
+    @Autowired
+    private GoodController goodController;
+
     private User user;
 
     private Good selectedGood;
+    private long selectedGoodId;
 
     private Review selectedReview;
 
@@ -53,7 +61,7 @@ public class ReviewController  extends AbstractController<Review> {
 
     @PostConstruct
     public void init() {
-        user= userDao.get(3L);
+        user= userDao.get(2L);
         selectedReview=new Review(user, "name34", 4 );
         lazyModel = new LazyDataTable(this);
     }
@@ -103,4 +111,10 @@ public class ReviewController  extends AbstractController<Review> {
         return reviewDao.getAll(new Sort(Sort.Direction.ASC, REVIEW_SEARCH_COLUMN));
     }
 
+    public void loadData(){
+//        goodController.setShowShop(false);
+        selectedGood = goodDao.get(selectedGoodId);
+        selectedReview.setGood(selectedGood);
+        goodController.setSelectedGood(selectedGoodId);
+    }
 }

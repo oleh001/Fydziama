@@ -8,57 +8,76 @@
 >
 <f:view>
     <!--MAIN-NAV-->
-    <div id="main-nav-wrap">
-        <nav id="main-nav">
-            <a href="#{request.contextPath}/index.xhtml">
-                <figure>
-                    <o:graphicImage name="images/logo-banner.png" alt="#{msg.logo}" dataURI="true"/>
-                    <figcaption>#{msg.shopName}</figcaption>
-                </figure>
-            </a>
-            <ul>
-                <li>
-                    <a href="#{request.contextPath}/index.xhtml">#{msg.menu_home}</a>
-                </li>
-                <li><a href="#{request.contextPath}/index.xhtml#specials">#{msg.special}</a></li>
-                <li class="sub-items"><a href="#">Features</a>
-                    <ul>
-                        <li><a href="#{request.contextPath}/templates/shopr.xhtml">#{msg.menu_main_shop_right}</a></li>
-                        <li><a href="#{request.contextPath}/templates/shopl.xhtml">#{msg.menu_main_shop_left}</a></li>
-                        <li><a href="#{request.contextPath}/templates/guest-checkout.xhtml">#{msg.checkout_as_guest}</a></li>
-                        <li><a href="#{request.contextPath}/templates/confirmed-checkout.xhtml">#{msg.confirmed_checkout}</a></li>
-                        <li><a href="#{request.contextPath}/templates/profile.xhtml">#{msg.profile_page}</a></li>
-                        <li><a href="#{request.contextPath}/templates/account-forms.xhtml" target="_blank">Account forms</a></li>
-                    </ul>
-                </li>
-                <li class="sub-items"><a href="#">Shop</a>
-                    <ul>
-                        <li><a href="#{request.contextPath}/templates/faq.xhtml">How to Shop - FAQ</a></li>
-                        <li><a href="#{request.contextPath}/templates/sushi-rolls.xhtml">Sushi and Rolls</a></li>
-                        <li><a href="#{request.contextPath}/templates/cold-entrees.xhtml">Cold Entrees</a></li>
-                        <li><a href="#{request.contextPath}/templates/soups-dishes.xhtml">Soups and Hot Dishes</a></li>
-                        <li><a href="#{request.contextPath}/templates/sweets-desserts.xhtml">Sweets and Desserts</a></li>
-                        <li><a href="#{request.contextPath}/templates/beverages-drinks.xhtml">Beverages and Drinks</a></li>
-                    </ul>
-                </li>
-                <li><a href="#{request.contextPath}/index.xhtml#combos">#{msg.combos}</a></li>
-                <li class="sub-items cart-items"><a href="#{request.contextPath}/templates/checkout.xhtml">#{msg.cart}<span class="cart">8</span></a>
-                    <ul>
-                        <li><p>#{msg.menu_main_cart_item}<span>8</span></p></li>
-                        <li><p>#{msg.menu_main_cart_total}<span>$353,50</span></p></li>
-                        <li><a href="#{request.contextPath}/templates/checkout.xhtml" class="button red">#{msg.proceed_to_checkout}</a>
-                            <o:graphicImage name="images/menu-logo.png" alt="logo" dataURI="true"/>
-                            <p class="greet">#{msg.menu_main_cart_thanks}</p>
-                            <o:graphicImage name="images/menu-serrated-border.png" alt="serrated-border"
-                                            dataURI="true"/>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#{request.contextPath}/index.xhtml#contact">#{msg.menu_main_contact}</a></li>
-            </ul>
-            <a href="#" id="pull"/>
-        </nav>
-    </div>
+    <h:form id="menuCheckout">
+        <div id="main-nav-wrap">
+            <nav id="main-nav">
+                <a href="#{request.contextPath}/index.xhtml">
+                    <figure>
+                        <o:graphicImage name="images/logo-banner.png" alt="#{msg.logo}" dataURI="true"/>
+                        <figcaption>#{msg.shopName}</figcaption>
+                    </figure>
+                </a>
+                <ul>
+                    <li>
+                        <a href="#{request.contextPath}/index.xhtml">#{msg.menu_home}</a>
+                    </li>
+                    <li><a href="#{request.contextPath}/index.xhtml#specials">#{msg.special}</a></li>
+                    <li class="sub-items"><a href="#">Features</a>
+                        <ul>
+                            <li><a href="#{request.contextPath}/templates/shopr.xhtml">#{msg.menu_main_shop_right}</a>
+                            </li>
+                            <li><a href="#{request.contextPath}/templates/shopl.xhtml">#{msg.menu_main_shop_left}</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/templates/guest-checkout.xhtml">#{msg.checkout_as_guest}</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/templates/confirmed-checkout.xhtml">#{msg.confirmed_checkout}</a>
+                            </li>
+                            <li><a href="#{request.contextPath}/templates/profile.xhtml">#{msg.profile_page}</a></li>
+                            <li><a href="#{request.contextPath}/templates/account-forms.xhtml"
+                                   target="_blank">Account forms</a></li>
+                        </ul>
+                    </li>
+                    <li class="sub-items"><a href="#">Shop</a>
+                        <ul>
+                            <li><a href="#{request.contextPath}/templates/faq.xhtml">#{msg.how_to_shop_faq}</a></li>
+                            <li><a href="#{request.contextPath}/templates/sushi-rolls.xhtml">Sushi and Rolls</a></li>
+                            <li><a href="#{request.contextPath}/templates/cold-entrees.xhtml">Cold Entrees</a></li>
+                            <li><a href="#{request.contextPath}/templates/soups-dishes.xhtml">Soups and Hot Dishes</a>
+                            </li>
+                            <li><a href="#{request.contextPath}/templates/sweets-desserts.xhtml">Sweets and Desserts</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/templates/beverages-drinks.xhtml">Beverages and Drinks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#{request.contextPath}/index.xhtml#combos">#{msg.combos}</a></li>
+                    <li class="sub-items cart-items">
+                        <a href="#{request.contextPath}/templates/checkout.xhtml">#{msg.cart}
+                            <span class="cart">#{orderDetailController.totalQuantity}</span>
+                        </a>
+                        <ul>
+                            <li><p>#{msg.menu_main_cart_item}<span>#{orderDetailController.totalQuantity}</span></p>
+                            </li>
+                            <li><p>#{msg.menu_main_cart_total}<span>$#{orderDetailController.totalPrice} &#8372;</span>
+                            </p></li>
+                            <li><a href="#{request.contextPath}/templates/checkout.xhtml"
+                                   class="button red">#{msg.proceed_to_checkout}</a>
+                                <o:graphicImage name="images/menu-logo.png" alt="logo" dataURI="true"/>
+                                <p class="greet">#{msg.menu_main_cart_thanks}</p>
+                                <o:graphicImage name="images/menu-serrated-border.png" alt="serrated-border"
+                                                dataURI="true"/>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#{request.contextPath}/index.xhtml#contact">#{msg.menu_main_contact}</a></li>
+                </ul>
+                <a href="#" id="pull"/>
+            </nav>
+        </div>
+    </h:form>
     <!--/MAIN-NAV-->
 </f:view>
 </html>

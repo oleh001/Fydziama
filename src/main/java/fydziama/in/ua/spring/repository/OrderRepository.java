@@ -1,6 +1,7 @@
 package fydziama.in.ua.spring.repository;
 
 import fydziama.in.ua.entity.Order;
+import fydziama.in.ua.entity.OrderStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByUserNameContainingIgnoreCaseOrderByUserName(String name);
 
     Page<Order> findByUserNameContainingIgnoreCaseOrderByUserName(String name, Pageable pageable);
+
+    Order findByUserIdUserAndStatus(long idUser, OrderStatus status);
 }

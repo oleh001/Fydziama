@@ -1925,18 +1925,6 @@ span.arrow.right {
 	text-shadow: 0 0 10px #000;
 }
 
-#phone-order > article > h2.numberKyiv {
-	padding-left: 10px;
-	text-align: right;
-	background-size: contain;
-	background: url('../images/kyiv.png') no-repeat left;
-}
-
-#phone-order > article > h2.numberMTS {
-	background-size: contain;
-	background: url('../images/mts.png') no-repeat left;
-}
-
 /***************************************/
 /* 11. COMBOS */
 /***************************************/

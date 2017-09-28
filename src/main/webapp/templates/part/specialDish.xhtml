@@ -24,13 +24,15 @@
                                     <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
                                 </figure>
                                 <div class="shadow"/>
-                                <p:commandLink actionListener="#" update="" rendered="#{goods.hits=='FALSE'}">
+                                <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                                               update="" rendered="#{goods.hits=='FALSE'}">
                                     <div class="fill red cart-tip toWishlist">
                                         <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
                                     </div>
                                 </p:commandLink>
 
-                                <p:commandLink actionListener="#" update="" rendered="#{goods.hits=='TRUE'}">
+                                <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                                               update="" rendered="#{goods.hits=='TRUE'}">
                                     <div class="fill gold cart-tip toWishlist">
                                         <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
                                     </div>
@@ -46,23 +48,21 @@
                                     <span class="ribbon new"/>
                                 </p:outputLabel>
 
-                                <p:commandLink actionListener="#"
-                                               update="">
-                                    <h6>#{goods.name}</h6>
-                                </p:commandLink>
+                                <p:link styleClass="classh6" outcome="templates/dishDetail" value="#{goods.name}" fragment="item-detail">
+                                    <f:param name="dishId" value="#{goods.idGood}"/>
+                                </p:link>
 
-                                <p:rating class="rate stars red" value="#{goods.avgRating}" stars="5" cancel="false"
+                                <!--<p:commandLink action="#{reviewController.editAction()}">-->
+                                    <!--<h6>#{goods.name}</h6>-->
+                                    <!--<f:setPropertyActionListener value="#{goods}" target="#{goodController.selectedGood}"/>-->
+                                    <!--<f:setPropertyActionListener value="#{goods}" target="#{reviewController.selectedReview.good}"/>-->
+                                <!--</p:commandLink>-->
+
+                                <p:rating readonly="true" class="rate star red" value="#{goods.avgRating}" stars="5" cancel="false"
                                           rendered="#{goods.hits=='FALSE'}"/>
-                                <p:rating class="rate hearts gold" value="#{goods.avgRating}" stars="5" cancel="false"
+                                <p:rating readonly="true" class="rate heart gold" value="#{goods.avgRating}" stars="5" cancel="false"
                                           rendered="#{goods.hits=='TRUE'}"/>
 
-                                <!--<ul class="rate stars">-->
-                                <!--<li/>-->
-                                <!--<li/>-->
-                                <!--<li/>-->
-                                <!--<li/>-->
-                                <!--<li class="empty"/>-->
-                                <!--</ul>-->
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
                             </article>
                             <div class="price">
@@ -72,13 +72,13 @@
                                 </div>
                                 <p>$ #{goods.price} &#8372;</p>
                             </div>
-                            <p:commandLink styleClass="button red" actionListener="#" update=""
-                                           rendered="#{goods.hits=='FALSE'}">
+                            <p:commandLink styleClass="button red" actionListener="#{orderDetailController.addToCart(goods)}"
+                                           update="" rendered="#{goods.hits=='FALSE'}">
                                 <p:outputLabel value="#{msg.add_to_cart}"/>
                             </p:commandLink>
 
-                            <p:commandLink styleClass="button gold" actionListener="#" update=""
-                                           rendered="#{goods.hits=='TRUE'}">
+                            <p:commandLink styleClass="button gold" actionListener="#{orderDetailController.addToCart(goods)}"
+                                           update="" rendered="#{goods.hits=='TRUE'}">
                                 <p:outputLabel value="#{msg.add_to_cart}"/>
                             </p:commandLink>
                         </li>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<f:view>
+    <!--HEADER-BOTTOM-->
+    <div id="header-bottom-wrap">
+            <section id="header-bottom">
+
+                <h1 class="wow fadeInLeft">#{msg.the_best}
+                    <span class="remarked">#{msg.asian_cuisine}</span>
+                    <span class="right">#{msg.in_all_the_city}</span>
+                </h1>
+                <a href="#" class="order wow bounceInDown" data-wow-delay=".5s">#{msg.start_your_online_order}</a>
+                <o:graphicImage styleClass="wow fadeInRight" name="images/asian-girl.png" alt="asian-girl"
+                                dataURI="true"/>
+                <!--MAIN-SLIDER-->
+                <div id="main-slider-wrap">
+                    <ul id="main-slider">
+                        <!--SLIDE-->
+                        <li>
+                            <div class="circle small">
+                                <figure class="imgLiquidFill">
+                                    <o:graphicImage name="images/menu-03.jpg" alt="dish" dataURI="true"/>
+                                </figure>
+                                <div class="shadow"/>
+                                <div class="fill"/>
+                            </div>
+                            <article class="promo">
+                                <h6>Try Our <span class="remarked">Chef’s Recommendation!</span></h6>
+                                <p>Lorem ipsum
+                                    <span>dolor sit amet</span>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
+                                </p>
+                            </article>
+                            <article class="price">
+                                <h3>$55</h3>
+                                <p>Valid for Month</p>
+                                <a href="#" class="button red">#{msg.add_to_cart}</a>
+                            </article>
+                        </li>
+                        <!--/SLIDE-->
+
+                        <!--SLIDE-->
+                        <li>
+                            <div class="circle small">
+                                <figure class="imgLiquidFill">
+                                    <o:graphicImage name="images/menu-02.jpg" alt="dish" dataURI="true"/>
+                                </figure>
+                                <div class="shadow"/>
+                                <div class="fill"/>
+                            </div>
+                            <article class="promo">
+                                <h6>Check Today's <span class="remarked">Featured Dish</span></h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    <span>incididunt ut</span> labore et dolore magna aliqua. Ut enim ad minim.</p>
+                            </article>
+                            <article class="price">
+                                <h3>$120</h3>
+                                <p>Only for Today</p>
+                                <a href="#" class="button red">#{msg.add_to_cart}</a>
+                            </article>
+                        </li>
+                        <!--/SLIDE-->
+
+                        <!--SLIDE-->
+                        <li>
+                            <div class="circle small">
+                                <figure class="imgLiquidFill">
+                                    <o:graphicImage name="images/menu-01.jpg" alt="dish" dataURI="true"/>
+                                </figure>
+                                <div class="shadow"/>
+                                <div class="fill"/>
+                            </div>
+                            <article class="promo">
+                                <h6>Week's <span class="remarked">Special Combo</span></h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate alias quibusdam suscipit ea non consequuntur
+                                    <span>fugit hic</span> quia deleniti odit.</p>
+                            </article>
+                            <article class="price">
+                                <h3>$90</h3>
+                                <p>Valid for Week</p>
+                                <a href="#" class="button red">#{msg.add_to_cart}</a>
+                            </article>
+                        </li>
+                        <!--/SLIDE-->
+                    </ul>
+                    <!--SLIDER CONTROLS-->
+                    <span id="previous" class="arrow left"/>
+                    <span id="next" class="arrow right"/>
+                </div>
+                <!--/MAIN-SLIDER-->
+            </section>
+    </div>
+    <!--/HEADER-BOTTOM-->
+</f:view>
+</html>

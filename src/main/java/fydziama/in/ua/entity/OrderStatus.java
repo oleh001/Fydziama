@@ -1,7 +1,8 @@
 package fydziama.in.ua.entity;
 
 public enum OrderStatus {
+    WISHLIST,
     START,
-    LOADING,
+    CONFIRMED,
     FINISH
 }

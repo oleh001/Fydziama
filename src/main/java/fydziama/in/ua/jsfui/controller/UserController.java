@@ -29,7 +29,7 @@ public class UserController  extends AbstractController<User>  {
     @Autowired
     private UserDao userDao;
 
-    private User selectedUser;
+    private User selectedUser =new User();
 
     private LazyDataTable<User> lazyModel;
 

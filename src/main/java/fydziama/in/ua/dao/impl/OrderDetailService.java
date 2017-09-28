@@ -58,6 +58,10 @@ public class OrderDetailService implements OrderDetailDao {
         return orderDetailRepository.findByOrderUserIdUserOrderByGoodName(idUser);
     }
 
+    public List<OrderDetail> searchOrder(long idOrder) {
+        return orderDetailRepository.findByOrderIdOrderOrderByGoodName(idOrder);
+    }
+
     @Override
     public OrderDetail get(long id) {
         return orderDetailRepository.findOne(id);

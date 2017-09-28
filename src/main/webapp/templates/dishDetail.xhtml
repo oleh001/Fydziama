@@ -4,6 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
     <title>Red Samurai | Shop</title>
@@ -25,12 +26,17 @@
             <!--}(document, 'script', 'facebook-jssdk'));</script>-->
 
 
+            <f:metadata>
+                <f:viewParam name="dishId" value="#{reviewController.selectedGoodId}"/>
+                <f:event type="postAddToView" listener="#{reviewController.loadData}"/>
+            </f:metadata>
+
             <!--SHOP-->
             <div id="shop-wrap">
                 <section id="shop">
                     <aside class="left">
                         <!--CATEGORIES-->
-                        <ui:include src="part/menu.xhtml"/>
+                        <ui:include src="part/menuDetail.xhtml"/>
                         <!--/CATEGORIES-->
 
                         <!--NEW DISHES-->

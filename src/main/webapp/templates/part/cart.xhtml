@@ -18,32 +18,34 @@
                 <p>#{msg.description}</p>
                 <p>#{msg.price}</p>
                 <p>#{msg.quantity}</p>
-                <p>#{msg.checkout_cart_subtotal}</p>
+                <p>#{msg.subtotal}</p>
                 <p>#{msg.checkout_cart_remove_from_cart}</p>
             </div>
             <ul>
                 <!--CART ITEM-->
-                <p:repeat value="#{orderDetailController.showOrderDetByUser(1)}" var="orderDet">
+                <p:repeat value="#{orderDetailController.showOrderDetByOrder()}" var="orderDet">
                     <li>
                         <div class="circle tiny">
                             <figure class="imgLiquidFill">
                                 <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}" dataURI="true"/>
                             </figure>
                             <div class="shadow"/>
-                            <div class="fill"/>
+                            <div class="fill #{goodController.getStyleCircle(orderDet.good)}"/>
                         </div>
                         <div class="description">
-                            <h6>#{orderDet.good.name}</h6>
+                            <p:link styleClass="classh6" outcome="dishDetail" value="#{orderDet.good.name}" fragment="item-detail">
+                                <f:param name="dishId" value="#{orderDet.good.idGood}"/>
+                            </p:link>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
                         </div>
                         <h6 class="price-small">#{msg.price}:</h6>
-                        <h6>$<span>#{orderDet.good.price}</span></h6>
+                        <h6>$<span>#{orderDet.good.price} &#8372;</span></h6>
                         <div class="quantity cart_ul_li_div_quantity">
 
                             <p:spinner min="0" max="99" id="cartQuantity" value="#{orderDet.quantity}" styleClass="counter">
-                                <p:ajax listener="#{orderDetailController.updateQuantitySubtotal(orderDet)}" update="cartUser" process="@this" />
+                                <p:ajax listener="#{orderDetailController.updateQuantitySubtotal(orderDet)}"
+                                        update="cartUser @([id$=ticket]) @([id$=menuCheckout])"/>
                             </p:spinner>
-
                         </div>
                         <h6 class="subtotal-small">#{msg.subtotal}:</h6>
                         <h6>$<span id="cartSubtotal">#{orderDet.good.price * orderDet.quantity}</span></h6>
@@ -57,122 +59,9 @@
                             <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
                         </p:commandLink>
 
-                        <!--<a href="#" class="remove">-->
-                        <!--<o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>-->
-                        <!--</a>-->
                     </li>
                 </p:repeat>
 
-                <li>
-                    <div class="circle tiny">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <div class="fill"/>
-                    </div>
-                    <div class="description">
-                        <h6>Salmon Rolls</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
-                    </div>
-                    <h6 class="price-small">#{msg.price}:</h6>
-                    <h6>$<span>45.00</span></h6>
-                    <div class="quantity">
-                        <div>2</div>
-                        <a href="#" class="counter up"/>
-                        <a href="#" class="counter down"/>
-                    </div>
-                    <h6 class="subtotal-small">#{msg.subtotal}:</h6>
-                    <h6>$<span>90.00</span></h6>
-                    <a href="#" class="remove">
-                        <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
-                    </a>
-                </li>
-                <!--/CART ITEM-->
-
-                <!--CART ITEM-->
-                <li>
-                    <div class="circle tiny">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-03.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <div class="fill"/>
-                    </div>
-                    <div class="description">
-                        <h6>Kerinachi Rice</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
-                    </div>
-                    <h6 class="price-small">Price:</h6>
-                    <h6>$<span>47.50</span></h6>
-                    <div class="quantity">
-                        <div>1</div>
-                        <a href="#" class="counter up"/>
-                        <a href="#" class="counter down"/>
-                    </div>
-                    <h6 class="subtotal-small">Subtotal:</h6>
-                    <h6>$<span>47.50</span></h6>
-                    <a href="#" class="remove">
-                        <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
-                    </a>
-                </li>
-                <!--/CART ITEM-->
-
-                <!--CART ITEM-->
-                <li>
-                    <div class="circle tiny">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-07.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <div class="fill"/>
-                    </div>
-                    <div class="description">
-                        <h6>Red Octopus Takoyaki</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
-                    </div>
-                    <h6 class="price-small">Price:</h6>
-                    <h6>$<span>20.00</span></h6>
-                    <div class="quantity">
-                        <div>3</div>
-                        <a href="#" class="counter up"/>
-                        <a href="#" class="counter down"/>
-                    </div>
-                    <h6 class="subtotal-small">Subtotal:</h6>
-                    <h6>$<span>60.00</span></h6>
-                    <a href="#" class="remove">
-                        <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
-                    </a>
-                </li>
-                <!--/CART ITEM-->
-
-                <!--CART ITEM-->
-                <li>
-                    <div class="circle tiny">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-09.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <div class="fill"/>
-                    </div>
-                    <div class="description">
-                        <h6>Steamed Ryu Salmon</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
-                    </div>
-                    <h6 class="price-small">Price:</h6>
-                    <h6>$<span>78.00</span></h6>
-                    <div class="quantity">
-                        <div>2</div>
-                        <a href="#" class="counter up"/>
-                        <a href="#" class="counter down"/>
-                    </div>
-                    <h6 class="subtotal-small">Subtotal:</h6>
-                    <h6>$<span>156.00</span></h6>
-                    <a href="#" class="remove">
-                        <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
-                    </a>
-                </li>
-                <!--/CART ITEM-->
             </ul>
         </article>
     </h:form>

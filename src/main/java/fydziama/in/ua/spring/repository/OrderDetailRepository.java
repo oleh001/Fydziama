@@ -19,5 +19,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> 
 
     Page<OrderDetail> findByOrderUserIdUserOrderByGoodName(long idBrand, Pageable pageable);
 
+    List<OrderDetail> findByOrderIdOrderOrderByGoodName(long idOrder);
 
+    Page<OrderDetail> findByOrderIdOrderOrderByGoodName(long idOrder, Pageable pageable);
 }

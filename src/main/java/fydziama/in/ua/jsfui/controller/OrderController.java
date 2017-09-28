@@ -2,6 +2,7 @@ package fydziama.in.ua.jsfui.controller;
 
 import fydziama.in.ua.dao.OrderDao;
 import fydziama.in.ua.entity.Order;
+import fydziama.in.ua.entity.OrderStatus;
 import fydziama.in.ua.jsfui.model.LazyDataTable;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +28,13 @@ public class OrderController extends AbstractController<Order> {
     @Autowired
     private OrderDao orderDao;
 
-    private Order selectedOrder=new Order();
+    @Autowired
+    private UserController userController;
+
+    private Order selectedOrder = new Order();
+
+    private Order selectedOrderStart;
+    private Order selectedOrderWishList;
 
     private LazyDataTable<Order> lazyModel;
 
@@ -47,12 +54,12 @@ public class OrderController extends AbstractController<Order> {
 
     @Override
     public String vizibilityAction() {
-        return orderDao.isVisibility(orderPage,countPages);
+        return orderDao.isVisibility(orderPage, countPages);
     }
 
     @Override
     public Page<Order> search(int first, int count, String sortField, Sort.Direction sortDirection) {
-        visiblePaginator="visible" + vizibilityAction();
+        visiblePaginator = "visible" + vizibilityAction();
         return null;
     }
 
@@ -72,6 +79,14 @@ public class OrderController extends AbstractController<Order> {
 
     public List<Order> getAll() {
         return orderDao.getAll(new Sort(Sort.Direction.ASC, ORDER_SEARCH_COLUMN));
+    }
+
+    public void setOrderStart() {
+        selectedOrderStart = orderDao.getOrderWithStatus(userController.getUserDao().get(1L).getIdUser(), OrderStatus.START);
+    }
+
+    public void setOrderWishList() {
+        selectedOrderWishList = orderDao.getOrderWithStatus(userController.getUserDao().get(1L).getIdUser(), OrderStatus.WISHLIST);
     }
 }
 

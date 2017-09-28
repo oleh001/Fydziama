@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Red Samurai | FAQ</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+</head>
+
+<ui:composition template="template.xhtml">
+    <ui:define name="content">
+        <f:view>
+            <!--FAQ-->
+            <div id="faq-wrap">
+                <section id="faq">
+                    <aside class="left">
+
+                        <!--NEW DISHES-->
+                        <ui:include src="part/newDish.xhtml"/>
+                        <!--/NEW DISHES-->
+
+                        <o:graphicImage name="images/banner-big.png" alt="banner" dataURI="true"/>
+                    </aside>
+
+                    <article class="right">
+                        <h2><span>#{msg.how}</span> #{msg.to_shop}</h2>
+                        <hr/>
+                        <hr/>
+                        <o:graphicImage name="images/faq-preview.png" alt="faq-preview" dataURI="true"/>
+                        <ul>
+
+                            <p:repeat value="#{faqController.faqSteps}" var="faqStep">
+                                <li>
+                                    <h4>#{faqStep.name}</h4>
+                                    <p>#{faqStep.text}</p>
+                                </li>
+                            </p:repeat>
+                        </ul>
+                        <div class="cleaner"/>
+                        <h2><span>#{msg.faq}</span> - #{msg.frequently_asked_questions}</h2>
+                        <hr/>
+                        <hr/>
+                        <p:repeat value="#{faqController.faqQuestions}" var="faqQuestion">
+                            <article>
+                                <h4><span>#{faqQuestion.position}</span>#{faqQuestion.name}?</h4>
+                                <p>#{faqQuestion.text}</p>
+                            </article>
+                        </p:repeat>
+                    </article>
+                    <div class="cleaner"/>
+                </section>
+            </div>
+            <!--/FAQ-->
+
+            <!--PROMO-->
+            <ui:include src="part/promo.xhtml"/>
+            <!--/PROMO-->
+
+        </f:view>
+    </ui:define>
+</ui:composition>
+</html>

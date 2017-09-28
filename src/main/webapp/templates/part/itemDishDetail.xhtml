@@ -18,13 +18,13 @@
                     <o:graphicImage name="images/menu-05.jpg" alt="item" dataURI="true"/>
                 </figure>
                 <div class="shadow"/>
-                <div class="fill"/>
+                <div class="fill #{goodController.getStyleCircle(goodController.selectedGood)}"/>
             </div>
             <article>
                 <h3>#{goodController.selectedGood.name}<span>$#{goodController.selectedGood.price}</span></h3>
 
-                <p:rating readonly="true" class="rate stars red" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
-                <p:rating readonly="true" class="rate hearts gold" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
+                <p:rating readonly="true" class="rate star red" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
+                <p:rating readonly="true" class="rate heart gold" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in endein uptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint.</p>
 
@@ -47,9 +47,31 @@
                          data-href="http://www.your-domain123.com"/>
                 </div>
                 <div class="cleaner"/>
-                <a href="#" class="button red">#{msg.add_to_cart}</a>
+                <!--<a href="#" class="button red">#{msg.add_to_cart}</a>-->
+                <p:commandLink styleClass="button red" actionListener="#{orderDetailController.addToCart(goodController.selectedGood)}"
+                               update="" rendered="#{goodController.selectedGood.hits=='FALSE'}">
+                    <p:outputLabel value="#{msg.add_to_cart}"/>
+                </p:commandLink>
+                <p:commandLink styleClass="button gold" actionListener="#{orderDetailController.addToCart(goodController.selectedGood)}"
+                               update="" rendered="#{goodController.selectedGood.hits=='TRUE'}">
+                    <p:outputLabel value="#{msg.add_to_cart}"/>
+                </p:commandLink>
+
+
                 <p class="quantity">#{orderDetailController.quantity} #{msg.quantity_name}</p>
-                <a href="#" class="button wishlist red">#{msg.add_to_wishlist}</a>
+                <!--<a href="#" class="button wishlist red">#{msg.add_to_wishlist}</a>-->
+                <p:commandLink class="button wishlist red"
+                               actionListener="#{orderDetailController.addToWishList(goodController.selectedGood)}"
+                               update="" rendered="#{goodController.selectedGood.hits=='FALSE'}">
+                    <p:outputLabel value="#{msg.add_to_wishlist}"/>
+                </p:commandLink>
+
+                <p:commandLink class="button wishlist gold"
+                               actionListener="#{orderDetailController.addToWishList(goodController.selectedGood)}"
+                               update="" rendered="#{goodController.selectedGood.hits=='TRUE'}">
+                    <p:outputLabel value="#{msg.add_to_wishlist}"/>
+                </p:commandLink>
+
             </article>
             <div class="cleaner"/>
         </article>

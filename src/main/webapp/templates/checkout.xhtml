@@ -63,14 +63,15 @@
                             <h2><span>#{msg.checkout_cart_delivery}</span> #{msg.checkout_cart_delivery_info}</h2>
                             <hr/>
                             <hr/>
-                            <form id="delivery-info">
+                            <h:form id="delivery-info">
                                 <div>
                                     <label for="name">#{msg.your_name}</label>
                                     <input type="text" id="name" name="name" placeholder="#{msg.placeholder_name}"/>
                                 </div>
                                 <div>
                                     <label for="surname">#{msg.your_surname}</label>
-                                    <input type="text" id="surname" name="surname" placeholder="#{msg.placeholder_surname}"/>
+                                    <input type="text" id="surname" name="surname"
+                                           placeholder="#{msg.placeholder_surname}"/>
                                 </div>
                                 <div>
                                     <label for="email">#{msg.your_email_address}</label>
@@ -79,7 +80,8 @@
                                 </div>
                                 <div>
                                     <label for="phone">#{msg.your_phone_number}</label>
-                                    <input type="text" placeholder="#{msg.placeholder_phone_number}" id="phone" name="phone"/>
+                                    <input type="text" placeholder="#{msg.placeholder_phone_number}" id="phone"
+                                           name="phone"/>
                                 </div>
                                 <div>
                                     <label for="address">Your Delivery Address</label>
@@ -87,40 +89,53 @@
                                 </div>
                                 <div>
                                     <label for="apartament">#{msg.checkout_cart_house_apartament}</label>
-                                    <input type="text" placeholder="#{msg.checkout_cart_placeholder_house_apartament}" id="apartament"
+                                    <input type="text" placeholder="#{msg.checkout_cart_placeholder_house_apartament}"
+                                           id="apartament"
                                            name="apartament"/>
                                 </div>
                                 <div>
                                     <label for="city">#{msg.checkout_cart_town_sity}</label>
-                                    <input type="text" placeholder="#{msg.checkout_cart_placeholder_town_sity}" id="city" name="city"/>
+                                    <input type="text" placeholder="#{msg.checkout_cart_placeholder_town_sity}"
+                                           id="city" name="city"/>
                                 </div>
                                 <div>
                                     <label for="phone_alt">#{msg.checkout_cart_additional_phone_number}</label>
-                                    <input type="text" placeholder="#{msg.checkout_cart_placeholder_additional_phone_number}" id="phone_alt" name="phone_alt"/>
+                                    <input type="text"
+                                           placeholder="#{msg.checkout_cart_placeholder_additional_phone_number}"
+                                           id="phone_alt" name="phone_alt"/>
                                 </div>
                                 <label for="specifications">#{msg.checkout_cart_addition_specification}</label>
                                 <textarea id="specifications" name="specifications"
                                           placeholder="#{msg.checkout_cart_placeholder_addition_specification}"/>
                                 <input type="checkbox" name="autocomplete" id="autocomplete" checked="checked"/>
                                 <label for="autocomplete">#{msg.checkout_cart_autocomplete}</label>
-                            </form>
+                            </h:form>
                         </article>
                     </article>
                     <aside class="right">
-                        <h2><span>#{msg.checkout_cart_total}</span></h2>
-                        <hr/>
-                        <hr/>
-                        <article class="ticket">
-                            <o:graphicImage name="images/ticket-serrated-border.png" alt="serrated-border" dataURI="true"/>
-                            <h6>#{msg.checkout_cart_your_order_ticket}</h6>
-                            <p>#{msg.checkout_cart_subtotal}:<span>$353.50</span></p>
-                            <p>#{msg.checkout_cart_delivery_subtotal}:<span>$5.50</span></p>
-                            <p class="total">#{msg.checkout_cart_total}:<span>$359.00</span></p>
-                            <a href="#" class="button red">#{msg.checkout_cart_button_confirm}</a>
-                            <o:graphicImage name="images/cart-logo.png" alt="cart-logo" dataURI="true"/>
-                            <p>#{msg.checkout_cart_thanks}</p>
-                        </article>
+                        <h:form id="ticket">
+                            <h2><span>#{msg.checkout_cart_total}</span></h2>
+                            <hr/>
+                            <hr/>
+                            <article class="ticket">
+
+                                <o:graphicImage name="images/ticket-serrated-border.png" alt="serrated-border"
+                                                dataURI="true"/>
+                                <h6>#{msg.checkout_cart_your_order_ticket}</h6>
+                                <p>#{msg.checkout_cart_subtotal}:<span>$#{orderDetailController.priceDishes} &#8372;</span>
+                                </p>
+                                <p>#{msg.checkout_cart_delivery_subtotal}:<span>$#{orderDetailController.priceDelivery} &#8372;</span>
+                                </p>
+                                <p class="total">#{msg.checkout_cart_total}:<span>$#{orderDetailController.totalPrice} &#8372;</span>
+                                </p>
+                                <a href="#" class="button red">#{msg.checkout_cart_button_confirm}</a>
+                                <o:graphicImage name="images/cart-logo.png" alt="cart-logo" dataURI="true"/>
+                                <p>#{msg.checkout_cart_thanks}</p>
+
+                            </article>
+                        </h:form>
                         <o:graphicImage name="images/delivery-banner.jpg" alt="delivery-banner" dataURI="true"/>
+
                     </aside>
                     <div class="cleaner"/>
                 </section>

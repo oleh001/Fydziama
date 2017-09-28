@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface OrderDetailDao extends GeneralDao<OrderDetail> {
     List<OrderDetail> searchUser(long idUser);
+
+    List<OrderDetail> searchOrder(long idOrder);
 }

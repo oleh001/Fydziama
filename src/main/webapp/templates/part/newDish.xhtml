@@ -22,92 +22,25 @@
                                 <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
                             </figure>
                             <div class="shadow"/>
-                            <a href="#">
-                                <div class="fill red tooltip toCart" title="Add to cart">
+
+                            <p:commandLink actionListener="#{orderDetailController.addToCart(newDishes)}"
+                                           update="">
+                                <div class="fill #{goodController.getStyleCircle(newDishes)} tooltip toCart"
+                                     title="Add to cart">
                                     <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
                                 </div>
-                            </a>
+                            </p:commandLink>
                         </div>
-                        <p:commandLink actionListener="#{brandController.editAction()}"
-                                       update="@([id$=goodList])">
-                            <p:outputLabel value="#{newDishes.name}" styleClass="brand-name"/>
-                        </p:commandLink>
+
+                        <p:link styleClass="classh6" outcome="dishDetail" value="#{newDishes.name}"
+                                fragment="item-detail">
+                            <f:param name="dishId" value="#{newDishes.idGood}"/>
+                        </p:link>
+
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp</p>
 
                     </li>
                 </p:repeat>
-                <!--/DISH ITEM-->
-
-                <!--DISH ITEM-->
-                <li>
-                    <div class="circle tiny">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip" title="Add to cart">
-                                <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="southern-teriyaki.html"><h6>Southern Teriyaki</h6></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp</p>
-                </li>
-                <!--/DISH ITEM-->
-
-                <!--DISH ITEM-->
-                <li>
-                    <div class="circle tiny">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-07.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip" title="Add to cart">
-                                <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="octopus-takoyaki.html"><h6>Red Octopus Takoyaki</h6></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp</p>
-                </li>
-                <!--/DISH ITEM-->
-
-                <!--DISH ITEM-->
-                <li>
-                    <div class="circle tiny">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-04.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip" title="Add to cart">
-                                <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="onion-soup.html"><h6>Spicy Onion Soup</h6></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp</p>
-                </li>
-                <!--/DISH ITEM-->
-
-                <!--DISH ITEM-->
-                <li>
-                    <div class="circle tiny">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-10.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip" title="Add to cart">
-                                <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <a href="chocolate-cookies.html"><h6>Crispy Chocolate Cookies</h6></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp</p>
-                </li>
                 <!--/DISH ITEM-->
             </ul>
         </article>

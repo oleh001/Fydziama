@@ -2,6 +2,7 @@ package fydziama.in.ua.dao.impl;
 
 import fydziama.in.ua.dao.OrderDao;
 import fydziama.in.ua.entity.Order;
+import fydziama.in.ua.entity.OrderStatus;
 import fydziama.in.ua.spring.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -67,6 +68,10 @@ public class OrderService implements OrderDao {
     @Override
     public void delete(Order order) {
         orderRepository.delete(order);
+    }
+
+    public Order getOrderWithStatus(long idUser, OrderStatus status){
+        return orderRepository.findByUserIdUserAndStatus(idUser, status);
     }
 }
 

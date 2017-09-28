@@ -50,8 +50,12 @@ public class GoodController extends AbstractController<Good> {
     private SearchType searchType;
     private String searchText;
     private long selectedBrandId;
+    private int catAll=1;
+
+//    private boolean showShop;
 
     public String visiblePaginator;
+    public String styleCircle="red";
 
     @Override
     public String vizibilityAction() {
@@ -90,7 +94,7 @@ public class GoodController extends AbstractController<Good> {
                     break;
             }
         }
-
+//        showShop=true;
         visiblePaginator="visible" + vizibilityAction();
 
         return goodPages;
@@ -111,6 +115,8 @@ public class GoodController extends AbstractController<Good> {
     }
 
     public void showGoodsByBrand(long brandId) {
+
+//        showShop=true;
         searchType = SearchType.SEARCH_BRAND;
         this.selectedBrandId = brandId;
     }
@@ -138,11 +144,46 @@ public class GoodController extends AbstractController<Good> {
     }
 
     public void showAll() {
+//        showShop=true;
         searchType = SearchType.ALL;
+        selectedBrandId=0;
     }
 
     public void searchText() {
         searchType = SearchType.SEARCH_TEXT;
     }
 
+    public void setSelectedGood(long idGood){
+        selectedGood=goodDao.get(idGood);
+    }
+
+    public String styleAction(long idBrand){
+        return selectedBrandId==idBrand?"brand-active":"";
+    }
+
+    public void attributeListener(){
+//        log.log(Level.WARNING, String.valueOf(selectedBrandId));
+        if(catAll==0) {
+            searchType = SearchType.ALL;
+            catAll =1;
+        }else if(selectedBrandId!=0) {
+            searchType = SearchType.SEARCH_BRAND;
+        }
+    }
+
+    public String getStyleCircle(){
+        return selectedGood.getHits().toString()=="TRUE"?"gold":"red";
+    }
+
+    public String getStyleCircle(Good good){
+        return good.getHits().toString()=="TRUE"?"gold":"red";
+    }
+
+    public String getStyleImage(){
+        return selectedGood.getHits().toString()=="TRUE"?"heart":"star";
+    }
+
+    public String getStyleImage(Good good){
+        return good.getHits().toString()=="TRUE"?"heart":"star";
+    }
 }

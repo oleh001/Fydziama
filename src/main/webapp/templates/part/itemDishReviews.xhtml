@@ -26,8 +26,8 @@
                 <article>
                     <h6>#{reviews.name} - <span>#{reviews.reviewDate}</span></h6>
 
-                    <p:rating readonly="true" class="rate stars red" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
-                    <p:rating readonly="true" class="rate hearts gold" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
+                    <p:rating readonly="true" class="rate stars red" value="#{reviews.rating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
+                    <p:rating readonly="true" class="rate hearts gold" value="#{reviews.rating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
 
                     <p>#{reviews.review}</p>
                 </article>

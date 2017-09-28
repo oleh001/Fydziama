@@ -195,6 +195,14 @@ h4, h5, h6 {
     text-transform: uppercase;
 }
 
+.classh6 {
+    font-family: 'Oswald', sans-serif !important;
+    text-transform: uppercase;
+    font-size: 1.125em !important;
+    font-weight: 400;
+    color: #484848 !important;
+}
+
 h1 {
     font-size: 3em; /* 48px / 16px */
     color: #f4f4f4;
@@ -1129,11 +1137,11 @@ ul.dishes {
     text-transform: uppercase;
 }
 
-.rate.stars > .ui-rating-star a {
+.rate.star > .ui-rating-star a {
     background-image: url('../images/rating_main.png');
 }
 
-.rate.hearts > .ui-rating-star a {
+.rate.heart > .ui-rating-star a {
     background-image: url('../images/rating_new.png');
 }
 
@@ -1162,31 +1170,31 @@ ul.rate > li:last-child {
     margin-right: 0;
 }
 
-ul.rate.stars > li {
+ul.rate.star > li {
     height: 11px;
     background-image: url('../images/star-red.png');
 }
 
-ul.rate.hearts > li {
+ul.rate.heart > li {
     height: 10px;
     background-image: url('../images/heart-red.png');
 }
 
-ul.rate.stars > li.empty,
-ul.rate.stars.gold > li.empty {
+ul.rate.star > li.empty,
+ul.rate.star.gold > li.empty {
     background-image: url('../images/star-empty.png');
 }
 
-ul.rate.hearts > li.empty,
-ul.rate.hearts.gold > li.empty {
+ul.rate.heart > li.empty,
+ul.rate.heart.gold > li.empty {
     background-image: url('../images/heart-empty.png');
 }
 
-ul.rate.stars.gold > li {
+ul.rate.star.gold > li {
     background-image: url('../images/star-gold.png');
 }
 
-ul.rate.hearts.gold > li {
+ul.rate.heart.gold > li {
     background-image: url('../images/heart-gold.png');
 }
 
@@ -1739,13 +1747,13 @@ ul.dishes.list > li > article > p {
     min-height: 300px;
 }
 
-#header-bottom.small > h1 {
+#header-bottom.small h1 {
     width: auto;
     line-height: 1.2em;
-    margin: 0;
+    margin: 0 auto;
 }
 
-#header-bottom.small > a.order {
+#header-bottom.small a.order {
     margin-left: 0;
 }
 
@@ -2140,17 +2148,17 @@ span.arrow.right {
     text-shadow: 0 0 10px #000;
 }
 
-#phone-order > article > h2.numberKyiv {
-    padding-left: 10px;
-    text-align: right;
-    background-size: contain;
-    background: url('../images/kyiv.png') no-repeat left;
-}
+/*#phone-order > article > h2.numberKyiv {*/
+/*padding-left: 10px;*/
+/*text-align: right;*/
+/*background-size: contain;*/
+/*background: url('../images/kyiv.png') no-repeat left;*/
+/*}*/
 
-#phone-order > article > h2.numberMTS {
-    background-size: contain;
-    background: url('../images/mts.png') no-repeat left;
-}
+/*#phone-order > article > h2.numberMTS {*/
+/*background-size: contain;*/
+/*background: url('../images/mts.png') no-repeat left;*/
+/*}*/
 
 /***************************************/
 /* 11. COMBOS */
@@ -2624,7 +2632,7 @@ ul.cat-menu > li > a {
     background: url('../images/category-tag.png') no-repeat 5px 18px #fff;
 }
 
-ul.cat-menu > li > a > label {
+ul.cat-menu > li > a > label{
     font-size: 1em !important; /* 16px / 16px */
     font-family: "Oswald", sans-serif !important;
     font-weight: 400 !important;
@@ -2634,9 +2642,15 @@ ul.cat-menu > li > a > label {
     -webkit-transition: all .3s ease-in-out;
 }
 
-ul.cat-menu > li > a > label:hover {
+ul.cat-menu > li > a > label:hover,
+ul.cat-menu > li > a.detail:hover {
     color: #db2e2e !important;
     /*padding-left: 35px;*/
+}
+
+ul.cat-menu > li > a > label.brand-active,
+ul.cat-menu > li > a.detail.brand-active {
+    color: #db2e2e !important;
 }
 
 /*-------------------
@@ -3358,7 +3372,7 @@ ul.views > li > a.list {
     left: 0;
 }
 
-#checkout > aside > .ticket {
+#checkout aside .ticket {
     margin-bottom: 50px;
 }
 

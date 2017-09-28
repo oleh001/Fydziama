@@ -4,11 +4,18 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
     <title>Red Samurai | Shop</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 </head>
+
+<f:metadata>
+    <f:viewParam name="category" value="#{goodController.selectedBrandId}" />
+    <f:viewParam name="category" value="#{goodController.catAll}" />
+    <f:event type="postAddToView" listener="#{goodController.attributeListener}"/>
+</f:metadata>
 
 <ui:composition template="template.xhtml">
     <ui:define name="content">
@@ -27,14 +34,16 @@
                         <o:graphicImage name="images/banner-small-01.png" alt="banner" dataURI="true"/>
                         <o:graphicImage name="images/banner-small-02.png" alt="banner small" dataURI="true"/>
                     </aside>
-                    <article class="right">
+                    <article id="uppdate" class="right">
 
                         <!--SHOP DISH-->
                         <ui:include src="part/shop.xhtml"/>
                         <!--/SHOP DISH-->
 
+
+
                         <!--PAGINATION-->
-                        <ui:include src="part/pagination.xhtml"/>
+                        <!--<ui:include src="part/pagination.xhtml"/>-->
                         <!--/PAGINATION-->
 
                     </article>
