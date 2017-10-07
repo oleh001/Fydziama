@@ -6,6 +6,7 @@ import fydziama.in.ua.jsfui.model.LazyDataTable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.java.Log;
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -48,6 +49,8 @@ public class UserController  extends AbstractController<User>  {
     }
 
     public void save() {
+        selectedUser.setLogin("qwe1566");
+        selectedUser.setPassword("qwe1566");
         userDao.save(selectedUser);
     }
 
@@ -66,6 +69,8 @@ public class UserController  extends AbstractController<User>  {
     @Override
     public void addAction() {
         selectedUser = new User();
+
+        RequestContext.getCurrentInstance().execute("PF('dialogRegistrationUser').show()");
     }
 
     @Override
@@ -81,4 +86,11 @@ public class UserController  extends AbstractController<User>  {
         return userDao.getAll(new Sort(Sort.Direction.ASC, USER_SEARCH_COLUMN));
     }
 
+    public void registration(){
+
+    }
+
+    public void loginAction(){
+
+    }
 }

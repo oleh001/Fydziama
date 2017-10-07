@@ -22,11 +22,22 @@
 <!--<f:view locale="#{localeChanger.currentLocale}">-->
 <f:view>
 
-    <ui:include src="header.xhtml"/>
+    <!-- login Dialog -->
+    <ui:include src="/templates/dialogs/login.xhtml"/>
+    <!-- registration Dialog -->
+    <ui:include src="/templates/dialogs/registration.xhtml"/>
+
+    <!--HEADER-->
+    <header>
+        <ui:insert name="headerID">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+    </header>
+    <!--/HEADER-->
 
     <!--<ui:include src="leftmenu.xhtml"/>-->
     <div id="content">
-    <ui:insert name="content"/>
+        <ui:insert name="content"/>
     </div>
     <ui:include src="footer.xhtml"/>
 </f:view>

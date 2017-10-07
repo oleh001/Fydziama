@@ -41,6 +41,13 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    @ManyToOne
+    @JoinColumn(name = "id_zone")
+    private Zone zone;
+
+    @Column(name = "code_confirmed")
+    private String codeConfirmed;
+
     @Basic(fetch = FetchType.LAZY)
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;

@@ -2,6 +2,7 @@ package fydziama.in.ua.jsfui.controller;
 
 import fydziama.in.ua.dao.GoodDao;
 import fydziama.in.ua.entity.Good;
+import fydziama.in.ua.entity.ShopType;
 import fydziama.in.ua.jsfui.enums.SearchType;
 import fydziama.in.ua.jsfui.model.LazyDataTable;
 import lombok.Getter;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.List;
 
 @ManagedBean
@@ -26,7 +29,6 @@ import java.util.List;
 public class GoodController extends AbstractController<Good> {
 
     public static final String GOOD_SEARCH_COLUMN = "name";
-
 
     public static final int DEFAULT_PAGE_SIZE = 6;
     private int rowsCount = DEFAULT_PAGE_SIZE;
@@ -51,6 +53,8 @@ public class GoodController extends AbstractController<Good> {
     private String searchText;
     private long selectedBrandId;
     private int catAll=1;
+    @Enumerated(EnumType.STRING)
+    private ShopType selectedShopType=ShopType.GRID;
 
 //    private boolean showShop;
 
@@ -133,7 +137,7 @@ public class GoodController extends AbstractController<Good> {
 
     public String getStyleFadeIn(){
         countStyleDish++;
-        if (countStyleDish==5 && styleFadeIn=="fadeInRight"){
+        if (countStyleDish==5 && styleFadeIn.equals("fadeInRight")){
             styleFadeIn="fadeInLeft";
             countStyleDish=1;
         }else if (countStyleDish==5){
@@ -171,19 +175,37 @@ public class GoodController extends AbstractController<Good> {
         }
     }
 
+    public void updateShopType(String shopType) {
+        switch (shopType) {
+            case "GRID":
+                this.selectedShopType = ShopType.GRID;
+                break;
+            case "DETAIL":
+                this.selectedShopType = ShopType.DETAIL;
+                break;
+            case "LIST":
+                this.selectedShopType = ShopType.LIST;
+                break;
+        }
+    }
+
+    public String getStyleShopType(String shopType){
+        return shopType.equals(selectedShopType.toString())?"selected":"";
+    }
+
     public String getStyleCircle(){
-        return selectedGood.getHits().toString()=="TRUE"?"gold":"red";
+        return selectedGood.getHits().toString().equals("TRUE")?"gold":"red";
     }
 
     public String getStyleCircle(Good good){
-        return good.getHits().toString()=="TRUE"?"gold":"red";
+        return good.getHits().toString().equals("TRUE")?"gold":"red";
     }
 
     public String getStyleImage(){
-        return selectedGood.getHits().toString()=="TRUE"?"heart":"star";
+        return selectedGood.getHits().toString().equals("TRUE")?"heart":"star";
     }
 
     public String getStyleImage(Good good){
-        return good.getHits().toString()=="TRUE"?"heart":"star";
+        return good.getHits().toString().equals("TRUE")?"heart":"star";
     }
 }

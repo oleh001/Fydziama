@@ -6,42 +6,27 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
-    <f:loadBundle var="msgs" basename="fydziama"/>
-    <h:outputStylesheet name="css/style.css"/>
-    <h:outputStylesheet name="css/jsfStyle.css"/>
-    <h:outputStylesheet name="css/tooltipster.css"/>
-    <h:outputStylesheet name="css/animate.css"/>
-
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
-    <!-- favicon -->
-    <link rel="shortcut icon" href="../resources/images/favicon.ico"/>
-    <title>hello</title>
+
+    <title>hello Index</title>
     <!--<title>Red Samurai | Shop</title>-->
 </h:head>
 
-<!--<f:view locale="#{localeChanger.currentLocale}">-->
-<f:view>
+<ui:composition template="template.xhtml">
+    <ui:define name="headerID">
+        <f:view>
+            <!--HEADER-TOP-->
+            <ui:include src="/templates/part/headerTop.xhtml"/>
+            <!--/HEADER-TOP-->
 
-    <!--HEADER-->
-    <header>
-        <!--HEADER-TOP-->
-        <ui:include src="/templates/part/headerTop.xhtml"/>
-        <!--/HEADER-TOP-->
+            <!--MAIN-NAV-->
+            <ui:include src="/templates/part/menuMain.xhtml"/>
+            <!--/MAIN-NAV-->
 
-        <!--MAIN-NAV-->
-        <ui:include src="/templates/part/menuMain.xhtml"/>
-        <!--/MAIN-NAV-->
-
-        <!--HEADER-BOTTOM-->
-        <ui:include src="/templates/part/headerBottomIndex.xhtml"/>
-        <!--/HEADER-BOTTOM-->
-
-    </header>
-    <!--/HEADER-->
-
-    <div id="content">
-        <ui:insert name="content"/>
-    </div>
-    <ui:include src="footer.xhtml"/>
-</f:view>
+            <!--HEADER-BOTTOM-->
+            <ui:include src="/templates/part/headerBottomIndex.xhtml"/>
+            <!--/HEADER-BOTTOM-->
+        </f:view>
+    </ui:define>
+</ui:composition>
 </html>

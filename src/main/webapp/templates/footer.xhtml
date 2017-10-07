@@ -7,48 +7,54 @@
 >
 
 <h:head>
-    <!--Треба-->
-    <!--jQuery-->
-    <h:outputScript name="js/jquery-1.11.1.min.js"/>
-    <!--bxSlider-->
-    <h:outputScript name="js/jquery.bxslider.min.js"/>
-    <!--imgLiquid-->
-    <h:outputScript name="js/imgLiquid-min.js"/>
-    <!-- Tooltipster-->
-    <h:outputScript name="js/jquery.tooltipster.min.js"/>
-    <!--easyPieChart-->
-    <h:outputScript name="js/jquery.easypiechart.min.js"/>
-    <!--Waypoints можна в кінці грузити-->
-    <h:outputScript name="js/waypoints.min.js"/>
-    <!--WoW Animations-->
-    <h:outputScript name="js/wow.min.js"/>
+    <h:form id="jsIncluded">
+        <!--Треба-->
+        <!--jQuery-->
+        <!--<script type='text/javascript'>-->
+        <!--var $j = jQuery.noConflict(true);-->
+        <!--</script>-->
+        <!--<h:outputScript  name="js/jquery-1.11.1.min.js"/>-->
+        <!--<h:outputScript library="primefaces" name="jquery/jquery.js" />-->
+        <!--bxSlider-->
+        <h:outputScript name="js/jquery.bxslider.min.js"/>
+        <!--imgLiquid Reload Size Image *** -->
+        <h:outputScript name="js/imgLiquid-min.js"/>
+        <!-- Tooltipster-->
+        <h:outputScript name="js/jquery.tooltipster.min.js"/>
+        <!--easyPieChart-->
+        <h:outputScript name="js/jquery.easypiechart.min.js"/>
+        <!--Waypoints можна в кінці грузити-->
+        <h:outputScript name="js/waypoints.min.js"/>
+        <!--WoW Animations-->
+        <h:outputScript name="js/wow.min.js"/>
 
-    <!--Menu-->
-    <h:outputScript name="js/menu.js"/>
-    <!--Main-->
-    <h:outputScript name="js/main.js"/>
-    <!-- Google Maps API треба-->
-    <script src="https://maps.googleapis.com/maps/api/js"/>
-    <!-- Google Maps Config поки треба-->
-    <h:outputScript name="js/gmaps.js"/>
-    <!--Login/Register/Reset Forms -->
-    <h:outputScript name="js/forms.js"/>
-    <!-- FAQ -->
-    <h:outputScript name="js/faq.js"/>
-    <!--/Треба-->
+        <!--Menu-->
+        <h:outputScript name="js/menu.js"/>
+        <!--Main-->
+        <h:outputScript name="js/main.js"/>
+        <!-- Google Maps API треба-->
+        <script src="https://maps.googleapis.com/maps/api/js"/>
+        <!-- Google Maps Config поки треба-->
+        <h:outputScript name="js/gmaps.js"/>
+        <!--Login/Register/Reset Forms -->
+        <h:outputScript name="js/forms.js"/>
+        <!-- FAQ -->
+        <h:outputScript name="js/faq.js"/>
+        <!--/Треба-->
 
-    <!--НЕ треба-->
-    <!--Shop  не треба-->
-    <!--<h:outputScript name="js/shop.js"/>-->
-    <!--Item  не треба-->
-    <!--<h:outputScript name="js/item.js"/>-->
-    <!--Checkout не треба-->
-    <!--<h:outputScript name="js/checkout.js"/>-->
-    <!--Contact не треба-->
-    <!--<h:outputScript name="js/contact.js"/>-->
-    <!--Profile не треба-->
-    <!--<h:outputScript name="js/profile.js"/>-->
-    <!--/Не треба-->
+        <!--НЕ треба-->
+        <!--Shop  не треба-->
+        <!--<h:outputScript name="js/shop.js"/>-->
+        <!--Item  не треба-->
+        <!--<h:outputScript name="js/item.js"/>-->
+        <!--Checkout не треба-->
+        <!--<h:outputScript name="js/checkout.js"/>-->
+        <!--Contact не треба-->
+        <!--<h:outputScript name="js/contact.js"/>-->
+        <!--Profile не треба-->
+        <!--<h:outputScript name="js/profile.js"/>-->
+        <!--/Не треба-->
+    </h:form>
 </h:head>
 
 <f:view>

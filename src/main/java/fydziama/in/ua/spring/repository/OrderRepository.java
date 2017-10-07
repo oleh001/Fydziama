@@ -16,5 +16,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     Page<Order> findByUserNameContainingIgnoreCaseOrderByUserName(String name, Pageable pageable);
 
-    Order findByUserIdUserAndStatus(long idUser, OrderStatus status);
+    Order[] findByUserIdUserAndStatus(long idUser, OrderStatus status);
 }

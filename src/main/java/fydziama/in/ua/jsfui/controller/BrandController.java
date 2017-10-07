@@ -24,6 +24,8 @@ import java.util.List;
 @Log
 public class BrandController extends AbstractController<Brand>{
 
+    public static final String BRAND_SEARCH_COLUMN = "brand";
+
     @Autowired
     private BrandDao brandDao;
 
@@ -71,6 +73,6 @@ public class BrandController extends AbstractController<Brand>{
     }
 
     public List<Brand> getAll() {
-        return brandDao.getAll(new Sort(Sort.Direction.ASC, "brand"));
+        return brandDao.getAll(new Sort(Sort.Direction.ASC, BRAND_SEARCH_COLUMN));
     }
 }

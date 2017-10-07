@@ -12,38 +12,57 @@
         <span>#{msg.shop_category}</span> Name (Якась категорія)</h2>
     <hr/>
     <hr/>
-    <article id="views">
-        <form>
+    <h:form id="filterAndViews">
+        <article id="views">
+
             <select name="filter" id="filter">
                 <option value="1">#{msg.shop_price_high_to_low}</option>
                 <option value="2">#{msg.shop_price_low_to_high}</option>
                 <option value="3">#{msg.shop_price_alphabetic_a_z}</option>
                 <option value="4">#{msg.shop_price_alphabetic_z_a}</option>
             </select>
-        </form>
-        <ul class="views">
-            <li class="selected"><a href="#" class="grid tooltip toGrid" title="Grid View"/></li>
-            <li><a href="#" class="detail tooltip toDetail" title="Detail View"/></li>
-            <li><a href="#" class="list tooltip toList" title="List View"/></li>
-        </ul>
-    </article>
 
-    <ul class="dishes grid">
+            <ul class="views">
+                <li class="#{goodController.getStyleShopType('GRID')}">
+                    <p:commandLink styleClass="grid tooltip toGrid"
+                                   actionListener="#{goodController.updateShopType('GRID')}"
+                                   update="goodsForm filterAndViews @([id$=jsIncluded])" title="Grid View">
+                    </p:commandLink>
+                </li>
+                <li class="#{goodController.getStyleShopType('DETAIL')}">
+                    <p:commandLink styleClass="detail tooltip toDetail"
+                                   actionListener="#{goodController.updateShopType('DETAIL')}"
+                                   update="goodsForm filterAndViews @([id$=jsIncluded])" title="Detail View">
+                    </p:commandLink>
+                </li>
+                <li class="#{goodController.getStyleShopType('LIST')}">
+                    <p:commandLink styleClass="list tooltip toList"
+                                   actionListener="#{goodController.updateShopType('LIST')}"
+                                   update="goodsForm filterAndViews @([id$=jsIncluded])" title="List View">
+                    </p:commandLink>
+                </li>
+            </ul>
+        </article>
+    </h:form>
+
+    <ul class="dishes #{goodController.selectedShopType.toString()}">
         <!--DISH-->
 
+        <!--Grid Form-->
         <h:form id="goodsForm">
-            <p:dataGrid id="goodList" var="goods" value="#{goodController.lazyModel}"
+            <p:dataGrid id="goodGrid" var="goods" value="#{goodController.lazyModel}"
                         paginatorPosition="bottom"
                         styleClass="goodsList #{goodController.visiblePaginator}"
                         paginator="true"
                         rows="#{goodController.rowsCount}"
-                        emptyMessage=""
+                        emptyMessage="" widgetVar="grid"
                         rowIndexVar="rowIndexVar"
                         rowsPerPageTemplate="6,12,24,48,96"
                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         lazy="true"
+                        rendered="#{goodController.selectedShopType.toString().equals('GRID')}"
             >
-
+                <p:ajax event="page" update="@([id$=jsIncluded])"/>
                 <li class="ul_dishes_li ul_dishes_grid_li">
                     <div class="circle medium">
                         <figure class="imgLiquidFill">
@@ -70,9 +89,9 @@
                         <p:outputLabel value="" styleClass="ribbon new" rendered="#{goods.news=='TRUE'}"/>
                         <p:outputLabel value="" styleClass="ribbon featured" rendered="#{goods.hits=='TRUE'}"/>
 
-                            <p:link styleClass="classh6" outcome="dishDetail" value="#{goods.name}" fragment="item-detail">
-                                <f:param name="dishId" value="#{goods.idGood}"/>
-                            </p:link>
+                        <p:link styleClass="classh6" outcome="dishDetail" value="#{goods.name}" fragment="item-detail">
+                            <f:param name="dishId" value="#{goods.idGood}"/>
+                        </p:link>
 
                         <p:rating readonly="true"
                                   class="rate star red"
@@ -101,183 +120,138 @@
                     </p:commandLink>
                 </li>
             </p:dataGrid>
+            <!--/Grid Form-->
+
+
+            <!--Detail Form-->
+            <p:dataList id="goodDetail" var="goods" value="#{goodController.lazyModel}"
+                        paginatorPosition="bottom"
+                        styleClass="goodsList #{goodController.visiblePaginator}"
+                        paginator="true"
+                        rows="#{goodController.rowsCount}"
+                        emptyMessage=""
+                        rowIndexVar="rowIndexVar"
+                        rowsPerPageTemplate="6,12,24,48,96"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        lazy="true"
+                        rendered="#{goodController.selectedShopType.toString().equals('DETAIL')}">
+                <p:ajax event="page" update="@([id$=jsIncluded])" />
+                <li class="ul_dishes_li ul_dishes_detail_li">
+                    <div class="circle medium">
+                        <figure class="imgLiquidFill">
+                            <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
+                        </figure>
+                        <div class="shadow"/>
+                        <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                                       update="" rendered="#{goods.hits=='FALSE'}">
+                            <div class="fill red cart-tip toWishlist">
+                                <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
+                            </div>
+                        </p:commandLink>
+
+                        <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                                       update="" rendered="#{goods.hits=='TRUE'}">
+                            <div class="fill gold cart-tip toWishlist">
+                                <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
+                            </div>
+                        </p:commandLink>
+
+                    </div>
+                    <article>
+
+                        <p:outputLabel value="" styleClass="ribbon new" rendered="#{goods.news=='TRUE'}"/>
+                        <p:outputLabel value="" styleClass="ribbon featured" rendered="#{goods.hits=='TRUE'}"/>
+
+                        <p:link styleClass="classh6" outcome="dishDetail" value="#{goods.name}" fragment="item-detail">
+                            <f:param name="dishId" value="#{goods.idGood}"/>
+                        </p:link>
+
+                        <p:rating readonly="true"
+                                  class="rate star red"
+                                  value="#{goods.avgRating}" stars="5" cancel="false"
+                                  rendered="#{goods.hits=='FALSE'}"/>
+                        <p:rating readonly="true" class="rate heart gold" value="#{goods.avgRating}" stars="5"
+                                  cancel="false" rendered="#{goods.hits=='TRUE'}"/>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
+                    </article>
+                    <div class="price">
+                        <div>
+                            <p class="quantity">#{goods.gram}</p>
+                            <p class="measure">#{msg.gram}</p>
+                        </div>
+                        <p>$ #{goods.price} &#8372;</p>
+                    </div>
+                    <p:commandLink styleClass="button red" actionListener="#{orderDetailController.addToCart(goods)}"
+                                   update="" rendered="#{goods.hits=='FALSE'}">
+                        <p:outputLabel value="#{msg.add_to_cart}"/>
+                    </p:commandLink>
+
+                    <p:commandLink styleClass="button gold" actionListener="#{orderDetailController.addToCart(goods)}"
+                                   update="" rendered="#{goods.hits=='TRUE'}">
+                        <p:outputLabel value="#{msg.add_to_cart}"/>
+                    </p:commandLink>
+                </li>
+            </p:dataList>
+            <!--/Detail Form-->
+
+            <!--List Form-->
+            <p:dataList id="goodList" var="goods" value="#{goodController.lazyModel}"
+                        paginatorPosition="bottom"
+                        styleClass="goodsList #{goodController.visiblePaginator}"
+                        paginator="true"
+                        rows="#{goodController.rowsCount}"
+                        emptyMessage=""
+                        rowIndexVar="rowIndexVar"
+                        rowsPerPageTemplate="6,12,24,48,96"
+                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        lazy="true"
+                        rendered="#{goodController.selectedShopType.toString().equals('LIST')}">
+                <p:ajax event="page" update="@([id$=jsIncluded])"/>
+                <li class="ul_dishes_li ul_dishes_list_li">
+                    <div class="circle tiny">
+                        <figure class="imgLiquidFill">
+                            <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
+                        </figure>
+                        <div class="shadow"/>
+                        <p:commandLink actionListener="#{orderDetailController.addToCart(goods)}"
+                                       update="" rendered="#{goods.hits=='FALSE'}">
+                            <div class="fill red cart-tip toCart">
+                                <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
+                            </div>
+                        </p:commandLink>
+
+                        <p:commandLink actionListener="#{orderDetailController.addToCart(goods)}"
+                                       update="" rendered="#{goods.hits=='TRUE'}">
+                            <div class="fill gold cart-tip toCart">
+                                <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
+                            </div>
+                        </p:commandLink>
+
+                    </div>
+                    <article>
+
+                        <p:link styleClass="classh6" outcome="dishDetail" value="#{goods.name}" fragment="item-detail">
+                            <f:param name="dishId" value="#{goods.idGood}"/>
+                        </p:link>
+
+                        <p:rating readonly="true"
+                                  class="rate star red"
+                                  value="#{goods.avgRating}" stars="5" cancel="false"
+                                  rendered="#{goods.hits=='FALSE'}"/>
+                        <p:rating readonly="true" class="rate heart gold" value="#{goods.avgRating}" stars="5"
+                                  cancel="false" rendered="#{goods.hits=='TRUE'}"/>
+<hr/>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
+                    </article>
+
+                    <h6>$ #{goods.price} &#8372;</h6>
+
+                </li>
+            </p:dataList>
+            <!--/List Form-->
+
         </h:form>
-        <!--<li>-->
-        <!--<div class="circle medium">-->
-        <!--<figure class="imgLiquidFill">-->
-        <!--<o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>-->
-        <!--</figure>-->
-        <!--<div class="shadow"/>-->
-        <!--<a href="#">-->
-        <!--<div class="fill red cart-tip">-->
-        <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--<article>-->
-        <!--<span class="ribbon new"/>-->
-        <!--<a href="southern-teriyaki.html"><h6>Southern Teriyaki</h6></a>-->
-        <!--<ul class="rate stars">-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li class="empty"/>-->
-        <!--</ul>-->
-        <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
-        <!--</article>-->
-        <!--<div class="price">-->
-        <!--<div>-->
-        <!--<p class="quantity">1</p>-->
-        <!--<p class="measure">srv</p>-->
-        <!--</div>-->
-        <!--<p>$80.00</p>-->
-        <!--</div>-->
-        <!--<a href="#" class="button red">Add to Cart</a>-->
-        <!--</li>-->
-        <!--&lt;!&ndash;/DISH&ndash;&gt;-->
-
-        <!--&lt;!&ndash;DISH&ndash;&gt;-->
-        <!--<li>-->
-        <!--<div class="circle medium">-->
-        <!--<figure class="imgLiquidFill">-->
-        <!--<o:graphicImage name="images/menu-02.jpg" alt="dish" dataURI="true"/>-->
-        <!--</figure>-->
-        <!--<div class="shadow"/>-->
-        <!--<a href="#">-->
-        <!--<div class="fill red cart-tip">-->
-        <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--<article>-->
-        <!--<a href="springtime-sushi.html"><h6>Springtime Sushi</h6></a>-->
-        <!--<ul class="rate stars">-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li class="empty"/>-->
-        <!--</ul>-->
-        <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
-        <!--</article>-->
-        <!--<div class="price">-->
-        <!--<div>-->
-        <!--<p class="quantity">15</p>-->
-        <!--<p class="measure">pcs</p>-->
-        <!--</div>-->
-        <!--<p>$69.00</p>-->
-        <!--</div>-->
-        <!--<a href="#" class="button red">Add to Cart</a>-->
-        <!--</li>-->
-        <!--&lt;!&ndash;/DISH&ndash;&gt;-->
-
-        <!--&lt;!&ndash;DISH&ndash;&gt;-->
-        <!--<li>-->
-        <!--<div class="circle medium">-->
-        <!--<figure class="imgLiquidFill">-->
-        <!--<o:graphicImage name="images/menu-09.jpg" alt="dish" dataURI="true"/>-->
-        <!--</figure>-->
-        <!--<div class="shadow"/>-->
-        <!--<a href="#">-->
-        <!--<div class="fill gold cart-tip">-->
-        <!--<o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--<article>-->
-        <!--<span class="ribbon featured"/>-->
-        <!--<a href="steamed-salmon.html"><h6>Steamed Ryu Salmon</h6></a>-->
-        <!--<ul class="rate hearts gold">-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li class="empty"/>-->
-        <!--</ul>-->
-        <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
-        <!--</article>-->
-        <!--<div class="price">-->
-        <!--<div>-->
-        <!--<p class="quantity">1</p>-->
-        <!--<p class="measure">srv</p>-->
-        <!--</div>-->
-        <!--<p>$78.00</p>-->
-        <!--</div>-->
-        <!--<a href="#" class="button gold">Add to Cart</a>-->
-        <!--</li>-->
-        <!--&lt;!&ndash;/DISH&ndash;&gt;-->
-
-        <!--&lt;!&ndash;DISH&ndash;&gt;-->
-        <!--<li>-->
-        <!--<div class="circle medium">-->
-        <!--<figure class="imgLiquidFill">-->
-        <!--<o:graphicImage name="images/menu-07.jpg" alt="dish" dataURI="true"/>-->
-        <!--</figure>-->
-        <!--<div class="shadow"/>-->
-        <!--<a href="#">-->
-        <!--<div class="fill red cart-tip">-->
-        <!--<o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--<article>-->
-        <!--<a href="octopus-takoyaki.html"><h6>Red Octopus Takoyaki</h6></a>-->
-        <!--<ul class="rate hearts">-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li class="empty"/>-->
-        <!--</ul>-->
-        <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
-        <!--</article>-->
-        <!--<div class="price">-->
-        <!--<div>-->
-        <!--<p class="quantity">10</p>-->
-        <!--<p class="measure">pcs</p>-->
-        <!--</div>-->
-        <!--<p>$20.50</p>-->
-        <!--</div>-->
-        <!--<a href="#" class="button red">Add to Cart</a>-->
-        <!--</li>-->
-        <!--&lt;!&ndash;/DISH&ndash;&gt;-->
-
-        <!--&lt;!&ndash;DISH&ndash;&gt;-->
-        <!--<li>-->
-        <!--<div class="circle medium">-->
-        <!--<figure class="imgLiquidFill">-->
-        <!--<o:graphicImage name="images/menu-06.jpg" alt="dish" dataURI="true"/>-->
-        <!--</figure>-->
-        <!--<div class="shadow"/>-->
-        <!--<a href="#">-->
-        <!--<div class="fill red cart-tip">-->
-        <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--<article>-->
-        <!--<span class="ribbon new"/>-->
-        <!--<a href="shrimp-tempura.html"><h6>Shrimp Tempura</h6></a>-->
-        <!--<ul class="rate stars">-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li/>-->
-        <!--<li class="empty"/>-->
-        <!--</ul>-->
-        <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
-        <!--</article>-->
-        <!--<div class="price">-->
-        <!--<div>-->
-        <!--<p class="quantity">1</p>-->
-        <!--<p class="measure">srv</p>-->
-        <!--</div>-->
-        <!--<p>$22.50</p>-->
-        <!--</div>-->
-        <!--<a href="#" class="button red">Add to Cart</a>-->
-        <!--</li>-->
-        <!--&lt;!&ndash;/DISH&ndash;&gt;-->
     </ul>
     <!--/SHOP-->
 </f:view>

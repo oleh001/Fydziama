@@ -70,7 +70,8 @@ public class OrderService implements OrderDao {
         orderRepository.delete(order);
     }
 
-    public Order getOrderWithStatus(long idUser, OrderStatus status){
+    @Override
+    public Order[] getOrderWithStatus(long idUser, OrderStatus status){
         return orderRepository.findByUserIdUserAndStatus(idUser, status);
     }
 }

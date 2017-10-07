@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <p:dialog id="dialogRegistrationUser" widgetVar="dialogRegistrationUser"  resizable="false" modal="true">
+        <!--<section class="form-box-overlay"/>-->
+        <!--REGISTER FORM-->
+        <article class="form-box register">
+            <a href="#" class="form-close">
+                <o:graphicImage name="images/form-close.png" alt="close"
+                                dataURI="true"/>
+                <!--<img src="resources/images/form-close.png" alt="close"/>-->
+            </a>
+            <o:graphicImage name="images/form-logo.png" alt="logo"
+                            dataURI="true"/>
+            <!--<img src="resources/images/form-logo.png" alt="logo"/>-->
+            <h:form id="register-form">
+                <!--ERROR MSGS-->
+                <label for="register_user" class="error">That username is already in use...</label>
+                <!--/ERROR MSGS-->
+                <!--OK MSGS-->
+                <label for="register_email" class="ok">Check your email to confirm your account</label>
+                <!--/OK MSGS-->
+                <input type="text" name="register_email" id="register_email" placeholder="Email..."/>
+                <input type="text" name="register_user" id="register_user" placeholder="Username..."/>
+                <input type="password" name="register_pwd" id="register_pwd" placeholder="Password..."/>
+                <input type="password" name="register_repeat_pwd" id="register_pwd2" placeholder="Retype Password..."/>
+                <input type="checkbox" name="register_terms" id="register_terms"/>
+                <label for="register_terms">I agree with the</label>
+            </h:form>
+            <a href="#">Terms of Service</a>
+            <input type="submit" form="register-form" value="Register Now"/>
+            <p>Already have a Red Samurai account?<br/>
+                <a href="#" class="popup login">Login now!</a>
+            </p>
+        </article>
+        <!--/REGISTER FORM-->
+    </p:dialog>
+</f:view>
+</html>

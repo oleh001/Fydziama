@@ -2,6 +2,7 @@ package fydziama.in.ua.jsfui.controller;
 
 import fydziama.in.ua.dao.OrderDetailDao;
 import fydziama.in.ua.entity.Good;
+import fydziama.in.ua.entity.Order;
 import fydziama.in.ua.entity.OrderDetail;
 import fydziama.in.ua.jsfui.model.LazyDataTable;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.List;
+import java.util.logging.Level;
 
 @ManagedBean
 @SessionScoped
@@ -49,10 +51,11 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
 
     private String visiblePaginator;
 
-    private float priceDelivery=10;
+    private float priceDelivery = 10;
     private float priceDishes;
     private float totalPrice;
     private int totalQuantity;
+    private String codeConfirmed;
 
     @PostConstruct
     public void init() {
@@ -104,13 +107,26 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
     }
 
     public List<OrderDetail> showOrderDetByOrder() {
+        log.log(Level.WARNING, "1111");
         if (orderController.getSelectedOrderStart() == null) {
             orderController.setOrderStart();
-            selectedOrderStart = orderController.getSelectedOrderStart().getIdOrder();
         }
-        orderDetailList=orderDetailDao.searchOrder(selectedOrderStart);
+        selectedOrderStart = orderController.isOrderStartBool() ? orderController.getSelectedOrderStart().getIdOrder() : 0L;
+        orderDetailList = orderDetailDao.searchOrder(selectedOrderStart);
+        updateTotalPrice();
         return orderDetailList;
     }
+
+    public List<OrderDetail> showOrderDetByOrder(Order order) {
+        orderDetailList = orderDetailDao.searchOrder(order.getIdOrder());
+        if (!orderController.isOrderStartBool() && !orderController.isOrderConfirmedBool()){
+            codeConfirmed = order.getCodeConfirmed().substring(0, 10);
+            updateTotalPrice();
+            orderController.setOrderConfirmedBool(true);
+        }
+        return orderDetailList;
+    }
+
 
     public List<OrderDetail> showWishList() {
         if (orderController.getSelectedOrderWishList() == null) {
@@ -121,7 +137,9 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
     }
 
     public void updateQuantitySubtotal(OrderDetail ordDet) {
+        log.log(Level.WARNING, String.valueOf(ordDet.getQuantity()));
         orderDetailDao.save(ordDet);
+        log.log(Level.WARNING, String.valueOf(ordDet.getQuantity()));
         updateTotalPrice();
     }
 
@@ -140,7 +158,7 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
             selectedOrderDetail = new OrderDetail(orderController.getSelectedOrderStart(), good, quantity);
             saveOrderDetail();
         }
-        quantity=1;
+        quantity = 1;
     }
 
     public void addToWishList(Good good) {
@@ -157,15 +175,15 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
         }
     }
 
-    public void updateTotalPrice(){
-        totalQuantity=0;
-        priceDishes=0;
-        totalPrice=0;
-        for (OrderDetail orderDetail: orderDetailList){
-            totalQuantity+=orderDetail.getQuantity();
-            priceDishes+=orderDetail.getQuantity()*orderDetail.getGood().getPrice();
+    public void updateTotalPrice() {
+        totalQuantity = 0;
+        priceDishes = 0;
+        totalPrice = 0;
+        for (OrderDetail orderDetail : orderDetailList) {
+            totalQuantity += orderDetail.getQuantity();
+            priceDishes += orderDetail.getQuantity() * orderDetail.getGood().getPrice();
         }
-        totalPrice=priceDishes+priceDelivery;
+        totalPrice = priceDishes + priceDelivery;
 
     }
 

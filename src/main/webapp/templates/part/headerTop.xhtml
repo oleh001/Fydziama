@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <!--HEADER-TOP-->
@@ -16,12 +17,24 @@
                 <li><a href="#" class="social-icon gplus"/></li>
             </ul>
             <article id="login">
-                <a href="#" class="login popup">Login</a>
-                <p>Not a Member? <a href="#" class="register popup">Register Now</a></p>
+
+                <!--<p:commandLink title="#{msg.login}" action="#{userController.loginAction()}"-->
+                               <!--update="@([id$=dialogLoginUser])">-->
+                <!--</p:commandLink>-->
+
+                <a href="#" class="login popup">#{msg.login}</a>
+                <p>#{msg.not_a_member}
+                    <!--<p:commandLink styleClass="register popup" action="#{userController.addAction()}"-->
+                                   <!--update="@([id$=dialogRegistrationUser])">-->
+                        <!--<p:outputLabel value="#{msg.register_now}"/>-->
+                    <!--</p:commandLink>-->
+                    <a href="#" class="register popup">#{msg.register_now}</a>
+                </p>
             </article>
+
             <article id="logout">
-                <a href="#">Logout</a>
-                <p>Welcome Back <a href="profile.html#">Odin Design Themes!</a></p>
+                <a href="#">#{msg.logout}</a>
+                <p>#{msg.welcome_back} <a href="profile.html#">#{userController.selectedUser.login}</a></p>
             </article>
         </section>
     </div>

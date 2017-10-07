@@ -30,9 +30,22 @@ public class User {
     private Long idUser;
 
     private String name;
+    private String surname;
     private String email;
     private String phone;
-    private String address;
+
+    @Column(name = "phone_add")
+    private String phoneAdd;
+
+    @Column(name = "address_city")
+    private String addressCity;
+    @Column(name = "address_hous")
+    private String addressHous;
+    @Column(name = "address_street")
+    private String addressStreet;
+
+    private String specification;
+
     private String login;
     private String password;
 

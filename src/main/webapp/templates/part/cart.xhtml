@@ -7,64 +7,180 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <!--CART-->
     <h:form id="cartUser">
         <article id="cart">
             <h2>#{msg.your} <span>#{msg.cart}</span></h2>
             <hr/>
             <hr/>
-            <div id="cart-header">
-                <p>#{msg.product}</p>
-                <p>#{msg.description}</p>
-                <p>#{msg.price}</p>
-                <p>#{msg.quantity}</p>
-                <p>#{msg.subtotal}</p>
-                <p>#{msg.checkout_cart_remove_from_cart}</p>
-            </div>
-            <ul>
-                <!--CART ITEM-->
-                <p:repeat value="#{orderDetailController.showOrderDetByOrder()}" var="orderDet">
-                    <li>
-                        <div class="circle tiny">
-                            <figure class="imgLiquidFill">
-                                <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}" dataURI="true"/>
-                            </figure>
-                            <div class="shadow"/>
-                            <div class="fill #{goodController.getStyleCircle(orderDet.good)}"/>
+            <p:accordionPanel>
+                <p:tab title="#{msg.actual}">
+                    <!--CART Start-->
+                    <!--<p:repeat value="#{orderController.showOrderStart()}" var="orderStarts">-->
+                        <div class="cart-header">
+                            <p>#{msg.product}</p>
+                            <p>#{msg.description}</p>
+                            <p>#{msg.price}</p>
+                            <p>#{msg.quantity}</p>
+                            <p>#{msg.subtotal}</p>
+                            <p>#{msg.checkout_cart_remove_from_cart}</p>
                         </div>
-                        <div class="description">
-                            <p:link styleClass="classh6" outcome="dishDetail" value="#{orderDet.good.name}" fragment="item-detail">
-                                <f:param name="dishId" value="#{orderDet.good.idGood}"/>
-                            </p:link>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
-                        </div>
-                        <h6 class="price-small">#{msg.price}:</h6>
-                        <h6>$<span>#{orderDet.good.price} &#8372;</span></h6>
-                        <div class="quantity cart_ul_li_div_quantity">
+                        <ul>
+                            <!--CART ITEM-->
+                            <p:repeat offset="" value="#{orderDetailController.showOrderDetByOrder()}" var="orderDet">
+                                <li>
+                                    <div class="circle tiny">
+                                        <figure class="imgLiquidFill">
+                                            <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}" dataURI="true"/>
+                                        </figure>
+                                        <div class="shadow"/>
+                                        <div class="fill #{goodController.getStyleCircle(orderDet.good)}"/>
+                                    </div>
+                                    <div class="description">
+                                        <p:link styleClass="classh6" outcome="dishDetail" value="#{orderDet.good.name}"
+                                                fragment="item-detail">
+                                            <f:param name="dishId" value="#{orderDet.good.idGood}"/>
+                                        </p:link>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
+                                    </div>
+                                    <h6 class="price-small">#{msg.price}:</h6>
+                                    <h6>$<span>#{orderDet.good.price} &#8372;</span></h6>
+                                    <div class="quantity cart_ul_li_div_quantity">
 
-                            <p:spinner min="0" max="99" id="cartQuantity" value="#{orderDet.quantity}" styleClass="counter">
-                                <p:ajax listener="#{orderDetailController.updateQuantitySubtotal(orderDet)}"
-                                        update="cartUser @([id$=ticket]) @([id$=menuCheckout])"/>
-                            </p:spinner>
-                        </div>
-                        <h6 class="subtotal-small">#{msg.subtotal}:</h6>
-                        <h6>$<span id="cartSubtotal">#{orderDet.good.price * orderDet.quantity}</span></h6>
+                                        <p:spinner valueChangeListener="#{orderDetailController.updateQuantitySubtotal(orderDet)}" min="0" max="99" id="cartQuantity" value="#{orderDet.quantity}"
+                                                   styleClass="counter">
+                                            <p:ajax listener="#{orderDetailController.updateQuantitySubtotal(orderDet)}"
+                                                    update="@([id$=jsIncluded]) @([id$=cartUser]) @([id$=ticket]) @([id$=menuCheckout])"/>
+                                        </p:spinner>
+                                    </div>
+                                    <h6 class="subtotal-small">#{msg.subtotal}:</h6>
+                                    <h6>$<span id="cartSubtotal">#{orderDet.good.price * orderDet.quantity}</span></h6>
 
-                        <p:commandLink class="remove"
-                                       action="#{orderDetailController.deleteAction()}"
-                                       update="@([id$=cartUser])"
-                        >
-                            <f:setPropertyActionListener value="#{orderDet}"
-                                                         target="#{orderDetailController.selectedOrderDetail}"/>
-                            <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
-                        </p:commandLink>
+                                    <p:commandLink class="remove"
+                                                   action="#{orderDetailController.deleteAction()}"
+                                                   update="@([id$=cartUser])"
+                                    >
+                                        <f:setPropertyActionListener value="#{orderDet}"
+                                                                     target="#{orderDetailController.selectedOrderDetail}"/>
+                                        <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
+                                    </p:commandLink>
+                                </li>
+                            </p:repeat>
+                        </ul>
+                    <!--</p:repeat>-->
+                    <!--/CART Start-->
+                </p:tab>
 
-                    </li>
-                </p:repeat>
+                <p:tab title="#{msg.confirmed_checkout}">
+                    <!--CART Confirmed-->
+                    <p:repeat value="#{orderController.showOrderConfirmed()}" var="orderConfirmed">
+                        <p:fieldset legend="#{msg.order_from} - #{orderConfirmed.orderDate}" toggleable="true"
+                                    toggleSpeed="500">
+                            <div class="cart-header">
+                                <p>#{msg.product}</p>
+                                <p>#{msg.description}</p>
+                                <p>#{msg.price}</p>
+                                <p>#{msg.quantity}</p>
+                                <p>#{msg.subtotal}</p>
+                            </div>
+                            <ul>
+                                <!--CART ITEM-->
+                                <p:repeat value="#{orderDetailController.showOrderDetByOrder(orderConfirmed)}"
+                                          var="orderDetConfirm">
+                                    <li>
+                                        <div class="circle tiny">
+                                            <figure class="imgLiquidFill">
+                                                <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}"
+                                                                dataURI="true"/>
+                                            </figure>
+                                            <div class="shadow"/>
+                                            <div class="fill #{goodController.getStyleCircle(orderDetConfirm.good)}"/>
+                                        </div>
+                                        <div class="description">
+                                            <p:link styleClass="classh6" outcome="dishDetail"
+                                                    value="#{orderDetConfirm.good.name}"
+                                                    fragment="item-detail">
+                                                <f:param name="dishId" value="#{orderDetConfirm.good.idGood}"/>
+                                            </p:link>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
+                                        </div>
+                                        <h6 class="price-small">#{msg.price}:</h6>
+                                        <h6>$<span>#{orderDetConfirm.good.price} &#8372;</span></h6>
+                                        <div class="quantity cart_ul_li_div_quantity">
 
-            </ul>
+                                            <p:spinner readonly="true" min="0" max="99"
+                                                       value="#{orderDetConfirm.quantity}"
+                                                       styleClass="counter">
+                                            </p:spinner>
+                                        </div>
+                                        <h6 class="subtotal-small">#{msg.subtotal}:</h6>
+                                        <h6>$<span
+                                                id="cartSubtotalConfirmed">#{orderDetConfirm.good.price * orderDetConfirm.quantity}</span>
+                                        </h6>
+                                    </li>
+                                </p:repeat>
+                            </ul>
+                        </p:fieldset>
+                    </p:repeat>
+                    <!--/CART Confirmed-->
+                </p:tab>
+
+                <p:tab title="#{msg.finish}">
+                    <!--CART Finish-->
+                    <p:repeat value="#{orderController.showOrderFinish()}" var="orderFinish">
+                        <p:fieldset legend="#{msg.order_from} - #{orderFinish.orderDate}" toggleable="true"
+                                    toggleSpeed="500">
+                            <div class="cart-header">
+                                <p>#{msg.product}</p>
+                                <p>#{msg.description}</p>
+                                <p>#{msg.price}</p>
+                                <p>#{msg.quantity}</p>
+                                <p>#{msg.subtotal}</p>
+                            </div>
+                            <ul>
+                                <!--CART ITEM-->
+                                <p:repeat value="#{orderDetailController.showOrderDetByOrder(orderFinish)}"
+                                          var="orderDetFinish">
+                                    <li>
+                                        <div class="circle tiny">
+                                            <figure class="imgLiquidFill">
+                                                <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}"
+                                                                dataURI="true"/>
+                                            </figure>
+                                            <div class="shadow"/>
+                                            <div class="fill #{goodController.getStyleCircle(orderDetFinish.good)}"/>
+                                        </div>
+                                        <div class="description">
+                                            <p:link styleClass="classh6" outcome="dishDetail"
+                                                    value="#{orderDetFinish.good.name}"
+                                                    fragment="item-detail">
+                                                <f:param name="dishId" value="#{orderDetFinish.good.idGood}"/>
+                                            </p:link>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
+                                        </div>
+                                        <h6 class="price-small">#{msg.price}:</h6>
+                                        <h6>$<span>#{orderDetFinish.good.price} &#8372;</span></h6>
+                                        <div class="quantity cart_ul_li_div_quantity">
+
+                                            <p:spinner readonly="true" min="0" max="99"
+                                                       value="#{orderDetFinish.quantity}"
+                                                       styleClass="counter">
+                                            </p:spinner>
+                                        </div>
+                                        <h6 class="subtotal-small">#{msg.subtotal}:</h6>
+                                        <h6>$<span
+                                                id="cartSubtotalFinish">#{orderDetFinish.good.price * orderDetFinish.quantity}</span>
+                                        </h6>
+                                    </li>
+                                </p:repeat>
+                            </ul>
+                        </p:fieldset>
+                    </p:repeat>
+                    <!--/CART Finish-->
+                </p:tab>
+            </p:accordionPanel>
+
         </article>
+
     </h:form>
-    <!--/CART-->
 </f:view>
 </html>
