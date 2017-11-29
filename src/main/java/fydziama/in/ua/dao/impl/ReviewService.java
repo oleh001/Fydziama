@@ -1,6 +1,7 @@
 package fydziama.in.ua.dao.impl;
 
 import fydziama.in.ua.dao.ReviewDao;
+import fydziama.in.ua.entity.GoodVisible;
 import fydziama.in.ua.entity.Review;
 import fydziama.in.ua.spring.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ReviewService implements ReviewDao {
 
     @Override
     public String isVisibility(Page<Review> obj, int count) {
-        return obj.getTotalPages()>count?"true":"false";
+        return obj.getTotalElements()>count?"true":"false";
     }
 
     @Override
@@ -77,6 +78,11 @@ public class ReviewService implements ReviewDao {
     @Override
     public Page<Review> searchGood(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, long idGood) {
         return reviewRepository.findByGoodIdGoodOrderByReviewDateDesc(idGood, new PageRequest(pageNumber, pageSize, new Sort(sortDirection, sortField)));
+    }
+
+    @Override
+    public List<Review> findByTheBestEquals() {
+        return reviewRepository.findByTheBestEquals(GoodVisible.TRUE);
     }
 }
 

@@ -14,36 +14,22 @@
             <hr/>
             <ul class="cat-menu">
                 <li>
-                    <p:commandLink class="cat-menu-a"
+                    <p:commandLink styleClass="cat-menu-a brand-name #{goodController.styleAction(0)}"
                                    actionListener="#{goodController.showAll()}"
                                    update="@([id$=goodsForm]) cat-menu @([id$=jsIncluded])"
-                    >
-                        <p:outputLabel value="#{msg.all_dishes}"
-                                       styleClass="brand-name #{goodController.styleAction(0)}"/>
-                    </p:commandLink>
+                                   value="#{msg.all_dishes}"/>
                 </li>
-                <p:repeat value="#{brandController.all}" var="brands">
 
+                <p:repeat value="#{brandController.all}" var="brands">
                     <li>
-                        <p:commandLink class="cat-menu-a"
+                        <p:commandLink styleClass="cat-menu-a brand-name #{goodController.styleAction(brands.idBrand)}"
                                        actionListener="#{goodController.showGoodsByBrand(brands.idBrand)}"
                                        update="@([id$=goodsForm]) cat-menu @([id$=jsIncluded])"
-                                       >
-                            <!--<f:setPropertyActionListener value="#{brands.idBrand}"-->
-                            <!--target="#{goodController.selectedBrandId}"/>-->
-                            <p:outputLabel value="#{brands.brand}"
-                                           styleClass="brand-name #{goodController.styleAction(brands.idBrand)}"/>
-                        </p:commandLink>
-
-
+                                       value="#{brands.brand}"/>
                     </li>
                 </p:repeat>
 
                 <li><a href="sushi-rolls.html">Sushi and Rolls</a></li>
-                <!--<li><a href="cold-entrees.html">Cold Entrees</a></li>-->
-                <!--<li><a href="soups-dishes.html">Soups and Hot Dishes</a></li>-->
-                <!--<li><a href="sweets-desserts.html">Sweets and Desserts</a></li>-->
-                <!--<li><a href="beverages-drinks.html">Beverages and Drinks</a></li>-->
             </ul>
         </article>
     </h:form>

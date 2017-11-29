@@ -44,6 +44,14 @@ public class Review {
     @JoinColumn(name = "id_good")
     private Good good;
 
+    @Column(name = "about_fydziama")
+    @Enumerated(EnumType.STRING)
+    private GoodVisible aboutFydziama;
+
+    @Column(name = "the_best")
+    @Enumerated(EnumType.STRING)
+    private GoodVisible theBest;
+
     private int rating;
 
     public Review() {
@@ -58,15 +66,15 @@ public class Review {
         this.rating = rating;
     }
 
-    public Review(User user, String name, int rating) {
+    public Review(User user, int rating) {
         this.user = user;
-        this.name = name;
+        this.name = user.getLogin();
         this.rating = rating;
     }
 
-    public Review(User user, String name, Good good, int rating) {
+    public Review(User user, Good good, int rating) {
         this.user = user;
-        this.name = name;
+        this.name = user.getLogin();
         this.good = good;
         this.rating = rating;
     }

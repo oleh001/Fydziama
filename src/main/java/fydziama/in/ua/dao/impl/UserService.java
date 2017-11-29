@@ -68,4 +68,21 @@ public class UserService implements UserDao {
     public void delete(User user) {
         userRepository.delete(user);
     }
+
+    @Override
+    public List<String> allLogin(){
+        return userRepository.getUserLogin();
+    }
+
+    @Override
+    public Long maxUserId() {
+        return userRepository.getMaxUserId();
+    }
+
+    @Override
+    public User checkoutLogin(String login, String password){
+        return userRepository.findByLoginContainingIgnoreCaseAndPassword(login, password);
+    }
+
+
 }

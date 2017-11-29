@@ -23,19 +23,19 @@
                             </figure>
                             <div class="shadow"/>
 
-                            <p:commandLink actionListener="#{orderDetailController.addToCart(newDishes)}"
-                                           update="">
+                            <p:commandLink actionListener="#{orderController.addToCart(newDishes)}"
+                                           update="@([id$=jsIncluded]) @([id$=menuCheckout])">
                                 <div class="fill #{goodController.getStyleCircle(newDishes)} tooltip toCart"
-                                     title="Add to cart">
+                                     title="#{msg.add_to_cart}">
                                     <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
                                 </div>
                             </p:commandLink>
                         </div>
 
-                        <p:link styleClass="classh6" outcome="dishDetail" value="#{newDishes.name}"
-                                fragment="item-detail">
+                        <h:link outcome="dishDetail" fragment="item-detail">
                             <f:param name="dishId" value="#{newDishes.idGood}"/>
-                        </p:link>
+                            <h6>#{newDishes.name}</h6>
+                        </h:link>
 
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp</p>
 

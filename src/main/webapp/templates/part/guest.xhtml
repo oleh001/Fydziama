@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <!--GUEST-CHECKOUT-->
@@ -11,10 +12,11 @@
         <hr/><hr/>
         <p>#{msg.checkout_guest_text}</p>
         <input type="radio" name="checkout" value="guest" id="guest" checked="checked"/>
-        <label for="guest">#{msg.checkout_as_guest}</label>
+        <h:outputLabel for="guest" value="#{msg.checkout_as_guest}"/>
         <input type="radio" name="checkout" value="account" id="account"/>
-        <label for="account">#{msg.create_an_account}</label>
-        <a href="#" class="button red" id="guest-btn">#{msg.proceed_to_checkout}</a>
+        <h:outputLabel for="account" value="#{msg.create_an_account}"/>
+        
+        <p:commandLink styleClass="button red" id="guest-btn" value="#{msg.proceed_to_checkout}"/>
     </article>
     <!--/GUEST-CHECKOUT-->
 </f:view>

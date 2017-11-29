@@ -35,8 +35,7 @@ public class Brand {
     @Column(name = "id_parent")
     private Long idParent;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand")
     private List<Good> goods;
 
 

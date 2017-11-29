@@ -3,18 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <f:view>
-    <article id="login-co">
-        <h2><span>#{msg.login}</span> #{msg.checkout}</h2>
-        <hr/><hr/>
-        <form id="login">
-            <label for="user">#{msg.user_name}</label>
-            <input type="text" name="user" id="user" placeholder="#{msg.placeholder_name}"/>
-            <label for="password">#{msg.password}</label>
-            <input type="password" name="password" id="password" placeholder="*******"/>
-            <button id="login-btn">#{msg.proceed_to_checkout}</button>
-        </form>
-    </article>
+    <h:form id="formche">
+        <article id="login-co">
+            <h2><span>#{msg.login}</span> #{msg.checkout}</h2>
+            <hr/>
+            <hr/>
+            <h:outputLabel for="user" value="#{msg.user_name}"/>
+            <h:message id="mes_user" for="user" class="error msg-wrng" pt:autoUpdate="true"/>
+            <h:inputText required="true" id="user"
+                         requiredMessage="#{msg.wrong_username_or_password}"
+                         pt:placeholder="#{msg.placeholder_name}"
+                         value="#{userController.userNameLogin}"/>
+
+            <h:outputLabel for="password" value="#{msg.password}"/>
+            <h:inputText required="true" id="password" pt:type="password"
+                         requiredMessage="#{msg.wrong_username_or_password}"
+                         value="#{userController.userPasswordLogin}"
+                         pt:placeholder="*******"/>
+
+            <p:commandButton styleClass="button red" id="login-btn"
+                             value="#{msg.proceed_to_checkout}"
+                             actionListener="#{userController.logIn}"
+                             update="@([id$=formche])"/>
+        </article>
+    </h:form>
 </f:view>
 </html>

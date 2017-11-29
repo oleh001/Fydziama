@@ -74,16 +74,13 @@ public class Good {
     @Column(name = "avg_rating")
     private int avgRating;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "good")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "good")
     private List<OrderDetail> orderDetails;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "good")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "good")
     private List<Vote> votes;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "good")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "good")
     private List<Review> review;
 
     @Override

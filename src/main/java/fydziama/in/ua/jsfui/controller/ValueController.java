@@ -32,11 +32,11 @@ public class ValueController {
     @Autowired
     private OrderDetailController orderDetailController;
 
-//    private User selectedUser=new User();
-//    private Good selectedGood=new Good();
-//    private Brand selectedBrand=new Brand();
-//    private Message selectedMessage=new Message();
-//    private Review selectedReview=new Review();
-//    private Order selectedOrder=new Order();
-//    private OrderDetail selectedOrderDetail=new OrderDetail();
+//    private User selectedUser;
+//    private Good selectedGood;
+//    private Brand selectedBrand;
+//    private Message selectedMessage;
+//    private Review selectedReview;
+//    private Order selectedOrder;
+//    private OrderDetail selectedOrderDetail;
 }

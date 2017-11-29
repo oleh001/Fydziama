@@ -56,12 +56,12 @@
                     <li><a href="#{request.contextPath}/index.xhtml#combos">#{msg.combos}</a></li>
                     <li class="sub-items cart-items">
                         <a href="#{request.contextPath}/templates/checkout.xhtml">#{msg.cart}
-                            <span class="cart">#{orderDetailController.totalQuantity}</span>
+                            <span class="cart"><h:outputText id="menuItemUp" value="#{orderDetailController.totalQuantity}"/></span>
                         </a>
                         <ul>
-                            <li><p>#{msg.menu_main_cart_item}<span>#{orderDetailController.totalQuantity}</span></p>
+                            <li><p>#{msg.menu_main_cart_item}<span><h:outputText id="menuItem" value="#{orderDetailController.totalQuantity}"/></span></p>
                             </li>
-                            <li><p>#{msg.menu_main_cart_total}<span>$#{orderDetailController.totalPrice} &#8372;</span>
+                            <li><p>#{msg.menu_main_cart_total}<span><h:outputText id="menuTotal" value="$#{orderDetailController.totalPrice} &#8372;"/></span>
                             </p></li>
                             <li><a href="#{request.contextPath}/templates/checkout.xhtml"
                                    class="button red">#{msg.proceed_to_checkout}</a>

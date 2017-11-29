@@ -48,19 +48,16 @@
                                     <span class="ribbon new"/>
                                 </p:outputLabel>
 
-                                <p:link styleClass="classh6" outcome="templates/dishDetail" value="#{goods.name}" fragment="item-detail">
+                                <p:link styleClass="classh6" outcome="templates/dishDetail" value="#{goods.name}"
+                                        fragment="item-detail">
                                     <f:param name="dishId" value="#{goods.idGood}"/>
                                 </p:link>
 
-                                <!--<p:commandLink action="#{reviewController.editAction()}">-->
-                                    <!--<h6>#{goods.name}</h6>-->
-                                    <!--<f:setPropertyActionListener value="#{goods}" target="#{goodController.selectedGood}"/>-->
-                                    <!--<f:setPropertyActionListener value="#{goods}" target="#{reviewController.selectedReview.good}"/>-->
-                                <!--</p:commandLink>-->
-
-                                <p:rating readonly="true" class="rate star red" value="#{goods.avgRating}" stars="5" cancel="false"
+                                <p:rating readonly="true" class="rate star red" value="#{goods.avgRating}" stars="5"
+                                          cancel="false"
                                           rendered="#{goods.hits=='FALSE'}"/>
-                                <p:rating readonly="true" class="rate heart gold" value="#{goods.avgRating}" stars="5" cancel="false"
+                                <p:rating readonly="true" class="rate heart gold" value="#{goods.avgRating}" stars="5"
+                                          cancel="false"
                                           rendered="#{goods.hits=='TRUE'}"/>
 
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
@@ -72,125 +69,19 @@
                                 </div>
                                 <p>$ #{goods.price} &#8372;</p>
                             </div>
-                            <p:commandLink styleClass="button red" actionListener="#{orderDetailController.addToCart(goods)}"
-                                           update="" rendered="#{goods.hits=='FALSE'}">
-                                <p:outputLabel value="#{msg.add_to_cart}"/>
-                            </p:commandLink>
+                            <p:commandLink styleClass="button red" actionListener="#{orderController.addToCart(goods)}"
+                                           update="@([id$=jsIncluded]) @([id$=menuCheckout])"
+                                           rendered="#{goods.hits=='FALSE'}"
+                                           value="#{msg.add_to_cart}"/>
 
-                            <p:commandLink styleClass="button gold" actionListener="#{orderDetailController.addToCart(goods)}"
-                                           update="" rendered="#{goods.hits=='TRUE'}">
-                                <p:outputLabel value="#{msg.add_to_cart}"/>
-                            </p:commandLink>
+                            <p:commandLink styleClass="button gold" actionListener="#{orderController.addToCart(goods)}"
+                                           update="@([id$=jsIncluded]) @([id$=menuCheckout])"
+                                           rendered="#{goods.hits=='TRUE'}"
+                                           value="#{msg.add_to_cart}"/>
+
                         </li>
                     </p:repeat>
                 </h:form>
-                <!--/DISH-->
-
-                <!--DISH-->
-                <!--<li class="wow fadeInLeft">-->
-                <!--<div class="circle medium">-->
-                <!--<figure class="imgLiquidFill">-->
-                <!--<o:graphicImage name="images/menu-01.jpg" alt="dish" dataURI="true"/>-->
-                <!--</figure>-->
-                <!--<div class="shadow"/>-->
-                <!--<a href="#">-->
-                <!--<div class="fill red tooltip">-->
-                <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
-                <!--</div>-->
-                <!--</a>-->
-                <!--</div>-->
-                <!--<article>-->
-                <!--<span class="ribbon new"/>-->
-                <!--<a href="roudon-soup.html"><h6>Roudon Soup</h6></a>-->
-                <!--<ul class="rate stars">-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li class="empty"/>-->
-                <!--</ul>-->
-                <!--<p> 2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
-                <!--</article>-->
-                <!--<div class="price">-->
-                <!--<div>-->
-                <!--<p class="quantity">1</p>-->
-                <!--<p class="measure">srv</p>-->
-                <!--</div>-->
-                <!--<p>$67.00</p>-->
-                <!--</div>-->
-                <!--<a href="#" class="button red">Add to Cart</a>-->
-                <!--</li>-->
-                <!--/DISH-->
-
-                <!--DISH-->
-                <!--<li class="wow fadeInLeft">-->
-                <!--<div class="circle medium">-->
-                <!--<figure class="imgLiquidFill">-->
-                <!--<o:graphicImage name="images/menu-02.jpg" alt="dish" dataURI="true"/>-->
-                <!--</figure>-->
-                <!--<div class="shadow"/>-->
-                <!--<a href="#">-->
-                <!--<div class="fill red tooltip">-->
-                <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
-                <!--</div>-->
-                <!--</a>-->
-                <!--</div>-->
-                <!--<article>-->
-                <!--<a href="springtime-sushi.html"><h6>Springtime Sushi</h6></a>-->
-                <!--<ul class="rate stars">-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li class="empty"/>-->
-                <!--</ul>-->
-                <!--<p> 3 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
-                <!--</article>-->
-                <!--<div class="price">-->
-                <!--<div>-->
-                <!--<p class="quantity">15</p>-->
-                <!--<p class="measure">pcs</p>-->
-                <!--</div>-->
-                <!--<p>$69.00</p>-->
-                <!--</div>-->
-                <!--<a href="#" class="button red">Add to Cart</a>-->
-                <!--</li>-->
-                <!--/DISH-->
-
-                <!--DISH-->
-                <!--<li class="wow fadeInLeft">-->
-                <!--<div class="circle medium">-->
-                <!--<figure class="imgLiquidFill">-->
-                <!--<o:graphicImage name="images/menu-03.jpg" alt="dish" dataURI="true"/>-->
-                <!--</figure>-->
-                <!--<div class="shadow"/>-->
-                <!--<a href="#">-->
-                <!--<div class="fill gold tooltip">-->
-                <!--<o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>-->
-                <!--</div>-->
-                <!--</a>-->
-                <!--</div>-->
-                <!--<article>-->
-                <!--<span class="ribbon featured"/>-->
-                <!--<a href="kerinachi-rice.html"><h6>Kerinachi Rice</h6></a>-->
-                <!--<ul class="rate stars gold">-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li/>-->
-                <!--<li class="empty"/>-->
-                <!--</ul>-->
-                <!--<p> 4 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>-->
-                <!--</article>-->
-                <!--<div class="price">-->
-                <!--<div>-->
-                <!--<p class="quantity">1</p>-->
-                <!--<p class="measure">srv</p>-->
-                <!--</div>-->
-                <!--<p>$47.50</p>-->
-                <!--</div>-->
-                <!--<a href="#" class="button gold">Add to Cart</a>-->
-                <!--</li>-->
                 <!--/DISH-->
 
                 <!--DISH-->

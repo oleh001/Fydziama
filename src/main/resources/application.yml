@@ -20,7 +20,7 @@ spring:
 
 
 logging:
-    file: F:\Java\app.log
+    file: D:\Java\app.log
     pattern:
       file: "%d{HH:mm:ss} %-5p [%c] - %m%n"
 

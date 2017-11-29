@@ -32,6 +32,7 @@ public class User {
     private String name;
     private String surname;
     private String email;
+    private String img;
     private String phone;
 
     @Column(name = "phone_add")
@@ -54,17 +55,25 @@ public class User {
     @JoinColumn(name = "id_role") // для получения готового объекта Role по id
     private Role role;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Order> orders;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Review> reviews;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Vote> votes;
+
+    public User() {
+    }
+
+    public User(String name, String email, String phone, String login, String password) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.login = login;
+        this.password = password;
+    }
 
     @Override
     public String toString() {

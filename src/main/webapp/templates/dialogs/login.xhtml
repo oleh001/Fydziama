@@ -4,10 +4,58 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <f:view>
-    <p:dialog id="dialogLoginUser" resizable="false" modal="true">
+    <p:dialog id="dialogLoginUser" showHeader="false" widgetVar="dialogLoginUser"
+              resizable="false" modal="true"
+              showEffect="drop" hideEffect="drop">
 
+        <!--LOGIN FORM-->
+        <article class="form-box login">
+            <h:form id="login-form">
+                <h:commandLink styleClass="form-close" action="#{userController.closeDialogLogin()}">
+                    <o:graphicImage name="images/form-close.png" alt="close" dataURI="true"/>
+                </h:commandLink>
+
+                <o:graphicImage name="images/form-logo.png" alt="logo" dataURI="true"/>
+
+                <!--ERROR MSGS-->
+                <!--<label for="login_pass" class="error">#{msg.wrong_username_or_password}</label>-->
+                <h:message id="mes_user" for="user_login" class="error msg-wrng"/>
+                <!--/ERROR MSGS-->
+
+                <h:inputText required="true" id="user_login"
+                             requiredMessage="#{msg.wrong_username_or_password}"
+                             pt:placeholder="#{msg.your_nickname}"
+                             value="#{userController.userNameLogin}">
+                    <p:ajax event="blur" update="mes_user user_login"/>
+                </h:inputText>
+
+                <h:inputText required="true" id="user_pass" pt:type="password"
+                             requiredMessage="#{msg.wrong_username_or_password}"
+                             value="#{userController.userPasswordLogin}"
+                             pt:placeholder="#{msg.your_password}"/>
+
+                <h:selectBooleanCheckbox id="login_remember" value="#{userController.userCheckedLogin}"/>
+                <h:outputLabel for="login_remember" value="#{msg.remember_me}"/>
+
+                <a href="#" class="popup reset">#{msg.did_you_forget_your_password}</a>
+
+                <h:commandButton id="checkout_login" update = "@form"
+                                 value="#{msg.login}"
+                                 actionListener="#{userController.logIn}"
+                                 oncomplete="javascript:window.location.reload()"/>
+
+                <p>#{msg.you_dont_have_account}<br/>
+                    <a class="register popup" href="#{request.contextPath}/templates/profile.xhtml">
+                        #{msg.register_now}
+                    </a>
+                </p>
+            </h:form>
+        </article>
+        <!--/LOGIN FORM-->
     </p:dialog>
 </f:view>
 </html>

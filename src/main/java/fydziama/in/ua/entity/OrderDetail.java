@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 // JPA
 @Entity
@@ -21,7 +22,7 @@ import javax.persistence.*;
 @DynamicUpdate
 @DynamicInsert
 @SelectBeforeUpdate
-public class OrderDetail {
+public class OrderDetail implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // autoincrement
     @Id
     @Column(name = "id_order_detail")

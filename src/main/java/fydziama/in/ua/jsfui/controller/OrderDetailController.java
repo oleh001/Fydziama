@@ -35,8 +35,13 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
     @Autowired
     private OrderController orderController;
 
+    @Autowired
+    private UserController userController;
+
     private long selectedOrderStart;
     private long selectedOrderWishList;
+
+    private boolean orderDetWishListBool = false;
 
     private OrderDetail selectedOrderDetail = new OrderDetail();
     private OrderDetail selectedWishList = new OrderDetail();
@@ -72,6 +77,10 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
         selectedWishList = new OrderDetail();
     }
 
+    public void save(OrderDetail orderDetail) {
+        orderDetailDao.save(orderDetail);
+    }
+
     @Override
     public String vizibilityAction() {
         return orderDetailDao.isVisibility(orderDetailPage, countPages);
@@ -94,8 +103,13 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
 
     @Override
     public void deleteAction() {
-//        log.log(Level.WARNING, String.valueOf(selectedOrderDetail.getIdOrderDetail()));
         orderDetailDao.delete(selectedOrderDetail);
+    }
+
+    public void deleteAction(OrderDetail orderDetail) {
+        orderDetailDao.delete(orderDetail);
+        orderController.getSelectedOrderStart().getOrderDetails().remove(orderDetail);
+        updateTotalPrice();
     }
 
     public List<OrderDetail> getAll() {
@@ -119,7 +133,7 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
 
     public List<OrderDetail> showOrderDetByOrder(Order order) {
         orderDetailList = orderDetailDao.searchOrder(order.getIdOrder());
-        if (!orderController.isOrderStartBool() && !orderController.isOrderConfirmedBool()){
+        if (!orderController.isOrderStartBool() && !orderController.isOrderConfirmedBool()) {
             codeConfirmed = order.getCodeConfirmed().substring(0, 10);
             updateTotalPrice();
             orderController.setOrderConfirmedBool(true);
@@ -127,64 +141,105 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
         return orderDetailList;
     }
 
+//    public boolean searchWishList(){
+//        if (orderDetWishListBool){
+//            return orderDetWishListBool;
+//        }else{
+//            orderController.setOrderWishList();
+//
+//
+//            selectedOrderWishList = orderController.isOrderStartBool() ? orderController.getSelectedOrderStart().getIdOrder() : 0L;
+//            orderDetailList = orderDetailDao.searchOrder(selectedOrderStart);
+//
+//        }
+//    }
 
-    public List<OrderDetail> showWishList() {
-        if (orderController.getSelectedOrderWishList() == null) {
-            orderController.setOrderWishList();
-            selectedOrderWishList = orderController.getSelectedOrderWishList().getIdOrder();
+
+//    public List<OrderDetail> showWishList() {
+////        if (orderController.getSelectedOrderWishList() == null) {
+//            orderController.setOrderWishList();
+//            selectedOrderWishList = orderController.getSelectedOrderWishList().getIdOrder();
+////        }
+//        return orderDetailDao.searchOrder(selectedOrderWishList);
+//    }
+
+    public void updateQuantity(int quantity){
+        if (quantity>0) {
+            this.quantity += quantity;
+        }else{
+            if (this.quantity>1){
+                this.quantity += quantity;
+            }
         }
-        return orderDetailDao.searchOrder(selectedOrderWishList);
     }
 
-    public void updateQuantitySubtotal(OrderDetail ordDet) {
+    public void updateQuantitySubtotal(OrderDetail ordDet, int quantity) {
         log.log(Level.WARNING, String.valueOf(ordDet.getQuantity()));
+        ordDet.setQuantity(ordDet.getQuantity()+quantity);
         orderDetailDao.save(ordDet);
         log.log(Level.WARNING, String.valueOf(ordDet.getQuantity()));
         updateTotalPrice();
     }
 
     public void addToCart(Good good) {
-        boolean saveGood = false;
-        for (OrderDetail oldOrderDetail : showOrderDetByOrder()) {
-            if (oldOrderDetail.getGood().getIdGood().equals(good.getIdGood())) {
-                oldOrderDetail.setQuantity(oldOrderDetail.getQuantity() + quantity);
-                selectedOrderDetail = oldOrderDetail;
-                saveOrderDetail();
-                saveGood = true;
-                break;
-            }
-        }
-        if (saveGood == false) {
-            selectedOrderDetail = new OrderDetail(orderController.getSelectedOrderStart(), good, quantity);
-            saveOrderDetail();
-        }
-        quantity = 1;
+//        boolean saveGood = false;
+//        for (OrderDetail oldOrderDetail : showOrderDetByOrder()) {
+//            if (oldOrderDetail.getGood().getIdGood().equals(good.getIdGood())) {
+//                oldOrderDetail.setQuantity(oldOrderDetail.getQuantity() + quantity);
+//                selectedOrderDetail = oldOrderDetail;
+//                saveOrderDetail();
+//                saveGood = true;
+//                break;
+//            }
+//        }
+//        if (saveGood == false) {
+//            selectedOrderDetail = new OrderDetail(orderController.getSelectedOrderStart(), good, quantity);
+//            saveOrderDetail();
+//        }
+//        quantity = 1;
     }
 
     public void addToWishList(Good good) {
-        boolean saveGood = false;
-        for (OrderDetail oldWishList : showWishList()) {
-            if (oldWishList.getGood().getIdGood().equals(good.getIdGood())) {
-                saveGood = true;
-                break;
-            }
-        }
-        if (saveGood == false) {
-            selectedWishList = new OrderDetail(orderController.getSelectedOrderWishList(), good, quantity);
-            saveWishList();
-        }
+
+//        boolean saveGood = false;
+//        if (orderWishListEnabled) {
+//            for (OrderDetail oldWishList : showWishList()) {
+//                if (oldWishList.getGood().getIdGood().equals(good.getIdGood())) {
+//                    saveGood = true;
+//                    break;
+//                }
+//            }
+//            if (saveGood == false) {
+//                selectedWishList = new OrderDetail(orderController.getSelectedOrderWishList(), good, quantity);
+//                saveWishList();
+//            }
+//        } else {
+//            orderWishListEnabled = true;
+//            Order order = null;
+//            if (userController.isUserLogin()) {
+//                orderController.setSelectedOrderWishList(new Order(userController.getSelectedUser(), OrderStatus.WISHLIST));
+//            } else {
+//                orderController.setSelectedOrderWishList(new Order(userController.getSelectedVirtualUser(), OrderStatus.WISHLIST));
+//
+//            }
+//            orderController.getOrderDao().save(orderController.getSelectedOrderWishList());
+//
+//            selectedWishList = new OrderDetail(orderController.getSelectedOrderWishList(), good, quantity);
+//            saveWishList();
+//        }
     }
 
     public void updateTotalPrice() {
         totalQuantity = 0;
         priceDishes = 0;
         totalPrice = 0;
-        for (OrderDetail orderDetail : orderDetailList) {
-            totalQuantity += orderDetail.getQuantity();
-            priceDishes += orderDetail.getQuantity() * orderDetail.getGood().getPrice();
+        if (orderDetailList != null) {
+            for (OrderDetail orderDetail : orderDetailList) {
+                totalQuantity += orderDetail.getQuantity();
+                priceDishes += orderDetail.getQuantity() * orderDetail.getGood().getPrice();
+            }
+            totalPrice = priceDishes + priceDelivery;
         }
-        totalPrice = priceDishes + priceDelivery;
-
     }
 
 }

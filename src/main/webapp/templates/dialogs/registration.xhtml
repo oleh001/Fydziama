@@ -7,34 +7,74 @@
       xmlns:o="http://omnifaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <p:dialog id="dialogRegistrationUser" widgetVar="dialogRegistrationUser"  resizable="false" modal="true">
+    <p:dialog id="dialogRegistrationUser" showHeader="false" widgetVar="dialogRegistrationUser" resizable="false" modal="true">
         <!--<section class="form-box-overlay"/>-->
         <!--REGISTER FORM-->
         <article class="form-box register">
-            <a href="#" class="form-close">
+
+            <p:commandLink styleClass="form-close" actionListener="#{userController.closeDialogRregistration()}"
+                           update="" >
+            <!--<a href="#" class="form-close">-->
                 <o:graphicImage name="images/form-close.png" alt="close"
                                 dataURI="true"/>
                 <!--<img src="resources/images/form-close.png" alt="close"/>-->
-            </a>
+            <!--</a>-->
+            </p:commandLink>
             <o:graphicImage name="images/form-logo.png" alt="logo"
                             dataURI="true"/>
             <!--<img src="resources/images/form-logo.png" alt="logo"/>-->
             <h:form id="register-form">
                 <!--ERROR MSGS-->
-                <label for="register_user" class="error">That username is already in use...</label>
+                <!--<label for="register_user" class="error">That username is already in use...</label>-->
                 <!--/ERROR MSGS-->
                 <!--OK MSGS-->
-                <label for="register_email" class="ok">Check your email to confirm your account</label>
+                <!--<p:outputLabel for="register_email" styleClass="ok" value="Check your email to confirm your account"/>-->
+                <!--<label for="register_email" class="ok">Check your email to confirm your account</label>-->
                 <!--/OK MSGS-->
-                <input type="text" name="register_email" id="register_email" placeholder="Email..."/>
+                <h:message id="reg_ema" for="register_email" class="error msg-wrng"/>
+                <p:inputText type="text" id="register_email" name="register_email"
+                             requiredMessage="#{msg.contact_you_have_to_enter_a_valid_email}"
+                             placeholder="#{msg.email}..."
+                             value="#{userController.selectedUser.email}">
+                </p:inputText>
+                <!--<input type="text" name="register_email" id="register_email" placeholder="Email..."/>-->
+
+                <!--<h:message id="reg_user" for="register_user" class="error msg-wrng"/>-->
+                <!--<p:inputText type="text" required="true" id="register_user" name="register_user"-->
+                             <!--requiredMessage="#{msg.that_username_is_already_in_use}"-->
+                             <!--placeholder="#{msg.user_name}..."-->
+                             <!--value="#{userController.selectedUser.login}">-->
+                <!--</p:inputText>-->
                 <input type="text" name="register_user" id="register_user" placeholder="Username..."/>
+
+                <!--<h:message id="reg_pass" for="register_pwd" class="error msg-wrng"/>-->
+                <!--<p:inputText type="password" required="true" id="register_pwd" name="register_user"-->
+                             <!--requiredMessage="#{msg.that_username_is_already_in_use}"-->
+                             <!--placeholder="#{msg.password}..."-->
+                             <!--value="#{userController.selectedUser.password}">-->
+                <!--</p:inputText>-->
                 <input type="password" name="register_pwd" id="register_pwd" placeholder="Password..."/>
+
+                <!--<h:message id="reg_repeat_pass" for="register_repeat_pwd" class="error msg-wrng"/>-->
+                <!--<p:inputText type="password" required="true" id="register_repeat_pwd" name="register_user"-->
+                             <!--requiredMessage="#{msg.that_username_is_already_in_use}"-->
+                             <!--placeholder="#{msg.retype_password}..."-->
+                             <!--value="#{userController.selectedUser.password}">-->
+                <!--</p:inputText>-->
                 <input type="password" name="register_repeat_pwd" id="register_pwd2" placeholder="Retype Password..."/>
+
+                <!--<p:selectBooleanCheckbox name="register_terms" id="register_terms"/>-->
                 <input type="checkbox" name="register_terms" id="register_terms"/>
-                <label for="register_terms">I agree with the</label>
+                <!--<p:outputLabel for="register_terms" value="#{msg.i_agree_with_the}"/>-->
+                <label for="register_terms">#{msg.i_agree_with_the}</label>
             </h:form>
-            <a href="#">Terms of Service</a>
-            <input type="submit" form="register-form" value="Register Now"/>
+            <a href="#">#{msg.terms_of_service}</a>
+
+            <p:commandButton id="register-form-submit" form="register-form" value="#{msg.register_now}"
+                             actionListener="#{userController.save}"
+                             update="@([id$=register-form])">
+            </p:commandButton>
+            <!--<input type="submit" form="register-form" value="#{msg.register_now}"/>-->
             <p>Already have a Red Samurai account?<br/>
                 <a href="#" class="popup login">Login now!</a>
             </p>

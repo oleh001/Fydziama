@@ -4,40 +4,49 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
 <f:view>
     <!--HEADER-TOP-->
-    <div id="header-top-wrap">
-        <section id="header-top">
-            <a href="mailto:questions@redsamurai.com">questions@redsamurai.com</a>
-            <p>(096) 183-33-45 | (066) 015-92-54</p>
-            <ul class="social">
-                <li><a href="#" class="social-icon fb"/></li>
-                <li><a href="#" class="social-icon twt"/></li>
-                <li><a href="#" class="social-icon gplus"/></li>
-            </ul>
-            <article id="login">
+    <h:panelGroup id="panelHeaderTop">
+        <div id="header-top-wrap">
+            <section id="header-top">
+                <a href="mailto:questions@redsamurai.com">questions@redsamurai.com</a>
+                <p>(096) 183-33-45 | (066) 015-92-54</p>
+                <ul class="social">
+                    <li><a href="#" class="social-icon fb"/></li>
+                    <li><a href="#" class="social-icon twt"/></li>
+                    <li><a href="#" class="social-icon gplus"/></li>
+                </ul>
 
-                <!--<p:commandLink title="#{msg.login}" action="#{userController.loginAction()}"-->
-                               <!--update="@([id$=dialogLoginUser])">-->
-                <!--</p:commandLink>-->
+                <h:form id="formLogin" rendered="#{!userController.userLogin}">
+                    <article id="login">
+                        <p:commandLink value="#{msg.login}" styleClass="login popup" actionListener="#{userController.openDialogLogin()}"
+                                       update="@([id$=dialogLoginUser])"/>
 
-                <a href="#" class="login popup">#{msg.login}</a>
-                <p>#{msg.not_a_member}
-                    <!--<p:commandLink styleClass="register popup" action="#{userController.addAction()}"-->
-                                   <!--update="@([id$=dialogRegistrationUser])">-->
-                        <!--<p:outputLabel value="#{msg.register_now}"/>-->
-                    <!--</p:commandLink>-->
-                    <a href="#" class="register popup">#{msg.register_now}</a>
-                </p>
-            </article>
+                        <p>#{msg.not_a_member}
+                            <a class="register popup"
+                               href="#{request.contextPath}/templates/profile.xhtml">#{msg.register_now}</a>
+                        </p>
+                    </article>
+                </h:form>
 
-            <article id="logout">
-                <a href="#">#{msg.logout}</a>
-                <p>#{msg.welcome_back} <a href="profile.html#">#{userController.selectedUser.login}</a></p>
-            </article>
-        </section>
-    </div>
+                <h:form id="formLogout" rendered="#{userController.userLogin}">
+                    <article id="logout">
+                        <!--<a href="#">#{msg.logout}</a>-->
+                        <h:commandLink value="#{msg.logout}" action="#{userController.logout()}"
+                                       oncomplete="javascript:window.location.reload()"/>
+
+                        <p>#{msg.welcome_back}
+                            <a href="#{request.contextPath}/templates/profile.xhtml">
+                                #{userController.selectedUser.login}
+                            </a>
+                        </p>
+                    </article>
+                </h:form>
+            </section>
+        </div>
+    </h:panelGroup>
     <!--/HEADER-TOP-->
 </f:view>
 </html>

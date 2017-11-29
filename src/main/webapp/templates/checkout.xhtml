@@ -137,7 +137,7 @@
                                     </p:inputText>
                                 </div>
 
-                                <div class="div_mess div_spec">
+                                <div class="div_mess spec">
                                     <label for="specifications">#{msg.checkout_cart_addition_specification}</label>
                                     <p:inputTextarea required="false" rows="5" cols="30" counter="display"
                                                      maxlength="255"
@@ -182,7 +182,7 @@
 
 
                                 <!--<a href="#" class="button confirmed">#{msg.order_successfully_sent}</a>-->
-                                <p:outputPanel rendered="#{orderController.orderConfirmedBool}">
+                                <p:outputPanel rendered="#{!orderController.orderStartBool and orderController.orderConfirmedBool}">
                                     <p:commandLink styleClass="button confirmed" actionListener="#"
                                                    update="" value="#{msg.order_successfully_sent}">
                                     </p:commandLink>

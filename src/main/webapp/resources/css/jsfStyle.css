@@ -5,6 +5,14 @@ a label {
     cursor: pointer;
 }
 
+button.ui-state-default, button.ui-widget-content button.ui-state-default,
+button.ui-widget-header button.ui-state-default{
+    border: none;
+    background: none;
+    text-shadow: none;
+    box-shadow: none;
+}
+
 .ui-widget-content {
     border: none !important;
 }
@@ -15,18 +23,18 @@ a label {
 }
 
 #cartUser fieldset,
-#cartUser .ui-accordion-content{
+#cartUser .ui-accordion-content {
     border: 1px solid #e3e3e3 !important;
     padding: 15px 5px 0 5px;
     /*margin-bottom: 45px;*/
 }
 
 #cartUser fieldset ul,
-#cartUser .ui-accordion-content ul{
-   margin-bottom: 0;
+#cartUser .ui-accordion-content ul {
+    margin-bottom: 0;
 }
 
-legend, #cartUser .ui-accordion-header{
+legend, #cartUser .ui-accordion-header {
     background-color: #db2e2e !important;
     border: none !important;
     box-shadow: none !important;
@@ -34,22 +42,24 @@ legend, #cartUser .ui-accordion-header{
 }
 
 #cartUser .ui-accordion,
-#cartUser fieldset{
+#cartUser fieldset {
     margin-bottom: 45px;
 }
 
 legend:hover,
-#cartUser .ui-accordion-header:hover{
+#cartUser .ui-accordion-header:hover {
     background-color: #c22121 !important;
     box-shadow: none !important;
 }
 
-legend span{
+legend span {
     margin-top: 2px !important;
 }
 
-#contact button.ui-button,
-#delivery-info button.ui-button{
+/*#contact button.ui-button,*/
+/*#delivery-info button.ui-button,*/
+/*#formche button.ui-button*/
+button.ui-button{
     font-size: 0.75em; /* 12px / 16px  */
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 900;
@@ -60,7 +70,7 @@ legend span{
     padding: 8px 15px 8px 40px;
     cursor: pointer;
     margin: 0 auto;
-    float: none !important;
+    /*float: none !important;*/
     border: none;
 }
 
@@ -69,7 +79,7 @@ legend span{
 }
 
 #contact button.ui-button.ui-state-hover,
-#delivery-info button.ui-button.ui-state-hover{
+#delivery-info button.ui-button.ui-state-hover {
     -moz-box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;
     -webkit-box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;
     box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;
@@ -95,6 +105,23 @@ form label.ribbonLabel {
 .visiblefalse .ui-paginator {
     visibility: hidden;
     display: none;
+}
+
+button {
+    background-color: #db2e2e !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    transition: background-color .2s ease-in-out;
+    -webkit-transition: background-color .2s ease-in-out;
+}
+
+/*button.ui-button {*/
+    /*box-shadow: none !important;*/
+/*}*/
+
+button.ui-button:hover {
+    box-shadow: none !important;
+    background-color: #c22121 !important;
 }
 
 /*.ui-state-default {*/
@@ -216,7 +243,11 @@ figure {
 
 figure > img {
     width: 100%;
-    /*border-radius: 50%;*/
+    border-radius: 50%;
+}
+
+figure > img.history_img {
+    border-radius: 0;
 }
 
 figure figcaption {
@@ -236,6 +267,7 @@ h4, h5, h6 {
     text-transform: uppercase;
 }
 
+/*//////////////////////////////////////*/
 .classh6 {
     font-family: 'Oswald', sans-serif !important;
     text-transform: uppercase;
@@ -243,6 +275,8 @@ h4, h5, h6 {
     font-weight: 400;
     color: #484848 !important;
 }
+
+/*////////////////////////////////////////*/
 
 h1 {
     font-size: 3em; /* 48px / 16px */
@@ -468,6 +502,7 @@ ul.social.big > li > a.social-icon.gplus {
 /*--------------------
   2.3 FORM STYLES
 --------------------*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
 form label {
     display: block;
     font-size: 0.875em; /* 14px / 16px */
@@ -475,16 +510,21 @@ form label {
     font-weight: 400;
     color: #282828;
     margin-bottom: 8px;
+    margin-right: 10px;
+    float: left;
 }
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
 
 form#ctc label,
-form#delivery-info label{
+form#delivery-info label {
     float: left;
     margin-right: 10px;
 }
 
 form input[type="text"],
 form input[type="email"],
+form input[type="tel"],
+form input[type="number"],
 form input[type="password"],
 form textarea {
     font-size: 0.875em; /* 14px / 16px */
@@ -603,12 +643,13 @@ form > label.ok:before {
 /*----------------------------
   2.3.4 RADIO AND CHECKBOX
 ----------------------------*/
-#zone div{
+#zone div {
     background: none;
     border: none;
     cursor: pointer;
 }
-#zone div .ui-icon{
+
+#zone div .ui-icon {
     background-image: none;
 }
 
@@ -618,18 +659,19 @@ input[type="checkbox"] {
 }
 
 input[type="radio"] + label,
- input[type="checkbox"] + label {
-     float: left;
-     cursor: pointer;
-     margin-right: 15px;
-     padding-left: 22px;
-     font-size: 0.875em; /* 14px / 16px */
-     font-family: "Source Sans Pro", sans-serif;
-     font-weight: 400;
-     color: #282828;
-     position: relative;
- }
-#zone label{
+input[type="checkbox"] + label {
+    float: left;
+    cursor: pointer;
+    margin-right: 15px;
+    padding-left: 22px;
+    font-size: 0.875em; /* 14px / 16px */
+    font-family: "Source Sans Pro", sans-serif;
+    font-weight: 400;
+    color: #282828;
+    position: relative;
+}
+
+#zone label {
     /*float: left;*/
     cursor: pointer;
     margin: 0 15px 0 5px;
@@ -664,7 +706,8 @@ input[type="radio"] + label:before {
     top: 1px;
     left: 0;
 }
-#zone div.ui-state-default{
+
+#zone div.ui-state-default {
     background: url('../images/radio-outer.png') no-repeat center;
     /*display: inline-block;*/
     /*position: absolute;*/
@@ -675,11 +718,13 @@ input[type="radio"] + label:before {
 input[type="radio"]:checked + label:before {
     content: url('../images/radio-inner.png');
 }
-#zone div.ui-state-active{
+
+#zone div.ui-state-active {
     background: url('../images/radio-inner.png') no-repeat center;
 }
 
-input[type="checkbox"]:checked + label:before {
+input[type="checkbox"]:checked + label:before,
+.rememberCheckbox:checked + .rememberLabel:before {
     content: "\2714";
     color: #db2e2e;
     font-size: 11px;
@@ -687,12 +732,12 @@ input[type="checkbox"]:checked + label:before {
     text-align: center;
 }
 
-#zone div.ui-state-active span{
+#zone div.ui-state-active span {
     /*border: none;*/
     /*background-image: url("../images/radio-inner.png");*/
 }
 
-#zone div.ui-state-default span{
+#zone div.ui-state-default span {
     /*border: none;*/
     /*background: none;*/
     /*background-repeat: no-repeat;*/
@@ -703,6 +748,10 @@ input[type="checkbox"]:checked + label:before {
 /*--------------------
   2.4 FORM POPUP BOX
 --------------------*/
+.ui-dialog-content {
+    padding: 0 !important;
+}
+
 .form-box-overlay {
     position: fixed;
     z-index: 9999;
@@ -719,12 +768,12 @@ input[type="checkbox"]:checked + label:before {
     background-color: #fff;
     border-radius: 2px;
     padding: 105px 20px 20px;
-    position: fixed;
+    position: relative;
     z-index: 10000;
     top: 50%;
-    left: 50%;
-    margin-left: -200px;
-    display: none;
+    left: 0 !important;
+    margin-left: 0 !important;
+    display: block;
 }
 
 .form-box img[alt="close"] {
@@ -833,7 +882,22 @@ input[type="checkbox"]:checked + label:before {
     margin-bottom: 28px;
 }
 
+.form-box form a.popup.reset {
+    float: right;
+    font-size: 0.875em; /* 14px / 16px */
+    font-weight: 300;
+    color: #a0a0a0;
+    text-decoration: underline;
+    margin-bottom: 28px;
+}
+
 .form-box.register form + a {
+    float: left;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
+.form-box.register form a.popup.reset {
     float: left;
     margin-left: 5px;
     margin-top: 2px;
@@ -847,7 +911,20 @@ input[type="checkbox"]:checked + label:before {
     text-align: center;
 }
 
+.form-box p {
+    font-size: 0.875em; /* 14px / 16px */
+    font-weight: 300;
+    color: #a0a0a0;
+    line-height: 1.3em;
+    text-align: center;
+}
+
 .form-box > p > a {
+    font-weight: 600;
+    color: #db2e2e;
+}
+
+.form-box p a {
     font-weight: 600;
     color: #db2e2e;
 }
@@ -1451,6 +1528,7 @@ ul.dishes.list > li > a.button {
 }
 
 .ui-paginator-bottom {
+    margin-top: 0px !important;
     margin-bottom: 40px !important;
 }
 
@@ -1578,16 +1656,16 @@ ul.dishes.list > li > a.button {
     margin: 10px 25px 0 0;
 }
 
-#header-top > article {
+#header-top article {
     float: right;
 }
 
-#header-top > article a,
-#header-top > article > p {
+#header-top article a,
+#header-top article > p {
     font-size: 0.6875em; /* 11px / 16px */
 }
 
-#header-top > article a {
+#header-top article a {
     position: relative;
     text-transform: uppercase;
     font-weight: 400;
@@ -1596,50 +1674,51 @@ ul.dishes.list > li > a.button {
     -webkit-transition: all .3s ease-in;
 }
 
-#header-top > article > a {
+#header-top article > a {
     float: left;
     margin: 20px 10px 0 0;
     padding-right: 10px;
     border-right: 1px solid #db2e2e;
 }
 
-#header-top > article > a:before {
+#header-top article > a:before {
     position: absolute;
     top: -1px;
     left: -15px;
 }
 
-#header-top > #login > a:before {
+#header-top #login > a:before {
     content: url('../images/power-icon.png');
 }
 
-#header-top > #logout > a:before {
+#header-top #logout > a:before {
     content: url('../images/logout.png');
 }
 
-#header-top > article > p {
+#header-top article > p {
     float: left;
     font-weight: 300;
     color: #858585;
     margin: 20px 45px 0 0;
 }
 
-#header-top > #logout > p > a {
+#header-top #logout > p > a {
     text-transform: none;
 }
 
-#header-top > article > p > a {
+#header-top article > p > a {
     font-size: 1em;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
-#header-top > #login > p > a:after {
+#header-top #login > p > a:after {
     content: url('../images/lock-icon.png');
     position: absolute;
     top: 0px;
     right: -14px;
 }
 
-#header-top > #logout > p > a:after {
+#header-top #logout > p > a:after {
     content: url('../images/settings.png');
     position: relative !important;
     top: 1px;
@@ -1820,7 +1899,7 @@ ul.dishes.list > li > a.button {
     position: relative;
 }
 
-#header-bottom > a.order {
+#header-bottom a.order {
     margin: 20px 0 0 350px;
 }
 
@@ -1834,9 +1913,11 @@ ul.dishes.list > li > a.button {
   5.3.1 HEADER-BOTTOM SMALL
 ---------------------------*/
 #header-bottom.small {
-    padding: 75px 0 65px;
+    padding: 65px 0 55px;
     text-align: center;
     min-height: 300px;
+    width: 100%;
+    max-width: 100%;
 }
 
 #header-bottom.small h1 {
@@ -1847,6 +1928,26 @@ ul.dishes.list > li > a.button {
 
 #header-bottom.small a.order {
     margin-left: 0;
+    visibility: visible;
+    animation-delay: 0.5s;
+    animation-name: bounceInDown;
+}
+
+#header-bottom.small li {
+    padding-left: 0;
+    float: left;
+    width: 100%;
+    position: relative;
+    height: 190px;
+}
+
+#second-slider-wrap {
+    min-height: 190px;
+    width: 100%;
+}
+
+#second-slider-wrap .bx-viewport {
+    min-height: 190px;
 }
 
 /*-------------------
@@ -1862,6 +1963,29 @@ ul.dishes.list > li > a.button {
     margin-left: -385px;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.bx-wrapper {
+    max-width: 100%;
+    margin: 0px auto;
+}
+
+.bx-viewport {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 108px;
+}
+
+.main-slider {
+    width: 515%;
+    position: relative;
+    transition-timing-function: ease-in;
+    transition-duration: 0s;
+    transform: translate3d(-1540px, 0px, 0px);
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 span.arrow {
     position: absolute;
     top: 35px;
@@ -1875,9 +1999,16 @@ span.arrow.right {
     right: 0;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #main-slider > li {
     padding-left: 95px;
+    float: left;
+    list-style: none;
+    position: relative;
+    width: 770px;
 }
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #main-slider > li > div.circle {
     float: left;
@@ -2022,9 +2153,12 @@ span.arrow.right {
     margin: 65px auto;
 }
 
-#specials > ul.dishes li.ul_dishes_li.ul_dishes_grid_li.wow.animated:nth-child(4n+5) {
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#specials > ul.dishes li:nth-child(4n+5) {
     margin-right: 0;
 }
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #specials > h6 {
     text-align: center;
@@ -2239,18 +2373,6 @@ span.arrow.right {
     font-weight: 700;
     text-shadow: 0 0 10px #000;
 }
-
-/*#phone-order > article > h2.numberKyiv {*/
-/*padding-left: 10px;*/
-/*text-align: right;*/
-/*background-size: contain;*/
-/*background: url('../images/kyiv.png') no-repeat left;*/
-/*}*/
-
-/*#phone-order > article > h2.numberMTS {*/
-/*background-size: contain;*/
-/*background: url('../images/mts.png') no-repeat left;*/
-/*}*/
 
 /***************************************/
 /* 11. COMBOS */
@@ -2593,9 +2715,12 @@ span.arrow.right {
     width: 48.7%;
 }
 
+/*///////////////////////////////////////////////////////////////////////////////////////////////////*/
 #contact form .div_mess {
     float: right;
 }
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #contact textarea {
     height: 212px;
@@ -2711,11 +2836,11 @@ footer > article > ul.social {
 -------------------*/
 ul.cat-menu > li > a {
     display: block;
-    font-size: 1em !important; /* 16px / 16px */
-    font-family: "Oswald", sans-serif !important;
-    font-weight: 400 !important;
+    font-size: 1em; /* 16px / 16px */
+    font-family: "Oswald", sans-serif;
+    font-weight: 400;
     padding-left: 20px;
-    color: #484848 !important;
+    color: #484848;
     text-transform: uppercase;
     line-height: 44px;
     border-bottom: 1px solid #d2d2d2;
@@ -2724,25 +2849,11 @@ ul.cat-menu > li > a {
     background: url('../images/category-tag.png') no-repeat 5px 18px #fff;
 }
 
-ul.cat-menu > li > a > label{
-    font-size: 1em !important; /* 16px / 16px */
-    font-family: "Oswald", sans-serif !important;
-    font-weight: 400 !important;
-    color: #484848 !important;
-    line-height: 44px;
-    transition: all .3s ease-in-out;
-    -webkit-transition: all .3s ease-in-out;
-}
-
-ul.cat-menu > li > a > label:hover,
-ul.cat-menu > li > a.detail:hover {
-    color: #db2e2e !important;
-    /*padding-left: 35px;*/
-}
-
-ul.cat-menu > li > a > label.brand-active,
-ul.cat-menu > li > a.detail.brand-active {
-    color: #db2e2e !important;
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+ul.cat-menu > li > a:hover,
+ul.cat-menu > li > a.brand-active {
+    color: #db2e2e;
+    padding-left: 35px;
 }
 
 /*-------------------
@@ -2801,9 +2912,12 @@ ul.new-dishes > li > p {
     margin-right: 0;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #shop article .ul_dishes_grid_li:nth-child(3n+3) {
     margin-right: 0;
 }
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*--------------
   17.4 VIEWS
@@ -2814,7 +2928,8 @@ ul.new-dishes > li > p {
     right: 0;
 }
 
-form #views{
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+form #views {
     float: left;
     /*margin-right: 15px;*/
 }
@@ -2828,6 +2943,8 @@ form #views > select {
     padding: 4px 45px 4px 15px;
     margin-right: 15px;
 }
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #views > ul.views {
     float: right;
@@ -2981,6 +3098,7 @@ ul.views > li > a.list {
 /*-------------------
   17.6 ITEM REVIEWS
 -------------------*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #shop #item-reviews article {
 
 }
@@ -2993,17 +3111,20 @@ ul.views > li > a.list {
 #shop #item-reviews .ui-datalist-item:last-child {
     padding-bottom: 0;
     border-bottom: none !important;
+    margin-bottom: 40px;
 }
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #shop #item-reviews article > h6 {
     color: #282828;
-    font-weight: 400;
 }
 
 #shop #item-reviews article > h6 span {
     font-weight: 300;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #shop #item-reviews ul.rate {
     margin: 6px 0 10px;
 }
@@ -3011,6 +3132,8 @@ ul.views > li > a.list {
 #shop #item-reviews .ui-rating {
     margin: 6px 0 10px;
 }
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #shop #item-reviews article > p {
     font-size: 0.875em; /* 14px / 16px */
@@ -3030,17 +3153,24 @@ ul.views > li > a.list {
     margin-bottom: 30px;
 }
 
-#shop #review-input > p {
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#shop #review-input > label.save_font {
+    font-size: 1em;
+}
+
+#shop #review-input > label > p {
     font-size: 0.875em; /* 14px / 16px */
     font-weight: 400;
     color: #282828;
     margin-bottom: 20px;
 }
 
-#shop #review-input > p > a {
+#shop #review-input > label > p > a {
     font-weight: 600;
     color: #db2e2e;
 }
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #shop #review-input textarea {
     height: 190px;
@@ -3301,21 +3431,20 @@ ul.views > li > a.list {
 /*--------------------
   20.1 DELIVERY INFO
 --------------------*/
-#delivery-info div {
+#delivery-info > div {
     width: 48%;
 }
 
-#delivery-info div:nth-child(odd) {
+#delivery-info > div:nth-child(odd) {
     float: right;
 }
 
-#delivery-info div:nth-child(even) {
+#delivery-info > div:nth-child(even) {
     float: left;
 }
 
 #delivery-info textarea {
     height: 140px;
-    margin-bottom: 20px;
 }
 
 #delivery-info button {
@@ -3326,11 +3455,7 @@ ul.views > li > a.list {
     display: inline-block;
 }
 
-#delivery-info div.div_spec{
-    width: 100%;
-}
-
-    /***************************************/
+/***************************************/
 /* 21. CHECKOUT */
 /***************************************/
 #checkout-wrap {
@@ -3419,7 +3544,6 @@ ul.views > li > a.list {
 }
 
 .ticket a.button {
-    font-family: 'Source Sans Pro', sans-serif !important;
     font-size: 0.875em; /* 14px / 16px */
     width: 240px;
     margin: 25px auto 10px;
@@ -3482,6 +3606,7 @@ ul.views > li > a.list {
     margin-bottom: 30px;
 }
 
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 .cart-header {
     border-bottom: 1px solid #d2d2d2;
     padding-bottom: 10px;
@@ -3520,6 +3645,7 @@ ul.views > li > a.list {
     width: 60px;
     margin-right: 40px;
 }
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #cart ul {
     margin-bottom: 45px;
@@ -3574,16 +3700,16 @@ div.quantity {
     position: relative;
 }
 
-.cart_ul_li_div_quantity {
+#cart ul > li > div.quantity {
     width: 68px;
     margin-right: 45px;
 }
 
-div.quantity span.ui-spinner {
-    width: 45px;
+div.quantity > div {
+    width: 30px;
     height: 30px;
-    /*line-height: 30px;*/
-    /*border: 1px solid #d2d2d2 !important;*/
+    line-height: 30px;
+    border: 1px solid #d2d2d2;
     font-size: 0.875em; /* 14px / 16px */
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 300;
@@ -3592,86 +3718,121 @@ div.quantity span.ui-spinner {
     margin-top: 12px;
 }
 
-div.quantity.itemQuantity {
-    width: 120px !important;
-}
-
-div.quantity.itemQuantity span.ui-spinner {
-    margin-top: 0;
-}
-
-div.quantity span.ui-spinner input {
-    width: 28px;
-    height: 28px;
-    /*line-height: 30px;*/
-    background: none;
-    border: 1px solid #d2d2d2;
-    font-size: 0.875em; /* 14px / 16px */
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: 300;
-    color: #a0a0a0;
-    text-align: center;
-    margin: 0;
-    padding: 1px;
-    float: left;
-}
-
-span.ui-spinner input.ui-state-hover,
-span.ui-spinner input.ui-state-focus {
-    -moz-box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;
-    -webkit-box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;
-    box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;
-    border-color: #cb3409 !important;
-}
-
-span.counter a.ui-spinner-button {
+a.counter {
     display: block;
-    width: 10px;
-    height: 10px;
+    width: 0;
+    height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     position: absolute;
-    /*right: -5px;*/
+    right: 23px;
 }
 
-span.counter a.ui-spinner-button.ui-state-hover {
-    /*border: none;*/
-    /*background: none !important;*/
-    box-shadow: none;
+a.counter.up {
+    border-bottom: 9px solid #db2e2e;
+    top: 15px;
 }
 
-a.ui-spinner-up {
-    border-bottom: 9px solid #db2e2e !important;
-    border-top: none !important;
-    /*top: 15px;*/
+a.counter.down {
+    border-top: 9px solid #db2e2e;
+    bottom: 3px;
 }
 
-span.counter input {
-    box-shadow: none !important;
-}
+/*////NOT/////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*div.quantity span.ui-spinner {*/
+/*width: 45px;*/
+/*height: 30px;*/
+/*!*line-height: 30px;*!*/
+/*!*border: 1px solid #d2d2d2 !important;*!*/
+/*font-size: 0.875em; !* 14px / 16px *!*/
+/*font-family: "Source Sans Pro", sans-serif;*/
+/*font-weight: 300;*/
+/*color: #a0a0a0;*/
+/*text-align: center;*/
+/*margin-top: 12px;*/
+/*}*/
 
-a.ui-spinner-down {
-    border-top: 9px solid #db2e2e !important;
-    border-bottom: none !important;
-    /*bottom: 3px;*/
-}
+/*div.quantity.itemQuantity {*/
+/*width: 120px !important;*/
+/*}*/
 
-a.ui-spinner-button {
-    background: none !important;
-    cursor: pointer;
-}
+/*div.quantity.itemQuantity span.ui-spinner {*/
+/*margin-top: 0;*/
+/*}*/
 
-a.ui-spinner-button span.ui-button-text {
-    /*background: #95c22b;*/
-    /*border: 1px solid #95c12a;*/
-    margin: 0;
-    padding: 0;
-}
+/*div.quantity span.ui-spinner input {*/
+/*width: 28px;*/
+/*height: 28px;*/
+/*!*line-height: 30px;*!*/
+/*background: none;*/
+/*border: 1px solid #d2d2d2;*/
+/*font-size: 0.875em; !* 14px / 16px *!*/
+/*font-family: "Source Sans Pro", sans-serif;*/
+/*font-weight: 300;*/
+/*color: #a0a0a0;*/
+/*text-align: center;*/
+/*margin: 0;*/
+/*padding: 1px;*/
+/*float: left;*/
+/*}*/
 
-a.ui-spinner-button span.ui-button-text span.ui-icon {
-    margin: 0;
-    padding: 0;
-}
+/*span.ui-spinner input.ui-state-hover,*/
+/*span.ui-spinner input.ui-state-focus {*/
+/*-moz-box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;*/
+/*-webkit-box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;*/
+/*box-shadow: 0 0 5px #cb2a03, inset 0 2px 2px #db2e2e;*/
+/*border-color: #cb3409 !important;*/
+/*}*/
+
+/*span.counter a.ui-spinner-button {*/
+/*display: block;*/
+/*width: 10px;*/
+/*height: 10px;*/
+/*border-left: 5px solid transparent;*/
+/*border-right: 5px solid transparent;*/
+/*position: absolute;*/
+/*!*right: -5px;*!*/
+/*}*/
+
+/*span.counter a.ui-spinner-button.ui-state-hover {*/
+/*!*border: none;*!*/
+/*!*background: none !important;*!*/
+/*box-shadow: none;*/
+/*}*/
+
+/*a.ui-spinner-up {*/
+/*border-bottom: 9px solid #db2e2e !important;*/
+/*border-top: none !important;*/
+/*!*top: 15px;*!*/
+/*}*/
+
+/*span.counter input {*/
+/*box-shadow: none !important;*/
+/*}*/
+
+/*a.ui-spinner-down {*/
+/*border-top: 9px solid #db2e2e !important;*/
+/*border-bottom: none !important;*/
+/*!*bottom: 3px;*!*/
+/*}*/
+
+/*a.ui-spinner-button {*/
+/*background: none !important;*/
+/*cursor: pointer;*/
+/*}*/
+
+/*a.ui-spinner-button span.ui-button-text {*/
+/*!*background: #95c22b;*!*/
+/*!*border: 1px solid #95c12a;*!*/
+/*margin: 0;*/
+/*padding: 0;*/
+/*}*/
+
+/*a.ui-spinner-button span.ui-button-text span.ui-icon {*/
+/*margin: 0;*/
+/*padding: 0;*/
+/*}*/
+/*////NOT/////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #cart a.remove {
     position: absolute;
@@ -3790,6 +3951,17 @@ a.ui-spinner-button span.ui-button-text span.ui-icon {
 #checkout #login-co button:hover {
     background-color: #c22121;
 }
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#checkout #login-co a.button {
+    width: 150px;
+    float: left;
+    clear: left;
+    font-size: 0.6875em;
+    margin-top: 18px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /***************************************/
 /* 22. ZONE MAP */
@@ -4159,19 +4331,21 @@ a.ui-spinner-button span.ui-button-text span.ui-icon {
         text-align: center;
     }
 
-    #header-bottom > h1 {
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
+    #header-bottom h1 {
         margin: 0 auto;
     }
 
-    #header-bottom > h1 span.right {
+    #header-bottom h1 > span.right {
         float: none;
         display: block;
     }
 
-    #header-bottom > a.order {
+    #header-bottom a.order {
         margin: 20px 0;
     }
 
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
     /*----------------
       9. HISTORY
     ----------------*/
@@ -4697,12 +4871,14 @@ a.ui-spinner-button span.ui-button-text span.ui-icon {
         padding: 75px 0 65px;
     }
 
-    #header-bottom > h1 {
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
+    #header-bottom h1 {
         width: 280px;
         font-size: 40px;
     }
 
-    #header-bottom > h1 span.remarked {
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
+    #header-bottom h1 > span.remarked {
         display: block;
         margin-top: 10px;
     }
@@ -4710,7 +4886,7 @@ a.ui-spinner-button span.ui-button-text span.ui-icon {
     /*---------------------------
       5.3.1 HEADER-BOTTOM SMALL
     ---------------------------*/
-    #header-bottom.small > h1 {
+    #header-bottom.small h1 {
         line-height: 1em;
     }
 
@@ -4849,11 +5025,11 @@ a.ui-spinner-button span.ui-button-text span.ui-icon {
     /*-------------
       20 PROFILE
     -------------*/
-    #delivery-info div {
+    #delivery-info > div {
         width: 100%;
     }
 
-    #delivery-info div:nth-child(even) {
+    #delivery-info > div:nth-child(even) {
         float: left;
         clear: left;
     }
@@ -4896,6 +5072,16 @@ a.ui-spinner-button span.ui-button-text span.ui-icon {
 }
 
 @media screen and (max-width: 460px) {
+
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
+    /*---------------------------
+          5.3.1 HEADER-BOTTOM SMALL
+        ---------------------------*/
+    #header-bottom.small h1 {
+        font-size: 30px;
+    }
+
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
     /*---------------
       11. COMBOS
     ---------------*/
@@ -5105,12 +5291,15 @@ a.ui-spinner-button span.ui-button-text span.ui-icon {
         background: url('../images/alert-icon-big.png') no-repeat 30px 17px #db2e2e;
     }
 
-    .form-box.login form + a {
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
+    .form-box.login form + a,
+    .form-box.login form a.popup.reset {
         clear: left;
         float: left;
         margin-top: 8px;
     }
 
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
     /*------------
       23. FORMS
     ------------*/

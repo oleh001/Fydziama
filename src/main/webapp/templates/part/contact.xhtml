@@ -3,13 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <f:view>
     <!--CONTACT-->
     <div id="contact-wrap">
         <section id="contact">
-            <h2><span>#{msg.contact}</span> #{msg.us}</h2>
+            <h2>
+                <span><h:outputText value="#{msg.contact}"/>
+                </span> <h:outputText value="#{msg.us}"/>
+            </h2>
             <hr/>
             <hr/>
             <ul>
@@ -19,10 +23,10 @@
                         <div class="fill"/>
                     </div>
                     <article>
-                        <h6>#{msg.home_city1}</h6>
-                        <p>#{msg.home_city_detail1}</p>
-                        <h6>#{msg.home_city2}</h6>
-                        <p>#{msg.home_city_detail2}</p>
+                        <h6><h:outputText value="#{msg.home_city1}"/></h6>
+                        <p><h:outputText value="#{msg.home_city_detail1}"/></p>
+                        <h6><h:outputText value="#{msg.home_city2}"/></h6>
+                        <p><h:outputText value="#{msg.home_city_detail2}"/></p>
                     </article>
                 </li>
                 <!--/CONTACT ITEM-->
@@ -33,10 +37,10 @@
                         <div class="fill"/>
                     </div>
                     <article>
-                        <h6>#{msg.home_city1}</h6>
-                        <p>#{msg.home_city1_phone}</p>
-                        <h6>#{msg.home_city2}</h6>
-                        <p>#{msg.home_city2_phone}</p>
+                        <h6><h:outputText value="#{msg.home_city1}"/></h6>
+                        <p><h:outputText value="#{msg.home_city1_phone}"/></p>
+                        <h6><h:outputText value="#{msg.home_city2}"/></h6>
+                        <p><h:outputText value="#{msg.home_city2_phone}"/></p>
                     </article>
                 </li>
                 <!--/CONTACT ITEM-->
@@ -47,10 +51,10 @@
                         <div class="fill"/>
                     </div>
                     <article>
-                        <h6>#{msg.home_city1}</h6>
-                        <p>#{msg.home_city1_mail}</p>
-                        <h6>#{msg.home_city2}</h6>
-                        <p>#{msg.home_city2_mail}</p>
+                        <h6><h:outputText value="#{msg.home_city1}"/></h6>
+                        <p><h:outputText value="#{msg.home_city1_mail}"/></p>
+                        <h6><h:outputText value="#{msg.home_city2}"/></h6>
+                        <p><h:outputText value="#{msg.home_city2_mail}"/></p>
                     </article>
                 </li>
                 <!--/CONTACT ITEM-->
@@ -58,57 +62,49 @@
             <div class="cleaner"/>
             <!--CONTACT FORM-->
             <h:form id="ctc">
-                <!--ERROR MSGS-->
-
-                <!--/ERROR MSGS-->
-
                 <div>
-                    <label for="name">#{msg.your_name}</label>
+                    <h:outputLabel for="name" value="#{msg.your_name}"/>
                     <h:message id="mes_name" for="name" class="error msg-wrng"/>
-                    <p:inputText type="text" required="true" id="name" name="name"
+                    <h:inputText required="true" id="name"
                                  requiredMessage="#{msg.contact_you_have_to_enter_a_name}"
-                                 placeholder="#{msg.placeholder_name}"
+                                 pt:placeholder="#{msg.placeholder_name}"
                                  value="#{messageController.selectedMessage.userName}">
-                        <!--<p:ajax event="blur" update="mes_name name"/>-->
-                    </p:inputText>
+                        <p:ajax event="blur" update="mes_name name"/>
+                    </h:inputText>
 
-                    <label for="email">#{msg.your_email_address}</label>
+                    <h:outputLabel for="email" value="#{msg.your_email_address}"/>
                     <h:message id="mes_ema" for="email" class="error msg-wrng"/>
-                    <p:inputText type="email" required="true" id="email" name="email"
+                    <h:inputText pt:type="email" required="true" id="email"
                                  requiredMessage="#{msg.contact_you_have_to_enter_a_valid_email}"
-                                 placeholder="#{msg.placeholder_mail}"
+                                 pt:placeholder="#{msg.placeholder_mail}"
                                  value="#{messageController.selectedMessage.userEmail}">
-                        <!--<p:ajax event="blur" update="mes_ema email" />-->
-                    </p:inputText>
+                        <p:ajax event="blur" update="mes_ema email" />
+                    </h:inputText>
 
-                    <label for="subject">#{msg.your_subject}</label>
+                    <h:outputLabel for="subject" value="#{msg.your_subject}"/>
                     <h:message id="mes_sub" for="subject" class="error msg-wrng"/>
-                    <p:inputText type="text" required="true" id="subject" name="subject"
+                    <h:inputText required="true" id="subject"
                                  requiredMessage="#{msg.contact_you_have_to_enter_a_subject}"
-                                 placeholder="#{msg.placeholder_subject}"
+                                 pt:placeholder="#{msg.placeholder_subject}"
                                  value="#{messageController.selectedMessage.userSubject}">
-                        <!--<p:ajax event="blur" update="mes_sub subject"/>-->
-                    </p:inputText>
+                        <p:ajax event="blur" update="mes_sub subject"/>
+                    </h:inputText>
                 </div>
 
                 <div class="div_mess">
-                    <label for="message">#{msg.your_message}</label>
+                    <h:outputLabel for="message" value="#{msg.your_message}"/>
                     <h:message id="mes_mes" for="message" class="error msg-wrng"/>
-                    <p:inputTextarea required="true" rows="5" cols="30" counter="display" maxlength="255"
-                                     counterTemplate="{0} #{msg.characters_remaining}."
+                    <h:inputTextarea required="true" rows="5" cols="30" pt:maxlength="255" id="message"
                                      requiredMessage="#{msg.contact_you_have_to_enter_a_message}"
-                                     autoResize="false" name="message" id="message"
-                                     placeholder="#{msg.placeholder_message}"
+                                     pt:placeholder="#{msg.placeholder_message}"
                                      value="#{messageController.selectedMessage.userMessage}">
-                        <!--<p:ajax event="blur" update="mes_mes message"/>-->
-                    </p:inputTextarea>
-                    <h:outputText id="display"/>
+                        <p:ajax event="blur" update="mes_mes message"/>
+                    </h:inputTextarea>
                 </div>
             </h:form>
             <p:commandButton id="ctc-submit" form="ctc" value="#{msg.contact_send_message}"
                              actionListener="#{messageController.save}"
-                             update="@([id$=ctc])">
-            </p:commandButton>
+                             update="@([id$=ctc])"/>
             <!--CONTACT FORM-->
         </section>
     </div>

@@ -33,8 +33,7 @@ public class Zone {
 
     private String text;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "zone")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "zone")
     private List<Order> orders;
 
     @Override

@@ -8,8 +8,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.io.Serializable;
+import java.util.*;
 
 // JPA
 @Entity
@@ -24,7 +24,7 @@ import java.util.List;
 @DynamicUpdate
 @DynamicInsert
 @SelectBeforeUpdate
-public class Order {
+public class Order implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY) // autoincrement
     @Id
@@ -48,11 +48,19 @@ public class Order {
     @Column(name = "code_confirmed")
     private String codeConfirmed;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "order")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
     private List<OrderDetail> orderDetails;
 
-//    @Override
+    public Order() {
+    }
+
+    public Order(User user, OrderStatus status) {
+        this.user = user;
+        this.status = status;
+        this.orderDate=new Date();
+    }
+
+    //    @Override
 //    public String toString() {
 //        return idOrder + " - " + status;
 //    }

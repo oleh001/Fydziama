@@ -32,6 +32,7 @@ public class ReviewController  extends AbstractController<Review> {
     public static final Sort.Direction REVIEW_SORT_DIRECTION= Sort.Direction.DESC;
 
     private static final int DEFAULT_PAGE_SIZE = 6;
+    private static final int MIN_PAGE_SIZE = 6;
     private int rowsCount = DEFAULT_PAGE_SIZE;
 
     @Autowired
@@ -46,6 +47,9 @@ public class ReviewController  extends AbstractController<Review> {
     @Autowired
     private GoodController goodController;
 
+    @Autowired
+    private UserController userController;
+
     private User user;
 
     private Good selectedGood;
@@ -58,22 +62,29 @@ public class ReviewController  extends AbstractController<Review> {
     private Page<Review> reviewPages;
 
     private String visiblePaginator;
+    private List<Review> theBestReview;
 
     @PostConstruct
     public void init() {
-        user= userDao.get(2L);
-        selectedReview=new Review(user, "name34", 4 );
+//        if (userController.isUserLogin()) {
+//            user = userController.getSelectedUser();
+//        }else {
+//            user = userDao.get(0L);
+//        }
+        selectedReview=new Review(4);
         lazyModel = new LazyDataTable(this);
     }
 
     @Override
     public String vizibilityAction() {
-        return reviewDao.isVisibility(reviewPages,countPages);
+        return reviewDao.isVisibility(reviewPages,MIN_PAGE_SIZE);
     }
 
     public void save() {
+        selectedReview.setGood(selectedGood);
         reviewDao.save(selectedReview);
-        selectedReview=new Review(user, "name34", selectedGood,4 );
+
+        selectedReview=new Review(user, selectedGood,4 );
     }
 
     @Override
@@ -94,7 +105,16 @@ public class ReviewController  extends AbstractController<Review> {
 
     @Override
     public void addAction() {
-        selectedReview = new Review();
+        selectedReview = new Review(4);
+    }
+
+    public void newReview(User user){
+        this.user=user;
+        if (selectedGood!=null) {
+            selectedReview = new Review(user, selectedGood,4);
+        }else {
+            selectedReview = new Review(user,4);
+        }
     }
 
     @Override
@@ -116,5 +136,10 @@ public class ReviewController  extends AbstractController<Review> {
         selectedGood = goodDao.get(selectedGoodId);
         selectedReview.setGood(selectedGood);
         goodController.setSelectedGood(selectedGoodId);
+    }
+
+    public List<Review> getTheBestReview() {
+        theBestReview=reviewDao.findByTheBestEquals();
+        return theBestReview;
     }
 }

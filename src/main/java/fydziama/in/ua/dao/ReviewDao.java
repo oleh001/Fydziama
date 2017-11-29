@@ -10,4 +10,6 @@ public interface ReviewDao extends GeneralDao<Review> {
     List<Review> searchGood(long idGood);
 
     Page<Review> searchGood(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, long idGood);
+
+    List<Review> findByTheBestEquals();
 }

@@ -69,16 +69,16 @@
                             <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
                         </figure>
                         <div class="shadow"/>
-                        <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                        <p:commandLink actionListener="#{orderController.addToWishList(goods)}"
                                        update="" rendered="#{goods.hits=='FALSE'}">
-                            <div class="fill red cart-tip toWishlist">
+                            <div class="fill red tooltip toWishlist" title="#{msg.add_to_wishlist}">
                                 <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
                             </div>
                         </p:commandLink>
 
-                        <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                        <p:commandLink actionListener="#{orderController.addToWishList(goods)}"
                                        update="" rendered="#{goods.hits=='TRUE'}">
-                            <div class="fill gold cart-tip toWishlist">
+                            <div class="fill gold tooltip toWishlist" title="#{msg.add_to_wishlist}">
                                 <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
                             </div>
                         </p:commandLink>
@@ -109,13 +109,13 @@
                         </div>
                         <p>$ #{goods.price} &#8372;</p>
                     </div>
-                    <p:commandLink styleClass="button red" actionListener="#{orderDetailController.addToCart(goods)}"
-                                   update="" rendered="#{goods.hits=='FALSE'}">
+                    <p:commandLink styleClass="button red" actionListener="#{orderController.addToCart(goods)}"
+                                   update="@([id$=jsIncluded]) @([id$=menuCheckout])" rendered="#{goods.hits=='FALSE'}">
                         <p:outputLabel value="#{msg.add_to_cart}"/>
                     </p:commandLink>
 
-                    <p:commandLink styleClass="button gold" actionListener="#{orderDetailController.addToCart(goods)}"
-                                   update="" rendered="#{goods.hits=='TRUE'}">
+                    <p:commandLink styleClass="button gold" actionListener="#{orderController.addToCart(goods)}"
+                                   update="@([id$=jsIncluded]) @([id$=menuCheckout])" rendered="#{goods.hits=='TRUE'}">
                         <p:outputLabel value="#{msg.add_to_cart}"/>
                     </p:commandLink>
                 </li>
@@ -135,21 +135,21 @@
                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         lazy="true"
                         rendered="#{goodController.selectedShopType.toString().equals('DETAIL')}">
-                <p:ajax event="page" update="@([id$=jsIncluded])" />
+                <p:ajax event="page" update="@([id$=jsIncluded])"/>
                 <li class="ul_dishes_li ul_dishes_detail_li">
                     <div class="circle medium">
                         <figure class="imgLiquidFill">
                             <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
                         </figure>
                         <div class="shadow"/>
-                        <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                        <p:commandLink actionListener="#{orderController.addToWishList(goods)}"
                                        update="" rendered="#{goods.hits=='FALSE'}">
                             <div class="fill red cart-tip toWishlist">
                                 <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
                             </div>
                         </p:commandLink>
 
-                        <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                        <p:commandLink actionListener="#{orderController.addToWishList(goods)}"
                                        update="" rendered="#{goods.hits=='TRUE'}">
                             <div class="fill gold cart-tip toWishlist">
                                 <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
@@ -182,13 +182,13 @@
                         </div>
                         <p>$ #{goods.price} &#8372;</p>
                     </div>
-                    <p:commandLink styleClass="button red" actionListener="#{orderDetailController.addToCart(goods)}"
-                                   update="" rendered="#{goods.hits=='FALSE'}">
+                    <p:commandLink styleClass="button red" actionListener="#{orderController.addToCart(goods)}"
+                                   update="@([id$=jsIncluded]) @([id$=menuCheckout])" rendered="#{goods.hits=='FALSE'}">
                         <p:outputLabel value="#{msg.add_to_cart}"/>
                     </p:commandLink>
 
-                    <p:commandLink styleClass="button gold" actionListener="#{orderDetailController.addToCart(goods)}"
-                                   update="" rendered="#{goods.hits=='TRUE'}">
+                    <p:commandLink styleClass="button gold" actionListener="#{orderController.addToCart(goods)}"
+                                   update="@([id$=jsIncluded]) @([id$=menuCheckout])" rendered="#{goods.hits=='TRUE'}">
                         <p:outputLabel value="#{msg.add_to_cart}"/>
                     </p:commandLink>
                 </li>
@@ -214,15 +214,15 @@
                             <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
                         </figure>
                         <div class="shadow"/>
-                        <p:commandLink actionListener="#{orderDetailController.addToCart(goods)}"
-                                       update="" rendered="#{goods.hits=='FALSE'}">
+                        <p:commandLink actionListener="#{orderController.addToCart(goods)}"
+                                       update="@([id$=jsIncluded]) @([id$=menuCheckout])" rendered="#{goods.hits=='FALSE'}">
                             <div class="fill red cart-tip toCart">
                                 <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
                             </div>
                         </p:commandLink>
 
-                        <p:commandLink actionListener="#{orderDetailController.addToCart(goods)}"
-                                       update="" rendered="#{goods.hits=='TRUE'}">
+                        <p:commandLink actionListener="#{orderController.addToCart(goods)}"
+                                       update="@([id$=jsIncluded]) @([id$=menuCheckout])" rendered="#{goods.hits=='TRUE'}">
                             <div class="fill gold cart-tip toCart">
                                 <o:graphicImage name="images/plus-icon.png" alt="plus-icon" dataURI="true"/>
                             </div>
@@ -231,7 +231,7 @@
                     </div>
                     <article>
 
-                        <p:link styleClass="classh6" outcome="dishDetail" value="#{goods.name}" fragment="item-detail">
+                        <p:link styleClass="classh6" outcome="dishDetail"  value="#{goods.name}" fragment="item-detail">
                             <f:param name="dishId" value="#{goods.idGood}"/>
                         </p:link>
 
@@ -241,7 +241,7 @@
                                   rendered="#{goods.hits=='FALSE'}"/>
                         <p:rating readonly="true" class="rate heart gold" value="#{goods.avgRating}" stars="5"
                                   cancel="false" rendered="#{goods.hits=='TRUE'}"/>
-<hr/>
+                        <hr/>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
                     </article>
 

@@ -23,17 +23,24 @@
             <article>
                 <h3>#{goodController.selectedGood.name}<span>$#{goodController.selectedGood.price}</span></h3>
 
-                <p:rating readonly="true" class="rate star red" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
-                <p:rating readonly="true" class="rate heart gold" value="#{goodController.selectedGood.avgRating}" stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
+                <p:rating readonly="true" class="rate star red" value="#{goodController.selectedGood.avgRating}"
+                          stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
+                <p:rating readonly="true" class="rate heart gold" value="#{goodController.selectedGood.avgRating}"
+                          stars="5" cancel="false" rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in endein uptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint.</p>
 
-                <div class="quantity cart_ul_li_div_quantity itemQuantity">
-                    <p>Quantity</p>
-                    <p:spinner min="0" max="99" id="cartQuantity" value="#{orderDetailController.quantity}" styleClass="counter">
-                        <p:ajax update="itemDetailForm" process="@this" />
-                    </p:spinner>
-
+                <div class="quantity">
+                    <p>#{msg.quantity}</p>
+                    <div>
+                        <h:outputText id="quantity" value="#{orderDetailController.quantity}"/>
+                    </div>
+                    <p:commandLink styleClass="counter up"
+                                   actionListener="#{orderDetailController.updateQuantity(1)}"
+                                   update="@([id$=itemDetailForm])"/>
+                    <p:commandLink styleClass="counter down"
+                                   actionListener="#{orderDetailController.updateQuantity(-1)}"
+                                   update="@([id$=itemDetailForm])"/>
                 </div>
                 <!-- facebook like button -->
                 <div class="fb-like" data-href="http://www.your-domain123.com"
@@ -47,30 +54,25 @@
                          data-href="http://www.your-domain123.com"/>
                 </div>
                 <div class="cleaner"/>
-                <!--<a href="#" class="button red">#{msg.add_to_cart}</a>-->
-                <p:commandLink styleClass="button red" actionListener="#{orderDetailController.addToCart(goodController.selectedGood)}"
-                               update="" rendered="#{goodController.selectedGood.hits=='FALSE'}">
-                    <p:outputLabel value="#{msg.add_to_cart}"/>
-                </p:commandLink>
-                <p:commandLink styleClass="button gold" actionListener="#{orderDetailController.addToCart(goodController.selectedGood)}"
-                               update="" rendered="#{goodController.selectedGood.hits=='TRUE'}">
-                    <p:outputLabel value="#{msg.add_to_cart}"/>
-                </p:commandLink>
+                <p:commandLink styleClass="button red" value="#{msg.add_to_cart}"
+                               actionListener="#{orderController.addToCart(goodController.selectedGood)}"
+                               update="@([id$=jsIncluded]) @([id$=menuCheckout])"
+                               rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
 
+                <p:commandLink styleClass="button gold" value="#{msg.add_to_cart}"
+                               actionListener="#{orderController.addToCart(goodController.selectedGood)}"
+                               update="@([id$=jsIncluded]) @([id$=menuCheckout])"
+                               rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
 
                 <p class="quantity">#{orderDetailController.quantity} #{msg.quantity_name}</p>
-                <!--<a href="#" class="button wishlist red">#{msg.add_to_wishlist}</a>-->
-                <p:commandLink class="button wishlist red"
-                               actionListener="#{orderDetailController.addToWishList(goodController.selectedGood)}"
-                               update="" rendered="#{goodController.selectedGood.hits=='FALSE'}">
-                    <p:outputLabel value="#{msg.add_to_wishlist}"/>
-                </p:commandLink>
 
-                <p:commandLink class="button wishlist gold"
-                               actionListener="#{orderDetailController.addToWishList(goodController.selectedGood)}"
-                               update="" rendered="#{goodController.selectedGood.hits=='TRUE'}">
-                    <p:outputLabel value="#{msg.add_to_wishlist}"/>
-                </p:commandLink>
+                <p:commandLink class="button wishlist red" value="#{msg.add_to_wishlist}"
+                               actionListener="#{orderController.addToWishList(goodController.selectedGood)}"
+                               rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
+
+                <p:commandLink class="button wishlist gold" value="#{msg.add_to_wishlist}"
+                               actionListener="#{orderController.addToWishList(goodController.selectedGood)}"
+                               rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
 
             </article>
             <div class="cleaner"/>
