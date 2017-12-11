@@ -72,7 +72,7 @@ public class OrderController extends AbstractController<Order> {
 
     public void save() {
         orderDao.save(selectedOrder);
-        selectedOrder = new Order();
+//        selectedOrder = new Order();
     }
 
     public void save(Order order) {
@@ -191,10 +191,9 @@ public class OrderController extends AbstractController<Order> {
         }
     }
 
-    public void updateZone(OrderZone orderZone) {
-        log.log(Level.WARNING, selectedOrderStart.getZone().toString());
-//        selectedOrderStart.setZone(orderZone);
-//        log.log(Level.WARNING, selectedOrderStart.getZone().toString());
+    public void updateZone(Zone orderZone) {
+        log.log(Level.WARNING, orderZone.getName());
+        selectedOrderStart.setZone(orderZone);
     }
 
     public Order showOrderStart() {

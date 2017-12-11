@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <!--STATS-->
@@ -9,23 +10,27 @@
             <ul>
                 <!--STAT-->
                 <li>
-                    <div class="stats" data-percent="25">
+                    <div class="stats" data-percent="80">
                         <div class="data">
-                            <span>52</span>
+                            <span>3</span>
                         </div>
                     </div>
-                    <h4>Years of <br/><span>Experience</span></h4>
+                    <h4><h:outputText value="#{msg.years_of}"/> <br/>
+                        <span><h:outputText value="#{msg.experience}"/></span>
+                    </h4>
                 </li>
                 <!--/STAT-->
 
                 <!--STAT-->
                 <li>
-                    <div class="stats" data-percent="65">
+                    <div class="stats" data-percent="90">
                         <div class="data">
-                            <span>19230</span>
+                            <span>500</span>
                         </div>
                     </div>
-                    <h4>Happy <br/><span>Customers</span></h4>
+                    <h4><h:outputText value="#{msg.happy}"/> <br/>
+                        <span><h:outputText value="#{msg.customers}"/></span>
+                    </h4>
                 </li>
                 <!--/STAT-->
 
@@ -33,21 +38,25 @@
                 <li>
                     <div class="stats" data-percent="80">
                         <div class="data">
-                            +<span>78750</span>
+                            +<span>1220</span>
                         </div>
                     </div>
-                    <h4>Dishes <br/><span>Served</span></h4>
+                    <h4><h:outputText value="#{msg.dishes}"/> <br/>
+                        <span><h:outputText value="#{msg.served}"/></span>
+                    </h4>
                 </li>
                 <!--/STAT-->
 
                 <!--STAT-->
                 <li>
-                    <div class="stats" data-percent="20">
+                    <div class="stats" data-percent="80">
                         <div class="data">
-                            <span>10</span>
+                            <span>2</span>
                         </div>
                     </div>
-                    <h4>Branches <br/><span>in USA</span></h4>
+                    <h4><h:outputText value="#{msg.branches}"/> <br/>
+                        <span><h:outputText value="#{msg.in_ukraina}"/></span>
+                    </h4>
                 </li>
                 <!--/STAT-->
             </ul>

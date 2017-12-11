@@ -48,24 +48,29 @@
 
 <f:view>
     <!--FOOTER-->
-    <div id="footer-wrap">
-        <footer>
-            <a href="#header-top">
-                <o:graphicImage styleClass="wow fadeIn" name="images/to-top.png" alt="home-pin" dataURI="true"/>
-            </a>
-            <article>
-                <p>#{msg.the} <span>#{msg.shopName} </span><span class="copy">- #{msg.all_rights_reserved}</span></p>
-                <ul class="social">
-                    <li><a href="#" class="social-icon fb"/></li>
-                    <li><a href="#" class="social-icon twt"/></li>
-                    <li><a href="#" class="social-icon gplus"/></li>
-                    <li><a href="#" class="social-icon rss"/></li>
-                    <li><a href="#" class="social-icon vimeo"/></li>
-                    <li><a href="#" class="social-icon flickr"/></li>
-                </ul>
-            </article>
-        </footer>
-    </div>
+    <h:form>
+        <div id="footer-wrap">
+            <footer>
+                <a href="#header-top">
+                    <o:graphicImage styleClass="wow fadeIn" name="images/to-top.png" alt="home-pin" dataURI="true"/>
+                </a>
+                <article>
+                    <p><h:outputText value="#{msg.the}"/>
+                        <span><h:outputText value="#{msg.shopName}"/> </span>
+                        <span class="copy">- <h:outputText value="#{msg.all_rights_reserved}"/></span>
+                    </p>
+                    <ul class="social">
+                        <li><a href="#" class="social-icon fb"/></li>
+                        <li><a href="#" class="social-icon twt"/></li>
+                        <li><a href="#" class="social-icon gplus"/></li>
+                        <li><a href="#" class="social-icon rss"/></li>
+                        <li><a href="#" class="social-icon vimeo"/></li>
+                        <li><a href="#" class="social-icon flickr"/></li>
+                    </ul>
+                </article>
+            </footer>
+        </div>
+    </h:form>
     <!--/FOOTER-->
 </f:view>
 </html>

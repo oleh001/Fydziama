@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <!--TICKET-->
+    <h:form id="ticket">
+        <h2><span>#{msg.checkout_cart_total}</span></h2>
+        <hr/>
+        <hr/>
+        <article class="ticket">
+
+            <o:graphicImage name="images/ticket-serrated-border.png" alt="serrated-border"
+                            dataURI="true"/>
+            <h6>#{msg.checkout_cart_your_order_ticket}</h6>
+            <p>#{msg.checkout_cart_subtotal}:<span>$#{orderDetailController.priceDishes} &#8372;</span>
+            </p>
+            <p>#{msg.checkout_cart_delivery_subtotal}:<span>$#{orderDetailController.priceDelivery} &#8372;</span>
+            </p>
+            <p class="total">#{msg.checkout_cart_total}:<span>$#{orderDetailController.totalPrice} &#8372;</span>
+            </p>
+
+            <p:commandLink styleClass="button red"
+                           actionListener="#{orderController.addOrderConfirmed()}"
+                           update="@([id$=ticket]) @([id$=cartUser]) @([id$=paymentForm]) @([id$=delivery-info]) @([id$=zoneForm])"
+                           rendered="#{orderController.orderStartBool}"
+                           value="#{msg.checkout_cart_button_confirm}">
+            </p:commandLink>
+
+            <p:outputPanel rendered="#{!orderController.orderStartBool and orderController.orderConfirmedBool}">
+                <p:commandLink styleClass="button confirmed" actionListener="#"
+                               update="" value="#{msg.order_successfully_sent}">
+                </p:commandLink>
+                <p>#{msg.an_email_has_been_sent_to}
+                    <br/><span>#{userController.selectedUser.email}</span></p>
+                <p>#{msg.your_confirmation_code}:<br/><span>#{orderController.selectedOrder.codeConfirmed.toUpperCase().substring(0,10)}</span>
+                </p>
+            </p:outputPanel>
+
+            <o:graphicImage name="images/cart-logo.png" alt="cart-logo" dataURI="true"/>
+            <p>#{msg.checkout_cart_thanks}</p>
+        </article>
+    </h:form>
+    <!--/TICKET-->
+</f:view>
+</html>

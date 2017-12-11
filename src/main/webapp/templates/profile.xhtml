@@ -55,7 +55,6 @@
                             </div>
 
                             <div>
-
                                 <h:outputLabel for="name" value="#{msg.your_name}*"/>
                                 <h:message id="mes_name" for="name" class="error msg-wrng" autoUpdate="true"/>
                                 <h:inputText required="true" id="name"
@@ -65,8 +64,8 @@
                                     <p:ajax event="blur" update="mes_name name"/>
                                 </h:inputText>
                             </div>
-                            <div>
 
+                            <div>
                                 <h:outputLabel for="surname" value="#{msg.your_surname}"/>
                                 <h:message id="mes_surname" for="surname" class="error msg-wrng"/>
                                 <h:inputText required="false" id="surname"
@@ -74,8 +73,8 @@
                                              pt:placeholder="#{msg.placeholder_surname}"
                                              value="#{userController.selectedUser.surname}"/>
                             </div>
-                            <div>
 
+                            <div>
                                 <h:outputLabel for="email" value="#{msg.your_email_address}*"/>
                                 <h:message id="mes_ema" for="email" class="error msg-wrng" autoUpdate="true"/>
                                 <h:inputText pt:type="email" required="true" id="email"
@@ -85,8 +84,8 @@
                                     <p:ajax event="blur" update="mes_ema email"/>
                                 </h:inputText>
                             </div>
-                            <div>
 
+                            <div>
                                 <h:outputLabel for="phone" value="#{msg.your_phone_number}*"/>
                                 <h:message id="mes_phone" for="phone" class="error msg-wrng" autoUpdate="true"/>
                                 <h:inputText pt:type="number" required="true" id="phone"
@@ -96,8 +95,8 @@
                                     <p:ajax event="blur" update="mes_phone phone"/>
                                 </h:inputText>
                             </div>
-                            <div>
 
+                            <div>
                                 <h:outputLabel for="address_street" value="#{msg.your_address_street}"/>
                                 <h:message id="mes_addre_street" for="address_street" class="error msg-wrng"/>
                                 <h:inputText required="false" id="address_street"
@@ -105,8 +104,8 @@
                                              pt:placeholder="#{msg.placeholder_address_street}"
                                              value="#{userController.selectedUser.addressStreet}"/>
                             </div>
-                            <div>
 
+                            <div>
                                 <h:outputLabel for="address_hous" value="#{msg.checkout_cart_house_apartament}"/>
                                 <h:message id="mes_addre_hous" for="address_hous" class="error msg-wrng"/>
                                 <h:inputText required="false" id="address_hous"
@@ -114,8 +113,8 @@
                                              pt:placeholder="#{msg.checkout_cart_placeholder_house_apartament}"
                                              value="#{userController.selectedUser.addressHous}"/>
                             </div>
-                            <div>
 
+                            <div>
                                 <h:outputLabel for="address_city" value="#{msg.checkout_cart_town_sity}"/>
                                 <h:message id="mes_addre_city" for="address_city" class="error msg-wrng"/>
                                 <h:inputText required="false" id="address_city"
@@ -123,8 +122,8 @@
                                              pt:placeholder="#{msg.checkout_cart_placeholder_town_sity}"
                                              value="#{userController.selectedUser.addressCity}"/>
                             </div>
-                            <div>
 
+                            <div>
                                 <h:outputLabel for="phone_alt" value="#{msg.your_add_phone_number}"/>
                                 <h:message id="mes_phone_alt" for="phone_alt" class="error msg-wrng"/>
                                 <h:inputText pt:type="number" required="false" id="phone_alt"

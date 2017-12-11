@@ -2,13 +2,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:o="http://omnifaces.org/ui">
 
 <f:view>
     <!--TEAM-->
     <div id="team-wrap">
         <section id="team">
-            <h2>#{msg.our} <span>#{msg.dream_team}</span></h2>
+            <h2><h:outputText value="#{msg.our}"/> <span><h:outputText value="#{msg.dream_team}"/></span></h2>
             <hr/><hr/>
             <ul>
                 <!--TEAM MEMBER-->
@@ -24,9 +25,9 @@
                             </div>
                         </a>
                     </div>
-                    <h4>#{msg.team_name1}</h4>
-                    <p class="title">#{msg.team_position1}</p>
-                    <p class="info">#{msg.team_description1}<span/></p>
+                    <h4><h:outputText value="#{msg.team_name1}"/></h4>
+                    <p class="title"><h:outputText value="#{msg.team_position1}"/></p>
+                    <p class="info"><h:outputText value="#{msg.team_description1}"/><span/></p>
                     <ul class="social big">
                         <li><a href="#" class="social-icon fb"/></li>
                         <li><a href="#" class="social-icon twt"/></li>
@@ -48,9 +49,9 @@
                             </div>
                         </a>
                     </div>
-                    <h4>#{msg.team_name2}</h4>
-                    <p class="title">#{msg.team_position2}</p>
-                    <p class="info">#{msg.team_description2}<span/></p>
+                    <h4><h:outputText value="#{msg.team_name2}"/></h4>
+                    <p class="title"><h:outputText value="#{msg.team_position2}"/></p>
+                    <p class="info"><h:outputText value="#{msg.team_description2}"/><span/></p>
                     <ul class="social big">
                         <li><a href="#" class="social-icon fb"/></li>
                         <li><a href="#" class="social-icon twt"/></li>
@@ -72,9 +73,9 @@
                             </div>
                         </a>
                     </div>
-                    <h4>#{msg.team_name3}</h4>
-                    <p class="title">#{msg.team_position3}</p>
-                    <p class="info">#{msg.team_description3}<span/></p>
+                    <h4><h:outputText value="#{msg.team_name3}"/></h4>
+                    <p class="title"><h:outputText value="#{msg.team_position3}"/></p>
+                    <p class="info"><h:outputText value="#{msg.team_description3}"/><span/></p>
                     <ul class="social big">
                         <li><a href="#" class="social-icon fb"/></li>
                         <li><a href="#" class="social-icon twt"/></li>

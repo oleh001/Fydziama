@@ -38,8 +38,9 @@
                                     <div class="fill #{goodController.getStyleCircle(orderDet.good)}"/>
                                 </div>
                                 <div class="description">
-                                    <h:link styleClass="classh6" outcome="dishDetail" value="#{orderDet.good.name}"
+                                    <h:link outcome="dishDetail"
                                             fragment="item-detail">
+                                        <h6><h:outputText value="#{orderDet.good.name}"/></h6>
                                         <f:param name="dishId" value="#{orderDet.good.idGood}"/>
                                     </h:link>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
@@ -110,9 +111,8 @@
                                             <div class="fill #{goodController.getStyleCircle(orderDetConfirm.good)}"/>
                                         </div>
                                         <div class="description">
-                                            <h:link styleClass="classh6" outcome="dishDetail"
-                                                    value="#{orderDetConfirm.good.name}"
-                                                    fragment="item-detail">
+                                            <h:link outcome="dishDetail" fragment="item-detail">
+                                                <h6><h:outputText value="#{orderDetConfirm.good.name}"/></h6>
                                                 <f:param name="dishId" value="#{orderDetConfirm.good.idGood}"/>
                                             </h:link>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
@@ -164,9 +164,8 @@
                                             <div class="fill #{goodController.getStyleCircle(orderDetFinish.good)}"/>
                                         </div>
                                         <div class="description">
-                                            <h:link styleClass="classh6" outcome="dishDetail"
-                                                    value="#{orderDetFinish.good.name}"
-                                                    fragment="item-detail">
+                                            <h:link outcome="dishDetail" fragment="item-detail">
+                                                <h6><h:outputText value="#{orderDetFinish.good.name}"/></h6>
                                                 <f:param name="dishId" value="#{orderDetFinish.good.idGood}"/>
                                             </h:link>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>

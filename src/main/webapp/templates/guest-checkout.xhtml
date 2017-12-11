@@ -9,56 +9,42 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 </head>
 <ui:composition template="template.xhtml">
-<ui:define name="content">
-<f:view>
-<!--CHECKOUT-->
-<div id="checkout-wrap">
-    <section id="checkout" class="guest">
-        <article class="left">
+    <ui:define name="content">
+        <f:view>
+            <!--CHECKOUT-->
+            <div id="checkout-wrap">
+                <section id="checkout" class="guest">
+                    <article class="left">
 
-            <!--CART-->
-            <ui:include src="part/cart.xhtml"/>
-            <!--/CART-->
+                        <!--CART-->
+                        <ui:include src="part/cart.xhtml"/>
+                        <!--/CART-->
 
-            <!--GUEST-CHECKOUT-->
-            <ui:include src="part/guest.xhtml"/>
-            <!--/GUEST-CHECKOUT-->
+                        <!--GUEST-CHECKOUT-->
+                        <ui:include src="part/guest.xhtml"/>
+                        <!--/GUEST-CHECKOUT-->
 
-            <!--LOGIN-CHECKOUT-->
-            <ui:include src="part/login-checkout.xhtml"/>
-            <!--/LOGIN-CHECKOUT-->
-        </article>
-        <aside class="right">
+                        <!--LOGIN-CHECKOUT-->
+                        <ui:include src="part/login-checkout.xhtml"/>
+                        <!--/LOGIN-CHECKOUT-->
+                    </article>
+                    <aside class="right">
 
-            <!--NEW DISHES-->
-            <ui:include src="part/newDish.xhtml"/>
-            <!--/NEW DISHES-->
+                        <!--NEW DISHES-->
+                        <ui:include src="part/newDish.xhtml"/>
+                        <!--/NEW DISHES-->
 
-        </aside>
-        <div class="cleaner"/>
-    </section>
-</div>
-<!--/CHECKOUT-->
+                    </aside>
+                    <div class="cleaner"/>
+                </section>
+            </div>
+            <!--/CHECKOUT-->
 
-<!--REVIEWS-->
-    <ui:include src="part/reviews.xhtml"/>
-<!--/REVIEWS-->
+            <!--REVIEWS-->
+            <ui:include src="part/reviews.xhtml"/>
+            <!--/REVIEWS-->
 
-<script>
-    /*-----------------
-       REVIEW SLIDER
-    -----------------*/
-    $('#review-slider').bxSlider({
-        pager: false,
-        controls: false,
-        easing: 'ease-in',
-        speed: 800,
-        auto: true
-    });
-</script>
-
-
-</f:view>
-</ui:define>
+        </f:view>
+    </ui:define>
 </ui:composition>
 </html>

@@ -1,41 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <f:view>
     <!--TOP-DISHES-->
-    <div id="top-dishes-wrap">
-        <section id="top-dishes">
-            <ul>
-                <li class="wow bounceInRight">
-                    <div class="circle medium">
-                        <div class="fill"/>
-                    </div>
-                    <h4>#{msg.top_dish_name1}</h4>
-                    <p>#{msg.top_dish_descriptions1}</p>
-                    <a href="sushi-rolls.html" class="button red">#{msg.top_dish_link_name1}</a>
-                </li>
-                <li class="wow bounceInRight">
-                    <div class="circle medium">
-                        <div class="fill"/>
-                    </div>
-                    <h4>#{msg.top_dish_name2}</h4>
-                    <p>#{msg.top_dish_descriptions2}</p>
-                    <a href="soups-dishes.html" class="button red">#{msg.top_dish_link_name2}</a>
-                </li>
-                <li class="wow bounceInRight">
-                    <div class="circle medium">
-                        <div class="fill"/>
-                    </div>
-                    <h4>#{msg.top_dish_name3}</h4>
-                    <p>#{msg.top_dish_descriptions3}</p>
-                    <a href="sweets-desserts.html" class="button red">#{msg.top_dish_link_name3}</a>
-                </li>
-            </ul>
-            <div class="cleaner"/>
-        </section>
-    </div>
+    <h:form>
+        <div id="top-dishes-wrap">
+            <section id="top-dishes">
+                <ul>
+                    <li class="wow bounceInRight">
+                        <div class="circle medium">
+                            <div class="fill"/>
+                        </div>
+                        <h4><h:outputText value="#{msg.top_dish_name1}"/></h4>
+                        <p><h:outputText value="#{msg.top_dish_descriptions1}"/></p>
+                        <a href="sushi-rolls.html" class="button red">#{msg.top_dish_link_name1}</a>
+                    </li>
+                    <li class="wow bounceInRight">
+                        <div class="circle medium">
+                            <div class="fill"/>
+                        </div>
+                        <h4><h:outputText value="#{msg.top_dish_name2}"/></h4>
+                        <p><h:outputText value="#{msg.top_dish_descriptions2}"/></p>
+                        <a href="soups-dishes.html" class="button red">#{msg.top_dish_link_name2}</a>
+                    </li>
+                    <li class="wow bounceInRight">
+                        <div class="circle medium">
+                            <div class="fill"/>
+                        </div>
+                        <h4><h:outputText value="#{msg.top_dish_name3}"/></h4>
+                        <p><h:outputText value="#{msg.top_dish_descriptions3}"/></p>
+                        <a href="sweets-desserts.html" class="button red">#{msg.top_dish_link_name3}</a>
+                    </li>
+                </ul>
+                <div class="cleaner"/>
+            </section>
+        </div>
+    </h:form>
     <!--/TOP-DISHES-->
 </f:view>
 </html>

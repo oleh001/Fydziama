@@ -21,9 +21,7 @@
                     </h:link>
                 </li>
                 <p:repeat value="#{brandController.all}" var="brands">
-
                     <li>
-
                         <h:link styleClass="cat-menu-a detail brand-name  #{goodController.styleAction(brands.idBrand)}"
                                 outcome="shopr" fragment="cat-menu"
                                 value="#{brands.brand}" >

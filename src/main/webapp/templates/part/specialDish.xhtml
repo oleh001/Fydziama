@@ -8,55 +8,56 @@
 
 <f:view>
     <!--SPECIALS-->
-    <div id="specials-wrap">
-        <section id="specials">
-            <h2>#{msg.shopName} <span>#{msg.special}</span></h2>
-            <hr/>
-            <hr/>
-            <ul class="dishes grid">
-
-                <!--DISH-->
-                <h:form id="specialDishForm">
+    <h:form id="specialDishForm">
+        <div id="specials-wrap">
+            <section id="specials">
+                <h2><h:outputText value="#{msg.shopName}"/>
+                    <span><h:outputText value="#{msg.special}"/></span>
+                </h2>
+                <hr/>
+                <hr/>
+                <ul class="dishes grid">
+                    <!--DISH-->
                     <p:repeat value="#{goodController.specialDish}" var="goods">
-                        <li class="ul_dishes_li ul_dishes_grid_li wow #{goodController.getStyleFadeIn()} animated">
+                        <li class="wow #{goodController.getStyleFadeIn()} animated">
                             <div class="circle medium">
                                 <figure class="imgLiquidFill">
                                     <o:graphicImage name="images/menu-05.jpg" alt="dish" dataURI="true"/>
                                 </figure>
                                 <div class="shadow"/>
-                                <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                                <p:commandLink actionListener="#{orderController.addToWishList(goods)}"
                                                update="" rendered="#{goods.hits=='FALSE'}">
-                                    <div class="fill red cart-tip toWishlist">
+                                    <div class="fill red tooltip toWishlist" title="#{msg.add_to_wishlist}">
                                         <o:graphicImage name="images/star-hover.png" alt="star" dataURI="true"/>
                                     </div>
                                 </p:commandLink>
 
-                                <p:commandLink actionListener="#{orderDetailController.addToWishList(goods)}"
+                                <p:commandLink actionListener="#{orderController.addToWishList(goods)}"
                                                update="" rendered="#{goods.hits=='TRUE'}">
-                                    <div class="fill gold cart-tip toWishlist">
+                                    <div class="fill gold tooltip toWishlist" title="#{msg.add_to_wishlist}">
                                         <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
                                     </div>
                                 </p:commandLink>
-
                             </div>
                             <article>
 
-                                <p:outputLabel styleClass="ribbonLabel" rendered="#{goods.news=='TRUE'}">
-                                    <span class="ribbon featured"/>
-                                </p:outputLabel>
-                                <p:outputLabel styleClass="ribbonLabel" rendered="#{goods.hits=='TRUE'}">
-                                    <span class="ribbon new"/>
-                                </p:outputLabel>
+                                <h:outputText styleClass="ribbon new" rendered="#{goods.news=='TRUE'}">
+                                    <span/>
+                                </h:outputText>
+                                <h:outputText styleClass="ribbon featured" rendered="#{goods.hits=='TRUE'}">
+                                    <span/>
+                                </h:outputText>
 
-                                <p:link styleClass="classh6" outcome="templates/dishDetail" value="#{goods.name}"
+                                <h:link outcome="templates/dishDetail"
                                         fragment="item-detail">
+                                    <h6><h:outputText value="#{goods.name}"/></h6>
                                     <f:param name="dishId" value="#{goods.idGood}"/>
-                                </p:link>
+                                </h:link>
 
-                                <p:rating readonly="true" class="rate star red" value="#{goods.avgRating}" stars="5"
+                                <p:rating readonly="true" class="rate stars red" value="#{goods.avgRating}" stars="5"
                                           cancel="false"
                                           rendered="#{goods.hits=='FALSE'}"/>
-                                <p:rating readonly="true" class="rate heart gold" value="#{goods.avgRating}" stars="5"
+                                <p:rating readonly="true" class="rate hearts gold" value="#{goods.avgRating}" stars="5"
                                           cancel="false"
                                           rendered="#{goods.hits=='TRUE'}"/>
 
@@ -64,177 +65,35 @@
                             </article>
                             <div class="price">
                                 <div>
-                                    <p class="quantity">#{goods.gram}</p>
-                                    <p class="measure">#{msg.gram}</p>
+                                    <p class="quantity"><h:outputText value="#{goods.gram}"/></p>
+                                    <p class="measure"><h:outputText value="#{msg.gram}"/></p>
                                 </div>
-                                <p>$ #{goods.price} &#8372;</p>
+                                <p>$ <h:outputText value="#{goods.price}"/> &#8372;</p>
                             </div>
                             <p:commandLink styleClass="button red" actionListener="#{orderController.addToCart(goods)}"
-                                           update="@([id$=jsIncluded]) @([id$=menuCheckout])"
+                                           update="@([id$=menuItemUp]) @([id$=menuItem]) @([id$=menuTotal])"
                                            rendered="#{goods.hits=='FALSE'}"
                                            value="#{msg.add_to_cart}"/>
 
                             <p:commandLink styleClass="button gold" actionListener="#{orderController.addToCart(goods)}"
-                                           update="@([id$=jsIncluded]) @([id$=menuCheckout])"
+                                           update="@([id$=menuItemUp]) @([id$=menuItem]) @([id$=menuTotal])"
                                            rendered="#{goods.hits=='TRUE'}"
                                            value="#{msg.add_to_cart}"/>
-
                         </li>
                     </p:repeat>
-                </h:form>
-                <!--/DISH-->
+                    <!--/DISH-->
+                </ul>
+                <div class="cleaner"/>
+                <h6><h:outputText value="#{msg.and_this_is_just_a_peek}"/></h6>
+                <h3><h:outputText value="#{msg.check_out_all_the_delicious_dishes_we_have_in}"/>
+                    <span class="remarked"><h:outputText value="#{msg.our_menu}"/></span>
+                </h3>
 
-                <!--DISH-->
-                <li class="wow fadeInRight">
-                    <div class="circle medium">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-07.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip toWishlist" title="Add to Wishlist">
-                                <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <article>
-                        <a href="octopus-takoyaki.html"><h6>Red Octopus Takoyaki</h6></a>
-                        <ul class="rate hearts">
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li class="empty"/>
-                        </ul>
-                        <p> 5 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
-                    </article>
-                    <div class="price">
-                        <div>
-                            <p class="quantity">10</p>
-                            <p class="measure">pcs</p>
-                        </div>
-                        <p>$20.00</p>
-                    </div>
-                    <a href="#" class="button red">Add to Cart</a>
-                </li>
-                <!--/DISH-->
-
-                <!--DISH-->
-                <li class="wow fadeInRight">
-                    <div class="circle medium">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-09.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill gold tooltip">
-                                <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <article>
-                        <span class="ribbon featured"/>
-                        <a href="steamed-salmon.html"><h6>Steamed Ryu Salmon</h6></a>
-                        <ul class="rate hearts gold">
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li class="empty"/>
-                        </ul>
-                        <p> 6 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
-                    </article>
-                    <div class="price">
-                        <div>
-                            <p class="quantity">1</p>
-                            <p class="measure">srv</p>
-                        </div>
-                        <p>$78.00</p>
-                    </div>
-                    <a href="#" class="button gold">Add to Cart</a>
-                </li>
-                <!--/DISH-->
-
-                <!--DISH-->
-                <li class="wow fadeInRight">
-                    <div class="circle medium">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-10.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip">
-                                <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <article>
-                        <span class="ribbon new"/>
-                        <a href="chocolate-cookies.html"><h6>Crispy Chocolate Cookies</h6></a>
-                        <ul class="rate hearts">
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li class="empty"/>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
-                    </article>
-                    <div class="price">
-                        <div>
-                            <p class="quantity">6</p>
-                            <p class="measure">pcs</p>
-                        </div>
-                        <p>$14.99</p>
-                    </div>
-                    <a href="#" class="button red">Add to Cart</a>
-                </li>
-                <!--/DISH-->
-
-                <!--DISH-->
-                <li class="wow fadeInRight">
-                    <div class="circle medium">
-                        <figure class="imgLiquidFill">
-                            <o:graphicImage name="images/menu-04.jpg" alt="dish" dataURI="true"/>
-                        </figure>
-                        <div class="shadow"/>
-                        <a href="#">
-                            <div class="fill red tooltip">
-                                <o:graphicImage name="images/heart-hover.png" alt="heart" dataURI="true"/>
-                            </div>
-                        </a>
-                    </div>
-                    <article>
-                        <a href="onion-soup.html"><h6>Spicy Onion Soup</h6></a>
-                        <ul class="rate hearts">
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li/>
-                            <li class="empty"/>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp incididunt ut labore et dolore.</p>
-                    </article>
-                    <div class="price">
-                        <div>
-                            <p class="quantity">1</p>
-                            <p class="measure">srv</p>
-                        </div>
-                        <p>$50.00</p>
-                    </div>
-                    <a href="#" class="button red">#{msg.add_to_cart}</a>
-                </li>
-                <!--/DISH-->
-            </ul>
-            <div class="cleaner"/>
-            <h6>#{msg.and_this_is_just_a_peek}</h6>
-            <h3>#{msg.check_out_all_the_delicious_dishes_we_have_in} <span class="remarked">#{msg.our_menu}</span></h3>
-            <a href="#{request.contextPath}/templates/shopr.xhtml"
-               class="button red">#{msg.сlick_here_to_enter_the_shop}
-            </a>
-
-        </section>
-    </div>
+                <h:link styleClass="button red" outcome="/templates/shopr"
+                               value="#{msg.сlick_here_to_enter_the_shop}"/>
+            </section>
+        </div>
+    </h:form>
     <!--/SPECIALS-->
 </f:view>
 </html>

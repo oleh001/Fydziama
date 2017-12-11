@@ -5,7 +5,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:o="http://omnifaces.org/ui"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <head>
     <title>Red Samurai | Shop</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
@@ -23,29 +24,10 @@
                         <ui:include src="part/cart.xhtml"/>
                         <!--/CART-->
 
-                        <h:form id="paymentForm" rendered="#{orderController.orderStartBool}">
-                            <article id="payment">
-                                <h2><span>Payment</span> Info</h2>
-                                <hr/>
-                                <hr/>
-                                <input type="radio" name="payment" form="delivery-info" id="paypal" value="paypal"/>
-                                <label for="paypal">Paypal</label>
-                                <input type="radio" name="payment" form="delivery-info" id="cash" value="cash"
-                                       checked="checked"/>
-                                <label for="cash">Cash on Delivery</label>
-                                <input type="radio" name="payment" form="delivery-info" id="credit" value="credit"/>
-                                <label for="credit">Credit Card on Delivery</label>
-                                <p>Credit Cards Accepted:</p>
-                                <ul>
-                                    <li><o:graphicImage name="images/cc-visa.png" alt="cc" dataURI="true"/></li>
-                                    <li><o:graphicImage name="images/cc-master.png" alt="cc" dataURI="true"/></li>
-                                    <li><o:graphicImage name="images/cc-amex.png" alt="cc" dataURI="true"/></li>
-                                    <li><o:graphicImage name="images/cc-paypal.png" alt="cc" dataURI="true"/></li>
-                                    <li><o:graphicImage name="images/cc-discover.png" alt="cc" dataURI="true"/></li>
-                                    <li><o:graphicImage name="images/cc-maestro.png" alt="cc" dataURI="true"/></li>
-                                </ul>
-                            </article>
-                        </h:form>
+                        <!--PAYMENT-->
+                        <ui:include src="part/payment.xhtml"/>
+                        <!--/PAYMENT-->
+
                         <!--ZONERADIO-->
                         <ui:include src="part/zoneRadio.xhtml"/>
                         <!--/ZONERADIO-->
@@ -58,96 +40,89 @@
                                 <hr/>
 
                                 <div>
-                                    <label for="name">#{msg.your_name}</label>
+                                    <h:outputLabel for="name" value="#{msg.your_name}*"/>
                                     <h:message id="mes_name" for="name" class="error msg-wrng"/>
-                                    <p:inputText type="text" required="true" id="name" name="name"
+                                    <h:inputText required="true" id="name"
                                                  requiredMessage="#{msg.contact_you_have_to_enter_a_name}"
-                                                 placeholder="#{msg.placeholder_name}"
+                                                 pt:placeholder="#{msg.placeholder_name}"
                                                  value="#{userController.selectedUser.name}">
-                                    </p:inputText>
+                                        <p:ajax event="blur" update="mes_name name"/>
+                                    </h:inputText>
                                 </div>
-                                <div>
 
-                                    <label for="surname">#{msg.your_surname}</label>
+                                <div>
+                                    <h:outputLabel for="surname" value="#{msg.your_surname}"/>
                                     <h:message id="mes_surname" for="surname" class="error msg-wrng"/>
-                                    <p:inputText type="text" required="false" id="surname" name="surname"
+                                    <h:inputText required="false" id="surname"
                                                  requiredMessage="#{msg.contact_you_have_to_enter_a_surname}"
-                                                 placeholder="#{msg.placeholder_surname}"
-                                                 value="#{userController.selectedUser.surname}">
-                                    </p:inputText>
+                                                 pt:placeholder="#{msg.placeholder_surname}"
+                                                 value="#{userController.selectedUser.surname}"/>
                                 </div>
-                                <div>
 
-                                    <label for="email">#{msg.your_email_address}</label>
+                                <div>
+                                    <h:outputLabel for="email" value="#{msg.your_email_address}*"/>
                                     <h:message id="mes_ema" for="email" class="error msg-wrng"/>
-                                    <p:inputText type="email" required="true" id="email" name="email"
+                                    <h:inputText type="email" required="true" id="email"
                                                  requiredMessage="#{msg.contact_you_have_to_enter_a_valid_email}"
-                                                 placeholder="#{msg.placeholder_mail}"
+                                                 pt:placeholder="#{msg.placeholder_mail}"
                                                  value="#{userController.selectedUser.email}">
-                                    </p:inputText>
+                                        <p:ajax event="blur" update="mes_ema email"/>
+                                    </h:inputText>
                                 </div>
-                                <div>
 
-                                    <label for="phone">#{msg.your_phone_number}</label>
+                                <div>
+                                    <h:outputLabel for="phone" value="#{msg.your_phone_number}*"/>
                                     <h:message id="mes_phone" for="phone" class="error msg-wrng"/>
-                                    <p:inputText type="text" required="true" id="phone" name="phone"
+                                    <h:inputText pt:type="number" required="true" id="phone"
                                                  requiredMessage="#{msg.contact_you_have_to_enter_a_phone}"
-                                                 placeholder="#{msg.placeholder_phone_number}"
+                                                 pt:placeholder="#{msg.placeholder_phone_number}"
                                                  value="#{userController.selectedUser.phone}">
-                                    </p:inputText>
+                                        <p:ajax event="blur" update="mes_phone phone"/>
+                                    </h:inputText>
                                 </div>
-                                <div>
 
-                                    <label for="address_street">#{msg.your_address_street}</label>
+                                <div>
+                                    <h:outputLabel for="address_street" value="#{msg.your_address_street}"/>
                                     <h:message id="mes_addre_street" for="address_street" class="error msg-wrng"/>
-                                    <p:inputText type="text" required="false" id="address_street" name="address_street"
+                                    <h:inputText required="false" id="address_street"
                                                  requiredMessage="#{msg.contact_you_have_to_enter_a_address_street}"
-                                                 placeholder="#{msg.placeholder_address_street}"
-                                                 value="#{userController.selectedUser.addressStreet}">
-                                    </p:inputText>
+                                                 pt:placeholder="#{msg.placeholder_address_street}"
+                                                 value="#{userController.selectedUser.addressStreet}"/>
                                 </div>
-                                <div>
 
-                                    <label for="address_hous">#{msg.checkout_cart_house_apartament}</label>
+                                <div>
+                                    <h:outputLabel for="address_hous" value="#{msg.checkout_cart_house_apartament}"/>
                                     <h:message id="mes_addre_hous" for="address_hous" class="error msg-wrng"/>
-                                    <p:inputText type="text" required="false" id="address_hous" name="address_hous"
+                                    <h:inputText required="false" id="address_hous"
                                                  requiredMessage="#{msg.contact_you_have_to_enter_a_address_hous}"
-                                                 placeholder="#{msg.checkout_cart_placeholder_house_apartament}"
-                                                 value="#{userController.selectedUser.addressHous}">
-                                    </p:inputText>
+                                                 pt:placeholder="#{msg.checkout_cart_placeholder_house_apartament}"
+                                                 value="#{userController.selectedUser.addressHous}"/>
                                 </div>
-                                <div>
 
-                                    <label for="address_city">#{msg.checkout_cart_town_sity}</label>
+                                <div>
+                                    <h:outputLabel for="address_city" value="#{msg.checkout_cart_town_sity}"/>
                                     <h:message id="mes_addre_city" for="address_city" class="error msg-wrng"/>
-                                    <p:inputText type="text" required="false" id="address_city" name="address_city"
+                                    <h:inputText required="false" id="address_city"
                                                  requiredMessage="#{msg.contact_you_have_to_enter_a_address_city}"
-                                                 placeholder="#{msg.checkout_cart_placeholder_town_sity}"
-                                                 value="#{userController.selectedUser.addressCity}">
-                                    </p:inputText>
+                                                 pt:placeholder="#{msg.checkout_cart_placeholder_town_sity}"
+                                                 value="#{userController.selectedUser.addressCity}"/>
                                 </div>
+
                                 <div>
-
-                                    <label for="phone_alt">#{msg.checkout_cart_additional_phone_number}</label>
+                                    <h:outputLabel for="phone_alt"
+                                                   value="#{msg.checkout_cart_additional_phone_number}"/>
                                     <h:message id="mes_phone_alt" for="phone_alt" class="error msg-wrng"/>
-                                    <p:inputText type="text" required="false" id="phone_alt" name="phone_alt"
+                                    <h:inputText pt:type="number" required="false" id="phone_alt"
                                                  requiredMessage="#{msg.contact_you_have_to_enter_a_phone_add}"
-                                                 placeholder="#{msg.checkout_cart_placeholder_additional_phone_number}"
-                                                 value="#{userController.selectedUser.phoneAdd}">
-                                    </p:inputText>
+                                                 pt:placeholder="#{msg.checkout_cart_placeholder_additional_phone_number}"
+                                                 value="#{userController.selectedUser.phoneAdd}"/>
                                 </div>
 
-                                <div class="div_mess spec">
-                                    <label for="specifications">#{msg.checkout_cart_addition_specification}</label>
-                                    <p:inputTextarea required="false" rows="5" cols="30" counter="display"
-                                                     maxlength="255"
-                                                     counterTemplate="{0} #{msg.characters_remaining}."
-                                                     autoResize="false" name="specifications" id="specifications"
-                                                     placeholder="#{msg.checkout_cart_placeholder_addition_specification}"
-                                                     value="#{userController.selectedUser.specification}">
-                                    </p:inputTextarea>
-                                    <h:outputText id="display"/>
-                                </div>
+                                <h:outputLabel for="specifications"
+                                               value="#{msg.checkout_cart_addition_specification}"/>
+                                <h:inputTextarea required="false" rows="5" cols="30" id="specifications"
+                                                 pt:placeholder="#{msg.checkout_cart_placeholder_addition_specification}"
+                                                 value="#{userController.selectedUser.specification}"/>
 
                                 <!--<input type="checkbox" name="autocomplete" id="autocomplete" checked="checked"/>-->
                                 <!--<label for="autocomplete">#{msg.checkout_cart_autocomplete}</label>-->
@@ -156,49 +131,14 @@
                         </h:form>
                     </article>
                     <aside class="right">
-                        <h:form id="ticket">
-                            <h2><span>#{msg.checkout_cart_total}</span></h2>
-                            <hr/>
-                            <hr/>
-                            <article class="ticket">
 
-                                <o:graphicImage name="images/ticket-serrated-border.png" alt="serrated-border"
-                                                dataURI="true"/>
-                                <h6>#{msg.checkout_cart_your_order_ticket}</h6>
-                                <p>#{msg.checkout_cart_subtotal}:<span>$#{orderDetailController.priceDishes} &#8372;</span>
-                                </p>
-                                <p>#{msg.checkout_cart_delivery_subtotal}:<span>$#{orderDetailController.priceDelivery} &#8372;</span>
-                                </p>
-                                <p class="total">#{msg.checkout_cart_total}:<span>$#{orderDetailController.totalPrice} &#8372;</span>
-                                </p>
+                        <!--TICKET-->
+                        <ui:include src="part/ticket.xhtml"/>
+                        <!--/TICKET-->
 
-                                <p:commandLink styleClass="button red"
-                                               actionListener="#{orderController.addOrderConfirmed()}"
-                                               update="@([id$=ticket]) @([id$=cartUser]) @([id$=paymentForm]) @([id$=delivery-info]) @([id$=zoneForm])"
-                                               rendered="#{orderController.orderStartBool}"
-                                               value="#{msg.checkout_cart_button_confirm}">
-                                </p:commandLink>
-                                <!--<a href="#" class="button red">#{msg.checkout_cart_button_confirm}</a>-->
-
-
-                                <!--<a href="#" class="button confirmed">#{msg.order_successfully_sent}</a>-->
-                                <p:outputPanel rendered="#{!orderController.orderStartBool and orderController.orderConfirmedBool}">
-                                    <p:commandLink styleClass="button confirmed" actionListener="#"
-                                                   update="" value="#{msg.order_successfully_sent}">
-                                    </p:commandLink>
-                                    <p>#{msg.an_email_has_been_sent_to}
-                                        <br/><span>#{userController.selectedUser.email}</span></p>
-                                    <p>#{msg.your_confirmation_code}:<br/><span>#{orderDetailController.codeConfirmed}</span>
-                                    </p>
-                                </p:outputPanel>
-
-
-                                <o:graphicImage name="images/cart-logo.png" alt="cart-logo" dataURI="true"/>
-                                <p>#{msg.checkout_cart_thanks}</p>
-
-                            </article>
-                        </h:form>
-                        <o:graphicImage name="images/delivery-banner.jpg" alt="delivery-banner" dataURI="true"/>
+                        <!--DELIVERY BANNER-->
+                        <ui:include src="part/bannerDelivery.xhtml"/>
+                        <!--/DELIVERY BANNER-->
 
                     </aside>
                     <div class="cleaner"/>

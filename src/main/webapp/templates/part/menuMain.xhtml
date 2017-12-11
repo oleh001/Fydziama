@@ -19,34 +19,52 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="#{request.contextPath}/index.xhtml">#{msg.menu_home}</a>
+                        <h:link outcome="/index" value="#{msg.menu_home}"/>
                     </li>
-                    <li><a href="#{request.contextPath}/index.xhtml#specials">#{msg.special}</a></li>
-                    <li class="sub-items"><a href="#">Features</a>
+                    <li>
+                        <a href="#{request.contextPath}/index.xhtml#specials">#{msg.special}</a>
+                    </li>
+                    <li class="sub-items">
+                        <a href="#">Features</a>
                         <ul>
-                            <li><a href="#{request.contextPath}/templates/shopr.xhtml">#{msg.menu_main_shop_right}</a>
-                            </li>
-                            <li><a href="#{request.contextPath}/templates/shopl.xhtml">#{msg.menu_main_shop_left}</a>
+                            <li>
+                                <h:link outcome="/templates/shopr" value="#{msg.menu_main_shop_right}"/>
+                                <!--<a href="#{request.contextPath}/templates/shopr.xhtml">#{msg.menu_main_shop_right}</a>-->
                             </li>
                             <li>
-                                <a href="#{request.contextPath}/templates/guest-checkout.xhtml">#{msg.checkout_as_guest}</a>
+                                <h:link outcome="/templates/shopl" value="#{msg.menu_main_shop_left}"/>
                             </li>
                             <li>
-                                <a href="#{request.contextPath}/templates/confirmed-checkout.xhtml">#{msg.confirmed_checkout}</a>
+                                <h:link outcome="/templates/guest-checkout" value="#{msg.checkout_as_guest}"/>
                             </li>
-                            <li><a href="#{request.contextPath}/templates/profile.xhtml">#{msg.profile_page}</a></li>
-                            <li><a href="#{request.contextPath}/templates/account-forms.xhtml"
+                            <li>
+                                <h:link outcome="/templates/confirmed-checkout" value="#{msg.confirmed_checkout}"/>
+                            </li>
+                            <li>
+                                <h:link outcome="/templates/profile" value="#{msg.profile_page}"/>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/templates/account-forms.xhtml"
                                    target="_blank">Account forms</a></li>
                         </ul>
                     </li>
-                    <li class="sub-items"><a href="#">Shop</a>
+                    <li class="sub-items">
+                        <a href="#">Shop</a>
                         <ul>
-                            <li><a href="#{request.contextPath}/templates/faq.xhtml">#{msg.how_to_shop_faq}</a></li>
-                            <li><a href="#{request.contextPath}/templates/sushi-rolls.xhtml">Sushi and Rolls</a></li>
-                            <li><a href="#{request.contextPath}/templates/cold-entrees.xhtml">Cold Entrees</a></li>
-                            <li><a href="#{request.contextPath}/templates/soups-dishes.xhtml">Soups and Hot Dishes</a>
+                            <li>
+                                <h:link outcome="/templates/faq" value="#{msg.how_to_shop_faq}"/>
                             </li>
-                            <li><a href="#{request.contextPath}/templates/sweets-desserts.xhtml">Sweets and Desserts</a>
+                            <li>
+                                <a href="#{request.contextPath}/templates/sushi-rolls.xhtml">Sushi and Rolls</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/templates/cold-entrees.xhtml">Cold Entrees</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/templates/soups-dishes.xhtml">Soups and Hot Dishes</a>
+                            </li>
+                            <li>
+                                <a href="#{request.contextPath}/templates/sweets-desserts.xhtml">Sweets and Desserts</a>
                             </li>
                             <li>
                                 <a href="#{request.contextPath}/templates/beverages-drinks.xhtml">Beverages and Drinks</a>
@@ -56,15 +74,20 @@
                     <li><a href="#{request.contextPath}/index.xhtml#combos">#{msg.combos}</a></li>
                     <li class="sub-items cart-items">
                         <a href="#{request.contextPath}/templates/checkout.xhtml">#{msg.cart}
-                            <span class="cart"><h:outputText id="menuItemUp" value="#{orderDetailController.totalQuantity}"/></span>
+                            <span class="cart"><h:outputText id="menuItemUp"
+                                                             value="#{orderDetailController.totalQuantity}"/></span>
                         </a>
                         <ul>
-                            <li><p>#{msg.menu_main_cart_item}<span><h:outputText id="menuItem" value="#{orderDetailController.totalQuantity}"/></span></p>
+                            <li><p>#{msg.menu_main_cart_item}<span>
+                                <h:outputText id="menuItem" value="#{orderDetailController.totalQuantity}"/></span></p>
                             </li>
-                            <li><p>#{msg.menu_main_cart_total}<span><h:outputText id="menuTotal" value="$#{orderDetailController.totalPrice} &#8372;"/></span>
+                            <li><p>#{msg.menu_main_cart_total}<span>
+                                <h:outputText id="menuTotal"
+                                              value="$#{orderDetailController.totalPrice} &#8372;"/></span>
                             </p></li>
-                            <li><a href="#{request.contextPath}/templates/checkout.xhtml"
-                                   class="button red">#{msg.proceed_to_checkout}</a>
+                            <li>
+                                <h:link outcome="/templates/checkout" value="#{msg.proceed_to_checkout}"
+                                        styleClass="button red"/>
                                 <o:graphicImage name="images/menu-logo.png" alt="logo" dataURI="true"/>
                                 <p class="greet">#{msg.menu_main_cart_thanks}</p>
                                 <o:graphicImage name="images/menu-serrated-border.png" alt="serrated-border"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <!--PAYMENT-->
+    <h:form id="paymentForm" rendered="#{orderController.orderStartBool}">
+        <article id="payment">
+            <h2><span>Payment</span> Info</h2>
+            <hr/>
+            <hr/>
+            <input type="radio" name="payment" form="delivery-info" id="paypal" value="paypal"/>
+            <label for="paypal">Paypal</label>
+            <input type="radio" name="payment" form="delivery-info" id="cash" value="cash"
+                   checked="checked"/>
+            <label for="cash">Cash on Delivery</label>
+            <input type="radio" name="payment" form="delivery-info" id="credit" value="credit"/>
+            <label for="credit">Credit Card on Delivery</label>
+            <p>Credit Cards Accepted:</p>
+            <ul>
+                <li><o:graphicImage name="images/cc-visa.png" alt="cc" dataURI="true"/></li>
+                <li><o:graphicImage name="images/cc-master.png" alt="cc" dataURI="true"/></li>
+                <li><o:graphicImage name="images/cc-amex.png" alt="cc" dataURI="true"/></li>
+                <li><o:graphicImage name="images/cc-paypal.png" alt="cc" dataURI="true"/></li>
+                <li><o:graphicImage name="images/cc-discover.png" alt="cc" dataURI="true"/></li>
+                <li><o:graphicImage name="images/cc-maestro.png" alt="cc" dataURI="true"/></li>
+            </ul>
+        </article>
+    </h:form>
+    <!--/PAYMENT-->
+</f:view>
+</html>

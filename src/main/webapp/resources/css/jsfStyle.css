@@ -5,6 +5,11 @@ a label {
     cursor: pointer;
 }
 
+.ui-widget{
+    font-family: 'Source Sans Pro', sans-serif !important;
+    /*font-size: 1em !important;*/
+}
+
 button.ui-state-default, button.ui-widget-content button.ui-state-default,
 button.ui-widget-header button.ui-state-default{
     border: none;
@@ -96,10 +101,6 @@ button.ui-button{
 
 #review-input textarea {
     background-color: #f8f8f8 !important;
-}
-
-form label.ribbonLabel {
-    margin-bottom: 0;
 }
 
 .visiblefalse .ui-paginator {
@@ -268,13 +269,13 @@ h4, h5, h6 {
 }
 
 /*//////////////////////////////////////*/
-.classh6 {
-    font-family: 'Oswald', sans-serif !important;
-    text-transform: uppercase;
-    font-size: 1.125em !important;
-    font-weight: 400;
-    color: #484848 !important;
-}
+/*.classh6 {*/
+    /*font-family: 'Oswald', sans-serif !important;*/
+    /*text-transform: uppercase;*/
+    /*font-size: 1.125em !important;*/
+    /*font-weight: 400;*/
+    /*color: #484848 !important;*/
+/*}*/
 
 /*////////////////////////////////////////*/
 
@@ -359,10 +360,12 @@ a.button {
     -webkit-transition: background-color .2s ease-in-out;
 }
 
+/*Не треба*/
 a.button > label {
     color: #fff !important;
     font-weight: 900;
 }
+/*Не треба*/
 
 a.button.red {
     background-color: #db2e2e;
@@ -643,16 +646,6 @@ form > label.ok:before {
 /*----------------------------
   2.3.4 RADIO AND CHECKBOX
 ----------------------------*/
-#zone div {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-#zone div .ui-icon {
-    background-image: none;
-}
-
 input[type="radio"],
 input[type="checkbox"] {
     display: none;
@@ -664,18 +657,6 @@ input[type="checkbox"] + label {
     cursor: pointer;
     margin-right: 15px;
     padding-left: 22px;
-    font-size: 0.875em; /* 14px / 16px */
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: 400;
-    color: #282828;
-    position: relative;
-}
-
-#zone label {
-    /*float: left;*/
-    cursor: pointer;
-    margin: 0 15px 0 5px;
-    padding-left: 5px;
     font-size: 0.875em; /* 14px / 16px */
     font-family: "Source Sans Pro", sans-serif;
     font-weight: 400;
@@ -707,22 +688,11 @@ input[type="radio"] + label:before {
     left: 0;
 }
 
-#zone div.ui-state-default {
-    background: url('../images/radio-outer.png') no-repeat center;
-    /*display: inline-block;*/
-    /*position: absolute;*/
-    /*top: 1px;*/
-    /*left: 0;*/
-}
-
 input[type="radio"]:checked + label:before {
     content: url('../images/radio-inner.png');
 }
 
-#zone div.ui-state-active {
-    background: url('../images/radio-inner.png') no-repeat center;
-}
-
+/*/////////////////////////////////////////////////////////////////////////////////*/
 input[type="checkbox"]:checked + label:before,
 .rememberCheckbox:checked + .rememberLabel:before {
     content: "\2714";
@@ -730,19 +700,6 @@ input[type="checkbox"]:checked + label:before,
     font-size: 11px;
     line-height: 10px;
     text-align: center;
-}
-
-#zone div.ui-state-active span {
-    /*border: none;*/
-    /*background-image: url("../images/radio-inner.png");*/
-}
-
-#zone div.ui-state-default span {
-    /*border: none;*/
-    /*background: none;*/
-    /*background-repeat: no-repeat;*/
-    /*back*/
-    /*background-image: url("../images/radio-outer.png");*/
 }
 
 /*--------------------
@@ -1164,12 +1121,14 @@ div.circle.large div.fill {
 /*-------------------
   4.1 GRID
 -------------------*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 ul.dishes {
     width: 1170px;
     margin: 0 auto;
 }
 
-.ul_dishes_li {
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+ul.dishes li {
     /*float: left;*/
     /*margin: 0 30px 30px 0;*/
     padding-top: 80px;
@@ -1177,14 +1136,15 @@ ul.dishes {
     width: 95%;
     margin: auto;
 }
-
-#specialDishForm .ul_dishes_li {
+#specialDishForm li {
     float: left;
     margin: 0 30px 30px 0;
     width: auto;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.ul_dishes_li > article {
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+ul.dishes li > article {
     /*width: 270px;*/
     /*height: 208px;*/
     border: 1px solid #e3e3e3;
@@ -1192,54 +1152,34 @@ ul.dishes {
     text-align: center;
     position: relative;
 }
-
-#specialDishForm .ul_dishes_li > article {
+#specialDishForm li > article {
     width: 270px;
     /*height: 208px;*/
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.ul_dishes_grid_li > article > a {
+ul.dishes.grid li > article > a {
     display: inline-block;
 }
 
-.ul_dishes_li > article label.ribbon {
+ul.dishes li > article span.ribbon{
     width: 38px;
     height: 59px;
     position: absolute;
     top: -7px;
 }
 
-.ul_dishes_li > article label.ribbon.new {
+ul.dishes li > article span.ribbon.new{
     right: 214px;
     background-image: url('../images/ribbon-new.png');
 }
 
-.ul_dishes_li > article label.ribbon.featured {
+ul.dishes li > article span.ribbon.featured{
     right: 18px;
     background-image: url('../images/ribbon-featured.png');
 }
 
-/*////////////////////////////////////////////////////////*/
-.ul_dishes_li > article span.ribbon {
-    width: 38px;
-    height: 59px;
-    position: absolute;
-    top: -7px;
-}
-
-.ul_dishes_li > article span.ribbon.new {
-    right: 214px;
-    background-image: url('../images/ribbon-new.png');
-}
-
-.ul_dishes_li > article span.ribbon.featured {
-    right: 18px;
-    background-image: url('../images/ribbon-featured.png');
-}
-
-/*//////////////////////////////////////////////////////////////*/
-
-.ul_dishes_li > div.circle {
+ul.dishes li > div.circle {
     position: absolute;
     top: 0;
     left: 50%;
@@ -1247,14 +1187,14 @@ ul.dishes {
     z-index: 2;
 }
 
-.ul_dishes_li > article > p {
+ul.dishes li > article > p {
     font-size: 0.875em; /* 14px / 16px */
     font-weight: 300;
     line-height: 24px;
     color: #a0a0a0;
 }
 
-.ul_dishes_li > a.button {
+ul.dishes li > a.button {
     float: right;
     width: 50%;
     border-radius: 0;
@@ -1265,45 +1205,46 @@ ul.dishes {
     background-position: 18px 8px;
 }
 
-.ul_dishes_li > div.price {
+ul.dishes li > div.price {
     float: left;
     width: 50%;
     height: 30px;
     background-color: #282828;
 }
 
-.ul_dishes_li > div.price > div {
+ul.dishes li > div.price > div {
     float: left;
     width: 35px;
     text-align: center;
     padding-top: 4px;
 }
 
-.ul_dishes_li > div.price p {
+ul.dishes li > div.price p {
     font-weight: 900;
     color: #f4f4f4;
 }
 
-.ul_dishes_li > div.price > p {
+ul.dishes li > div.price > p {
     font-size: 0.875em; /* 14px / 16px */
     float: left;
     margin: 7px 0 0 20px;
 }
 
-.ul_dishes_li > div.price > div > p.quantity {
+ul.dishes li > div.price > div > p.quantity {
     font-size: 0.75em; /* 12px / 16px */
 }
 
-.ul_dishes_li > div.price > div > p.measure {
+ul.dishes li > div.price > div > p.measure {
     font-size: 0.5em; /* 8px / 16px */
     text-transform: uppercase;
 }
 
-.rate.star > .ui-rating-star a {
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.rate.stars > .ui-rating-star a {
     background-image: url('../images/rating_main.png');
 }
 
-.rate.heart > .ui-rating-star a {
+.rate.hearts > .ui-rating-star a {
     background-image: url('../images/rating_new.png');
 }
 
@@ -1314,6 +1255,7 @@ ul.dishes {
 .red > .ui-rating-star-on a {
     background-position: 0 -64px !important;
 }
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 ul.rate {
     width: 72px;
@@ -1332,74 +1274,76 @@ ul.rate > li:last-child {
     margin-right: 0;
 }
 
-ul.rate.star > li {
+ul.rate.stars > li {
     height: 11px;
     background-image: url('../images/star-red.png');
 }
 
-ul.rate.heart > li {
+ul.rate.hearts > li {
     height: 10px;
     background-image: url('../images/heart-red.png');
 }
 
-ul.rate.star > li.empty,
-ul.rate.star.gold > li.empty {
+ul.rate.stars > li.empty,
+ul.rate.stars.gold > li.empty {
     background-image: url('../images/star-empty.png');
 }
 
-ul.rate.heart > li.empty,
-ul.rate.heart.gold > li.empty {
+ul.rate.hearts > li.empty,
+ul.rate.hearts.gold > li.empty {
     background-image: url('../images/heart-empty.png');
 }
 
-ul.rate.star.gold > li {
+ul.rate.stars.gold > li {
     background-image: url('../images/star-gold.png');
 }
 
-ul.rate.heart.gold > li {
+ul.rate.hearts.gold > li {
     background-image: url('../images/heart-gold.png');
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*--------------
   4.2 DETAIL
 --------------*/
-.ul_dishes_detail_li {
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+ul.dishes.detail li {
     float: none;
     margin: 0 0 15px 0;
     padding: 10px 0 10px 70px;
     width: 100%;
 }
 
-.ul_dishes_detail_li > div.circle {
+ul.dishes.detail li > div.circle {
     left: 0;
     margin-left: 0;
 }
 
-.ul_dishes_detail_li > div.circle {
+ul.dishes.detail li > div.circle {
     width: 150px;
     height: 150px;
 }
 
-.ul_dishes_detail_li > div.circle div.fill img {
+ul.dishes.detail li > div.circle div.fill img {
     top: 42px;
 }
 
-.ul_dishes_detail_li > div.circle > figure,
-.ul_dishes_detail_li > div.circle > div.shadow {
+ul.dishes.detail li > div.circle > figure,
+ul.dishes.detail li > div.circle > div.shadow {
     width: 121px;
     height: 121px;
     top: 14px;
     left: 14px;
 }
 
-.ul_dishes_detail_li > div.circle div.fill {
+ul.dishes.detail li > div.circle div.fill {
     width: 130px;
     height: 130px;
     top: 9px;
     left: 9px;
 }
 
-.ul_dishes_detail_li > article {
+ul.dishes.detail li > article {
     width: 100%;
     height: auto;
     padding: 25px 0 30px 95px;
@@ -1407,13 +1351,13 @@ ul.rate.heart.gold > li {
     border-radius: 2px;
 }
 
-.ul_dishes_detail_li > article > p {
+ul.dishes.detail li > article > p {
     width: 60%;
     clear: left;
 }
 
-.ul_dishes_detail_li > article > span.ribbon.new,
-.ul_dishes_detail_li > article > span.ribbon.featured {
+ul.dishes.detail li > article > span.ribbon.new,
+ul.dishes.detail li > article > span.ribbon.featured {
     right: 25px;
 }
 
@@ -1422,47 +1366,47 @@ ul.dishes.detail h6 {
     margin: 0 15px 10px 0;
 }
 
-.ul_dishes_detail_li .classh6 {
-    float: left;
-    margin-right: 10px;
-}
-
-.ul_dishes_detail_li .rate {
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+ul.dishes.detail li .rate {
     margin: 3px 0 0;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.ul_dishes_detail_li > div.price,
-.ul_dishes_detail_li > a.button {
+ul.dishes.detail li > div.price,
+ul.dishes.detail li > a.button {
     width: 135px;
     position: absolute;
     bottom: 10px;
 }
 
-.ul_dishes_detail_li > div.price {
+ul.dishes.detail li > div.price {
     right: 135px;
 }
 
-.ul_dishes_detail_li > a.button {
+ul.dishes.detail li > a.button {
     right: 0;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*--------------
   4.3 LIST
 --------------*/
-.ul_dishes_list_li {
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+ul.dishes.list li {
     float: none;
-    margin: 0 30px 30px 0;
+    /*margin: 0 30px 30px 0;*/
+    margin-right: 0;
     padding: 5px 0 5px 65px;
-    width: 100%;
+    /*width: 100%;*/
 }
 
-.ul_dishes_list_li > h6 {
+ul.dishes.list li > h6 {
     position: absolute;
     top: 5px;
     right: 0;
 }
 
-.ul_dishes_list_li > div.circle {
+ul.dishes.list li > div.circle {
     left: 0;
     margin-left: 0;
 }
@@ -1473,7 +1417,7 @@ ul.dishes.list > li > a.button {
     display: none;
 }
 
-.ul_dishes_list_li > article {
+ul.dishes.list li > article {
     width: 100%;
     height: auto;
     padding: 0 70px 0 0;
@@ -1482,45 +1426,70 @@ ul.dishes.list > li > a.button {
     overflow: hidden;
 }
 
-.ul_dishes_list_li > article > hr {
+ul.dishes.list li > article > hr {
     display: block;
     border-bottom: 1px solid #d2d2d2;
     margin-top: 9px;
 }
 
-.ul_dishes_list_li .classh6 {
+ul.dishes.list li > article h6 {
     float: left;
     margin: 0 15px 5px 0;
 }
 
-.ul_dishes_list_li .rate {
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+ul.dishes.list li .rate {
     float: left;
     margin: 0px 20px 0 0;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.ul_dishes_list_li > article > p {
+ul.dishes.list li > article > p {
     width: 100%;
     clear: left;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*-------------
   4.4 PAGER
 -------------*/
-/*.ui-paginator .ui-paginator-page, .ui-paginator .ui-paginator-next, .ui-paginator .ui-paginator-last, .ui-paginator .ui-paginator-first, .ui-paginator .ui-paginator-prev*/
-
-/*.ui-paginator {*/
-/*margin: 0 auto;*/
+/*#pager {*/
+    /*margin: 0 auto;*/
 /*}*/
 
 /*#pager > li {*/
-/*float: left;*/
-/*margin-right: 10px;*/
+    /*float: left;*/
+    /*margin-right: 10px;*/
 /*}*/
 
 /*#pager > li:last-child {*/
-/*margin-right: 0;*/
+    /*margin-right: 0;*/
 /*}*/
 
+/*#pager > li > a {*/
+    /*display: block;*/
+    /*width: 30px;*/
+    /*height: 30px;*/
+    /*border-radius: 50%;*/
+    /*border: 1px solid #e3e3e3;*/
+    /*font-size: 0.75em; !* 12px / 16px *!*/
+    /*font-weight: 400;*/
+    /*color: #a0a0a0;*/
+    /*text-align: center;*/
+    /*line-height: 30px;*/
+    /*transition: all .3s ease-in-out;*/
+    /*-webkit-transition: all .3s ease-in-out;*/
+/*}*/
+
+/*#pager > li.selected > a,*/
+/*#pager > li > a:hover {*/
+    /*color: #fff;*/
+    /*font-weight: 700;*/
+    /*border-color: #db2e2e;*/
+    /*background-color: #db2e2e;*/
+/*}*/
+
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 .ui-paginator, .ui-paginator-bottom {
     background: none !important;
     border: none !important;
@@ -1532,9 +1501,7 @@ ul.dishes.list > li > a.button {
     margin-bottom: 40px !important;
 }
 
-/*.ui-paginator-page,ui-paginator-first, ui-paginator-prev, .ui-paginator-next,.ui-paginator-last {*/
 .ui-paginator .ui-state-default {
-    /*!*display: block !important;*!*/
     padding: 5px !important;
     width: 30px;
     height: 30px !important;
@@ -1555,9 +1522,6 @@ ul.dishes.list > li > a.button {
     padding: 7px !important;
 }
 
-/*!*#pager > li.selected > a,*!*/
-/*!*#pager > li > a:hover {*!*/
-/*.ui-state-active, ui-state-hover{*/
 .ui-paginator .ui-state-active {
     color: #fff !important;
     font-weight: 700 !important;
@@ -1594,6 +1558,7 @@ ul.dishes.list > li > a.button {
     -webkit-box-shadow: 0 0 8px #cb0b08, inset 0 1px 0 #fff !important;
     box-shadow: 0 0 8px #cb0b08, inset 0 1px 0 #fff !important;
 }
+/*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /***************************************/
 /* 5. HEADER */
@@ -1656,6 +1621,7 @@ ul.dishes.list > li > a.button {
     margin: 10px 25px 0 0;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #header-top article {
     float: right;
 }
@@ -1724,6 +1690,7 @@ ul.dishes.list > li > a.button {
     top: 1px;
     right: -15px;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*------------------
   5.2 MAIN-NAV
@@ -1899,9 +1866,11 @@ ul.dishes.list > li > a.button {
     position: relative;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #header-bottom a.order {
     margin: 20px 0 0 350px;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #header-bottom img[alt="asian-girl"] {
     position: absolute;
@@ -1912,6 +1881,8 @@ ul.dishes.list > li > a.button {
 /*---------------------------
   5.3.1 HEADER-BOTTOM SMALL
 ---------------------------*/
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #header-bottom.small {
     padding: 65px 0 55px;
     text-align: center;
@@ -1949,6 +1920,7 @@ ul.dishes.list > li > a.button {
 #second-slider-wrap .bx-viewport {
     min-height: 190px;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*-------------------
   5.3.2 MAIN-SLIDER
@@ -1964,25 +1936,25 @@ ul.dishes.list > li > a.button {
 }
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.bx-wrapper {
-    max-width: 100%;
-    margin: 0px auto;
-}
+/*.bx-wrapper {*/
+    /*max-width: 100%;*/
+    /*margin: 0px auto;*/
+/*}*/
 
 .bx-viewport {
-    width: 100%;
+    /*width: 100%;*/
     overflow: hidden;
-    position: relative;
+    /*position: relative;*/
     height: 108px;
 }
 
-.main-slider {
-    width: 515%;
-    position: relative;
-    transition-timing-function: ease-in;
-    transition-duration: 0s;
-    transform: translate3d(-1540px, 0px, 0px);
-}
+/*#main-slider {*/
+    /*width: 515%;*/
+    /*position: relative;*/
+    /*transition-timing-function: ease-in;*/
+    /*transition-duration: 0s;*/
+    /*transform: translate3d(-1540px, 0px, 0px);*/
+/*}*/
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -1999,16 +1971,9 @@ span.arrow.right {
     right: 0;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #main-slider > li {
     padding-left: 95px;
-    float: left;
-    list-style: none;
-    position: relative;
-    width: 770px;
 }
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #main-slider > li > div.circle {
     float: left;
@@ -2153,12 +2118,9 @@ span.arrow.right {
     margin: 65px auto;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
-#specials > ul.dishes li:nth-child(4n+5) {
+#specials > ul.dishes > li:nth-child(4n+4) {
     margin-right: 0;
 }
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #specials > h6 {
     text-align: center;
@@ -2902,22 +2864,15 @@ ul.new-dishes > li > p {
     position: relative;
 }
 
-#shop > article > ul.dishes {
+#shop > article ul.dishes {
     width: 870px;
     margin: 30px auto;
     overflow: hidden;
 }
 
-#shop > article > ul.dishes.grid > li:nth-child(3n+3) {
+#shop > article ul.dishes.grid li:nth-child(3n+3) {
     margin-right: 0;
 }
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-#shop article .ul_dishes_grid_li:nth-child(3n+3) {
-    margin-right: 0;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*--------------
   17.4 VIEWS
@@ -3431,15 +3386,16 @@ ul.views > li > a.list {
 /*--------------------
   20.1 DELIVERY INFO
 --------------------*/
-#delivery-info > div {
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#delivery-info div {
     width: 48%;
 }
 
-#delivery-info > div:nth-child(odd) {
+#delivery-info div:nth-child(odd) {
     float: right;
 }
 
-#delivery-info > div:nth-child(even) {
+#delivery-info div:nth-child(even) {
     float: left;
 }
 
@@ -3454,6 +3410,7 @@ ul.views > li > a.list {
 #delivery-info label[for="autocomplete"] {
     display: inline-block;
 }
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /***************************************/
 /* 21. CHECKOUT */
@@ -3505,6 +3462,8 @@ ul.views > li > a.list {
 /*--------------
   21.1 TICKET
 --------------*/
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
 .ticket {
     background-color: #1d1d1d;
     padding: 30px 0 25px;
@@ -3579,7 +3538,7 @@ ul.views > li > a.list {
     margin: 10px 0 0 48px;
 }
 
-.ticket p:last-child {
+.ticket > p:last-child {
     font-size: 0.5625em; /* 9px / 16px */
     font-family: "Source Sans Pro", sans-serif;
     color: #a2a2a2;
@@ -3598,6 +3557,7 @@ ul.views > li > a.list {
 #checkout aside .ticket {
     margin-bottom: 50px;
 }
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*--------------
   21.2 CART
@@ -4877,18 +4837,22 @@ a.counter.down {
         font-size: 40px;
     }
 
-    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
     #header-bottom h1 > span.remarked {
         display: block;
         margin-top: 10px;
     }
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
 
     /*---------------------------
       5.3.1 HEADER-BOTTOM SMALL
     ---------------------------*/
+
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
     #header-bottom.small h1 {
         line-height: 1em;
     }
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 
     #main-slider-wrap {
         display: none;

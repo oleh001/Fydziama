@@ -54,7 +54,7 @@ public class GoodController extends AbstractController<Good> {
     private long selectedBrandId;
     private int catAll=1;
     @Enumerated(EnumType.STRING)
-    private ShopType selectedShopType=ShopType.GRID;
+    private ShopType selectedShopType=ShopType.grid;
 
 //    private boolean showShop;
 
@@ -177,14 +177,14 @@ public class GoodController extends AbstractController<Good> {
 
     public void updateShopType(String shopType) {
         switch (shopType) {
-            case "GRID":
-                this.selectedShopType = ShopType.GRID;
+            case "grid":
+                this.selectedShopType = ShopType.grid;
                 break;
-            case "DETAIL":
-                this.selectedShopType = ShopType.DETAIL;
+            case "detail":
+                this.selectedShopType = ShopType.detail;
                 break;
-            case "LIST":
-                this.selectedShopType = ShopType.LIST;
+            case "list":
+                this.selectedShopType = ShopType.list;
                 break;
         }
     }

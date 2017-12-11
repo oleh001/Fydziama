@@ -15,9 +15,8 @@
             <hr/>
             <h:outputLabel styleClass="save_font" rendered="#{!userController.userLogin}">
                 <p>#{msg.you_must_be_logged_in_to_write_a_review_dont_you_have_an_account_yet}
-                    <a href="#{request.contextPath}/templates/profile.xhtml">
-                        #{msg.click_here}
-                    </a>
+                    <h:commandLink action="/templates/profile" value="#{msg.click_here}"/>
+
                     #{msg.to_register}
                 </p>
             </h:outputLabel>

@@ -9,17 +9,16 @@
 <f:view>
     <!--ZONERADIO-->
     <h:form id="zoneForm" rendered="#{orderController.orderStartBool}">
-
         <article id="zone">
             <h2><span>#{msg.zone}</span> #{msg.checkout_cart_zone_selection}</h2>
             <hr/>
             <hr/>
 
-            <p:selectOneRadio id="console" value="#{orderController.selectedOrderStart.zone}">
-                <f:selectItems  value="#{zoneController.all}" var="zone" itemLabel="#{zone.name}"
+            <h:selectOneRadio id="console" value="#{orderController.selectedOrderStart.zone}">
+                <f:selectItems value="#{zoneController.all}" var="zone" itemLabel="#{zone.name}"
                                itemValue="#{zone}"/>
                 <p:ajax update="zoneForm" listener="#{orderController.updateZone(zone)}"/>
-            </p:selectOneRadio>
+            </h:selectOneRadio>
 
             <p><span>#{msg.remember}</span> #{msg.checkout_cart_zone_remember_text}</p>
         </article>
