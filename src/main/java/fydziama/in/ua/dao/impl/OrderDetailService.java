@@ -20,13 +20,13 @@ public class OrderDetailService implements OrderDetailDao {
     private OrderDetailRepository orderDetailRepository;
 
     @Override
-    public String isVisibility(List<OrderDetail> obj, int count) {
-        return obj.size()>count?"true":"false";
+    public boolean isVisibility(List<OrderDetail> obj, int count) {
+        return obj.size()>count;
     }
 
     @Override
-    public String isVisibility(Page<OrderDetail> obj, int count) {
-        return obj.getTotalPages()>count?"true":"false";
+    public boolean isVisibility(Page<OrderDetail> obj, int count) {
+        return obj.getTotalPages()>count;
     }
 
     @Override

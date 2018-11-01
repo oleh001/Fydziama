@@ -13,7 +13,8 @@
             <nav id="main-nav">
                 <a href="#{request.contextPath}/index.xhtml">
                     <figure>
-                        <o:graphicImage name="images/logo-banner.png" alt="#{msg.logo}" dataURI="true"/>
+                        <!--<o:graphicImage name="images/logo-banner.png" alt="#{msg.logo}" dataURI="true"/>-->
+                        <o:graphicImage name="images/logo.jpg" alt="#{msg.logo}" dataURI="true"/>
                         <figcaption>#{msg.shopName}</figcaption>
                     </figure>
                 </a>
@@ -51,6 +52,9 @@
                     <li class="sub-items">
                         <a href="#">Shop</a>
                         <ul>
+                            <li>
+                                <h:link outcome="/templates/fileUpload" value="Upload File"/>
+                            </li>
                             <li>
                                 <h:link outcome="/templates/faq" value="#{msg.how_to_shop_faq}"/>
                             </li>

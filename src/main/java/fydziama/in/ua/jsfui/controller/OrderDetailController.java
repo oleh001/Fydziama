@@ -82,7 +82,7 @@ public class OrderDetailController extends AbstractController<OrderDetail> {
     }
 
     @Override
-    public String vizibilityAction() {
+    public boolean vizibilityAction() {
         return orderDetailDao.isVisibility(orderDetailPage, countPages);
     }
 

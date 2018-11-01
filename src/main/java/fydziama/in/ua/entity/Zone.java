@@ -40,4 +40,19 @@ public class Zone {
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Zone)) return false;
+
+        Zone zone = (Zone) o;
+
+        return idZone.equals(zone.idZone);
+    }
+
+    @Override
+    public int hashCode() {
+        return idZone.hashCode();
+    }
 }

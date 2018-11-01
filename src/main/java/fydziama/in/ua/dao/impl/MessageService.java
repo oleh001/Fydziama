@@ -19,13 +19,13 @@ public class MessageService implements MessageDao {
     private MessageRepository messageRepository;
 
     @Override
-    public String isVisibility(List<Message> obj, int count) {
-        return obj.size()>count?"true":"false";
+    public boolean isVisibility(List<Message> obj, int count) {
+        return obj.size()>count;
     }
 
     @Override
-    public String isVisibility(Page<Message> obj, int count) {
-        return obj.getTotalPages()>count?"true":"false";
+    public boolean isVisibility(Page<Message> obj, int count) {
+        return obj.getTotalPages()>count;
     }
 
     @Override

@@ -48,7 +48,7 @@ public class BrandController extends AbstractController<Brand>{
     }
 
     @Override
-    public String vizibilityAction() {
+    public boolean vizibilityAction() {
         return brandDao.isVisibility(brandPages,countPages);
     }
 

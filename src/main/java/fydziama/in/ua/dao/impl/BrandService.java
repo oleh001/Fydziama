@@ -20,13 +20,13 @@ public class BrandService implements BrandDao {
     private BrandRepository brandRepository;
 
     @Override
-    public String isVisibility(List<Brand> obj, int count) {
-        return obj.size()>count?"true":"false";
+    public boolean isVisibility(List<Brand> obj, int count) {
+        return obj.size()>count;
     }
 
     @Override
-    public String isVisibility(Page<Brand> obj, int count) {
-        return obj.getTotalPages()>count?"true":"false";
+    public boolean isVisibility(Page<Brand> obj, int count) {
+        return obj.getTotalPages()>count;
     }
 
     @Override

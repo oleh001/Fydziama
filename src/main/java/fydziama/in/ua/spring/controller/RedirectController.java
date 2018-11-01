@@ -1,6 +1,10 @@
 package fydziama.in.ua.spring.controller;
 
+import fydziama.in.ua.dao.impl.BannerService;
 import fydziama.in.ua.dao.impl.UserService;
+import fydziama.in.ua.jsfui.controller.BannerController;
+import fydziama.in.ua.jsfui.controller.GoodController;
+import fydziama.in.ua.jsfui.controller.ReviewController;
 import fydziama.in.ua.jsfui.controller.UserController;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +25,24 @@ public class RedirectController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private GoodController goodController;
+
+    @Autowired
+    private ReviewController reviewController;
+
+
+    @Autowired
+    private BannerController bannerController;
+
+    @Autowired
+    private BannerService bannerService;
+
     // для перенаправления с корня проекта на страницу index.xhtml
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String baseUrlRedirect(HttpServletRequest request,
                                   HttpServletResponse httpServletResponse) {
+
 
         return "redirect:" + request.getRequestURL().append("index.xhtml").toString();
     }

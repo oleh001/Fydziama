@@ -42,20 +42,20 @@ public class Good {
 
     @Column(name = "visible")
     @Enumerated(EnumType.STRING)
-    private GoodVisible visibility;
+    private Visible visibility;
 
     @Enumerated(EnumType.STRING)
-    private GoodVisible hits;
+    private Visible hits;
 
     @Column(name = "new")
     @Enumerated(EnumType.STRING)
-    private GoodVisible news;
+    private Visible news;
 
     @Enumerated(EnumType.STRING)
-    private GoodVisible specials;
+    private Visible specials;
 
     @Enumerated(EnumType.STRING)
-    private GoodVisible sale;
+    private Visible sale;
 
     private float price;
 

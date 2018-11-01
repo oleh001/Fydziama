@@ -8,190 +8,192 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:form id="cartUser">
-        <article id="cart">
-            <h2>#{msg.your} <span>#{msg.cart}</span></h2>
-            <hr/>
-            <hr/>
-            <p:accordionPanel>
-                <p:tab title="#{msg.actual}" rendered="#{!orderController.orderStartBool}">
-                    #{msg.cart_is_empty}
-                </p:tab>
-                <p:tab title="#{msg.actual}" rendered="#{orderController.orderStartBool}">
-                    <!--CART Start-->
-                    <div class="cart-header">
-                        <p>#{msg.product}</p>
-                        <p>#{msg.description}</p>
-                        <p>#{msg.price}</p>
-                        <p>#{msg.quantity}</p>
-                        <p>#{msg.subtotal}</p>
-                        <p>#{msg.checkout_cart_remove_from_cart}</p>
-                    </div>
-                    <ul>
-                        <!--CART ITEM-->
-                        <p:repeat offset="" value="#{orderController.selectedOrderStart.orderDetails}" var="orderDet">
-                            <li>
-                                <div class="circle tiny">
-                                    <figure class="imgLiquidFill">
-                                        <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}" dataURI="true"/>
-                                    </figure>
-                                    <div class="shadow"/>
-                                    <div class="fill #{goodController.getStyleCircle(orderDet.good)}"/>
-                                </div>
-                                <div class="description">
-                                    <h:link outcome="dishDetail"
-                                            fragment="item-detail">
-                                        <h6><h:outputText value="#{orderDet.good.name}"/></h6>
-                                        <f:param name="dishId" value="#{orderDet.good.idGood}"/>
-                                    </h:link>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
-                                </div>
-                                <h6 class="price-small">#{msg.price}:</h6>
-                                <h6>$<span>#{orderDet.good.price} &#8372;</span></h6>
-                                <div class="quantity">
-                                    <div>
-                                        <h:outputText id="quantity" value="#{orderDet.quantity}"/>
+            <article id="cart">
+                <h2>#{msg.your} <span>#{msg.cart}</span></h2>
+                <hr/>
+                <hr/>
+                <p:accordionPanel>
+                    <p:tab title="#{msg.actual}" rendered="#{!orderController.orderStartBool}">
+                        #{msg.cart_is_empty}
+                    </p:tab>
+                    <p:tab title="#{msg.actual}" rendered="#{orderController.orderStartBool}">
+                        <!--CART Start-->
+                        <div id="cart-header">
+                            <p>#{msg.product}</p>
+                            <p>#{msg.description}</p>
+                            <p>#{msg.price}</p>
+                            <p>#{msg.quantity}</p>
+                            <p>#{msg.subtotal}</p>
+                            <p>#{msg.checkout_cart_remove_from_cart}</p>
+                        </div>
+                        <ul>
+                            <!--CART ITEM-->
+                            <p:repeat offset="" value="#{orderController.selectedOrderStart.orderDetails}"
+                                      var="orderDet">
+                                <li>
+                                    <div class="circle tiny">
+                                        <figure class="imgLiquidFill">
+                                            <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}" dataURI="true"/>
+                                        </figure>
+                                        <div class="shadow"/>
+                                        <div class="fill #{goodController.getStyleCircle(orderDet.good)}"/>
                                     </div>
-                                    <p:commandLink styleClass="counter up"
-                                                   actionListener="#{orderDetailController.updateQuantitySubtotal(orderDet,1)}"
-                                                   update="@([id$=quantity]) @([id$=ticket]) @([id$=cartSubtotalQuantity])
+                                    <div class="description">
+                                        <h:link outcome="dishDetail"
+                                                fragment="item-detail">
+                                            <h6><h:outputText value="#{orderDet.good.name}"/></h6>
+                                            <f:param name="dishId" value="#{orderDet.good.idGood}"/>
+                                        </h:link>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
+                                    </div>
+                                    <h6 class="price-small">#{msg.price}:</h6>
+                                    <h6>$<span>#{orderDet.good.price} &#8372;</span></h6>
+                                    <div class="quantity">
+                                        <div>
+                                            <h:outputText id="quantity" value="#{orderDet.quantity}"/>
+                                        </div>
+                                        <p:commandLink styleClass="counter up"
+                                                       actionListener="#{orderDetailController.updateQuantitySubtotal(orderDet,1)}"
+                                                       update="@([id$=quantity]) @([id$=ticket]) @([id$=cartSubtotalQuantity])
                                                    @([id$=menuItemUp]) @([id$=menuItem]) @([id$=menuTotal])"/>
-                                    <p:commandLink styleClass="counter down"
-                                                   actionListener="#{orderDetailController.updateQuantitySubtotal(orderDet,-1)}"
-                                                   update="@([id$=quantity]) @([id$=ticket]) @([id$=cartSubtotalQuantity])
+                                        <p:commandLink styleClass="counter down"
+                                                       actionListener="#{orderDetailController.updateQuantitySubtotal(orderDet,-1)}"
+                                                       update="@([id$=quantity]) @([id$=ticket]) @([id$=cartSubtotalQuantity])
                                                    @([id$=menuItemUp]) @([id$=menuItem]) @([id$=menuTotal])"/>
 
-                                    <!--<p:spinner min="0" max="99" id="cartQuantity" value="#{orderDet.quantity}"-->
-                                               <!--styleClass="counter">-->
+                                        <!--<p:spinner min="0" max="99" id="cartQuantity" value="#{orderDet.quantity}"-->
+                                        <!--styleClass="counter">-->
                                         <!--<p:ajax listener="#{orderDetailController.updateQuantitySubtotal(orderDet, 0)}"-->
-                                                <!--update="@([id$=jsIncluded]) @([id$=cartUser]) @([id$=ticket]) @([id$=menuCheckout])"/>-->
-                                    <!--</p:spinner>-->
-                                </div>
-                                <h6 class="subtotal-small">#{msg.subtotal}:</h6>
-                                <h6>$<span id="cartSubtotal">
-                                    <h:outputText id="cartSubtotalQuantity" value="#{orderDet.good.price * orderDet.quantity}"/>
+                                        <!--update="@([id$=jsIncluded]) @([id$=cartUser]) @([id$=ticket]) @([id$=menuCheckout])"/>-->
+                                        <!--</p:spinner>-->
+                                    </div>
+                                    <h6 class="subtotal-small">#{msg.subtotal}:</h6>
+                                    <h6>$<span id="cartSubtotal">
+                                    <h:outputText id="cartSubtotalQuantity"
+                                                  value="#{orderDet.good.price * orderDet.quantity}"/>
                                 </span></h6>
 
-                                <p:commandLink class="remove"
-                                               action="#{orderDetailController.deleteAction(orderDet)}"
-                                               update="@([id$=jsIncluded]) @([id$=cartUser])  @([id$=ticket]) @([id$=menuCheckout])"
-                                >
-                                    <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
-                                </p:commandLink>
-                            </li>
+                                    <p:commandLink class="remove"
+                                                   action="#{orderDetailController.deleteAction(orderDet)}"
+                                                   update="@([id$=cartUser])  @([id$=ticket]) @([id$=menuCheckout])"
+                                    >
+                                        <o:graphicImage name="images/remove-cart.png" alt="remove" dataURI="true"/>
+                                    </p:commandLink>
+                                </li>
+                            </p:repeat>
+                        </ul>
+                        <!--/CART Start-->
+                    </p:tab>
+
+                    <p:tab title="#{msg.confirmed_checkout}" rendered="#{!orderController.orderConfirmedBool}">
+                        #{msg.cart_is_empty}
+                    </p:tab>
+                    <p:tab title="#{msg.confirmed_checkout}" rendered="#{orderController.orderConfirmedBool}">
+                        <!--CART Confirmed-->
+                        <p:repeat value="#{orderController.orderConfirmed}" var="orderConfirmed">
+                            <p:fieldset legend="#{msg.order_from} - #{orderConfirmed.orderDate}" toggleable="true"
+                                        toggleSpeed="500">
+                                <div class="cart-header">
+                                    <p>#{msg.product}</p>
+                                    <p>#{msg.description}</p>
+                                    <p>#{msg.price}</p>
+                                    <p>#{msg.quantity}</p>
+                                    <p>#{msg.subtotal}</p>
+                                </div>
+                                <ul>
+                                    <!--CART ITEM-->
+                                    <p:repeat value="#{orderConfirmed.orderDetails}" var="orderDetConfirm">
+                                        <li>
+                                            <div class="circle tiny">
+                                                <figure class="imgLiquidFill">
+                                                    <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}"
+                                                                    dataURI="true"/>
+                                                </figure>
+                                                <div class="shadow"/>
+                                                <div class="fill #{goodController.getStyleCircle(orderDetConfirm.good)}"/>
+                                            </div>
+                                            <div class="description">
+                                                <h:link outcome="dishDetail" fragment="item-detail">
+                                                    <h6><h:outputText value="#{orderDetConfirm.good.name}"/></h6>
+                                                    <f:param name="dishId" value="#{orderDetConfirm.good.idGood}"/>
+                                                </h:link>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
+                                            </div>
+                                            <h6 class="price-small">#{msg.price}:</h6>
+                                            <h6>$<span>#{orderDetConfirm.good.price} &#8372;</span></h6>
+                                            <div class="quantity">
+                                                <div>
+                                                    <h:outputText id="quantityConfirm"
+                                                                  value="#{orderDetConfirm.quantity}"/>
+                                                </div>
+                                            </div>
+                                            <h6 class="subtotal-small">#{msg.subtotal}:</h6>
+                                            <h6>$<span
+                                                    id="cartSubtotalConfirmed">#{orderDetConfirm.good.price * orderDetConfirm.quantity}</span>
+                                            </h6>
+                                        </li>
+                                    </p:repeat>
+                                </ul>
+                            </p:fieldset>
                         </p:repeat>
-                    </ul>
-                    <!--/CART Start-->
-                </p:tab>
+                        <!--/CART Confirmed-->
+                    </p:tab>
 
-                <p:tab title="#{msg.confirmed_checkout}" rendered="#{!orderController.orderConfirmedBool}">
-                    #{msg.cart_is_empty}
-                </p:tab>
-                <p:tab title="#{msg.confirmed_checkout}" rendered="#{orderController.orderConfirmedBool}">
-                    <!--CART Confirmed-->
-                    <p:repeat value="#{orderController.orderConfirmed}" var="orderConfirmed">
-                        <p:fieldset legend="#{msg.order_from} - #{orderConfirmed.orderDate}" toggleable="true"
-                                    toggleSpeed="500">
-                            <div class="cart-header">
-                                <p>#{msg.product}</p>
-                                <p>#{msg.description}</p>
-                                <p>#{msg.price}</p>
-                                <p>#{msg.quantity}</p>
-                                <p>#{msg.subtotal}</p>
-                            </div>
-                            <ul>
-                                <!--CART ITEM-->
-                                <p:repeat value="#{orderConfirmed.orderDetails}" var="orderDetConfirm">
-                                    <li>
-                                        <div class="circle tiny">
-                                            <figure class="imgLiquidFill">
-                                                <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}"
-                                                                dataURI="true"/>
-                                            </figure>
-                                            <div class="shadow"/>
-                                            <div class="fill #{goodController.getStyleCircle(orderDetConfirm.good)}"/>
-                                        </div>
-                                        <div class="description">
-                                            <h:link outcome="dishDetail" fragment="item-detail">
-                                                <h6><h:outputText value="#{orderDetConfirm.good.name}"/></h6>
-                                                <f:param name="dishId" value="#{orderDetConfirm.good.idGood}"/>
-                                            </h:link>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
-                                        </div>
-                                        <h6 class="price-small">#{msg.price}:</h6>
-                                        <h6>$<span>#{orderDetConfirm.good.price} &#8372;</span></h6>
-                                        <div class="quantity">
-                                            <div>
-                                                <h:outputText id="quantityConfirm" value="#{orderDetConfirm.quantity}"/>
+                    <p:tab title="#{msg.finish}" rendered="#{!orderController.orderFinishBool}">
+                        #{msg.cart_is_empty}
+                    </p:tab>
+                    <p:tab title="#{msg.finish}" rendered="#{orderController.orderFinishBool}">
+                        <!--CART Finish-->
+                        <p:repeat value="#{orderController.orderFinish}" var="orderFinish">
+                            <p:fieldset legend="#{msg.order_from} - #{orderFinish.orderDate}" toggleable="true"
+                                        toggleSpeed="500">
+                                <div class="cart-header">
+                                    <p>#{msg.product}</p>
+                                    <p>#{msg.description}</p>
+                                    <p>#{msg.price}</p>
+                                    <p>#{msg.quantity}</p>
+                                    <p>#{msg.subtotal}</p>
+                                </div>
+                                <ul>
+                                    <!--CART ITEM-->
+                                    <p:repeat value="#{orderFinish.orderDetails}" var="orderDetFinish">
+                                        <li>
+                                            <div class="circle tiny">
+                                                <figure class="imgLiquidFill">
+                                                    <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}"
+                                                                    dataURI="true"/>
+                                                </figure>
+                                                <div class="shadow"/>
+                                                <div class="fill #{goodController.getStyleCircle(orderDetFinish.good)}"/>
                                             </div>
-                                        </div>
-                                        <h6 class="subtotal-small">#{msg.subtotal}:</h6>
-                                        <h6>$<span
-                                                id="cartSubtotalConfirmed">#{orderDetConfirm.good.price * orderDetConfirm.quantity}</span>
-                                        </h6>
-                                    </li>
-                                </p:repeat>
-                            </ul>
-                        </p:fieldset>
-                    </p:repeat>
-                    <!--/CART Confirmed-->
-                </p:tab>
-
-                <p:tab title="#{msg.finish}" rendered="#{!orderController.orderFinishBool}">
-                    #{msg.cart_is_empty}
-                </p:tab>
-                <p:tab title="#{msg.finish}" rendered="#{orderController.orderFinishBool}">
-                    <!--CART Finish-->
-                    <p:repeat value="#{orderController.orderFinish}" var="orderFinish">
-                        <p:fieldset legend="#{msg.order_from} - #{orderFinish.orderDate}" toggleable="true"
-                                    toggleSpeed="500">
-                            <div class="cart-header">
-                                <p>#{msg.product}</p>
-                                <p>#{msg.description}</p>
-                                <p>#{msg.price}</p>
-                                <p>#{msg.quantity}</p>
-                                <p>#{msg.subtotal}</p>
-                            </div>
-                            <ul>
-                                <!--CART ITEM-->
-                                <p:repeat value="#{orderFinish.orderDetails}" var="orderDetFinish">
-                                    <li>
-                                        <div class="circle tiny">
-                                            <figure class="imgLiquidFill">
-                                                <o:graphicImage name="images/menu-00.jpg" alt="#{msg.dish}"
-                                                                dataURI="true"/>
-                                            </figure>
-                                            <div class="shadow"/>
-                                            <div class="fill #{goodController.getStyleCircle(orderDetFinish.good)}"/>
-                                        </div>
-                                        <div class="description">
-                                            <h:link outcome="dishDetail" fragment="item-detail">
-                                                <h6><h:outputText value="#{orderDetFinish.good.name}"/></h6>
-                                                <f:param name="dishId" value="#{orderDetFinish.good.idGood}"/>
-                                            </h:link>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
-                                        </div>
-                                        <h6 class="price-small">#{msg.price}:</h6>
-                                        <h6>$<span>#{orderDetFinish.good.price} &#8372;</span></h6>
-                                        <div class="quantity">
-                                            <div>
-                                                <h:outputText id="quantityFinish" value="#{orderDetFinish.quantity}"/>
+                                            <div class="description">
+                                                <h:link outcome="dishDetail" fragment="item-detail">
+                                                    <h6><h:outputText value="#{orderDetFinish.good.name}"/></h6>
+                                                    <f:param name="dishId" value="#{orderDetFinish.good.idGood}"/>
+                                                </h:link>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod temp</p>
                                             </div>
-                                        </div>
-                                        <h6 class="subtotal-small">#{msg.subtotal}:</h6>
-                                        <h6>$<span
-                                                id="cartSubtotalFinish">#{orderDetFinish.good.price * orderDetFinish.quantity}</span>
-                                        </h6>
-                                    </li>
-                                </p:repeat>
-                            </ul>
-                        </p:fieldset>
-                    </p:repeat>
-                    <!--/CART Finish-->
-                </p:tab>
-            </p:accordionPanel>
-
-        </article>
-
+                                            <h6 class="price-small">#{msg.price}:</h6>
+                                            <h6>$<span>#{orderDetFinish.good.price} &#8372;</span></h6>
+                                            <div class="quantity">
+                                                <div>
+                                                    <h:outputText id="quantityFinish"
+                                                                  value="#{orderDetFinish.quantity}"/>
+                                                </div>
+                                            </div>
+                                            <h6 class="subtotal-small">#{msg.subtotal}:</h6>
+                                            <h6>$<span
+                                                    id="cartSubtotalFinish">#{orderDetFinish.good.price * orderDetFinish.quantity}</span>
+                                            </h6>
+                                        </li>
+                                    </p:repeat>
+                                </ul>
+                            </p:fieldset>
+                        </p:repeat>
+                        <!--/CART Finish-->
+                    </p:tab>
+                </p:accordionPanel>
+            </article>
     </h:form>
 </f:view>
 </html>

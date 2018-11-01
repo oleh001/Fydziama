@@ -8,7 +8,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
-import java.util.List;
 
 // JPA
 @Entity
@@ -36,7 +35,7 @@ public class Faq {
 
     @Column(name = "step")
     @Enumerated(EnumType.STRING)
-    private GoodVisible step;
+    private Visible step;
 
     @Override
     public String toString() {

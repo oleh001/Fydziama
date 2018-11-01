@@ -12,7 +12,7 @@
         <span>#{msg.shop_category}</span> Name (Якась категорія)</h2>
     <hr/>
     <hr/>
-    <h:form id="filterAndViews">
+    <h:panelGroup id="filterAndViews">
         <article id="views">
 
             <select name="filter" id="filter">
@@ -26,44 +26,34 @@
                 <li class="#{goodController.getStyleShopType('grid')}">
                     <p:commandLink styleClass="grid tooltip toGrid"
                                    actionListener="#{goodController.updateShopType('grid')}"
-                                   update="goodsForm filterAndViews @([id$=jsIncluded])" title="Grid View">
+                                   update="goodsForm filterAndViews" title="Grid View">
                     </p:commandLink>
                 </li>
                 <li class="#{goodController.getStyleShopType('detail')}">
                     <p:commandLink styleClass="detail tooltip toDetail"
                                    actionListener="#{goodController.updateShopType('detail')}"
-                                   update="goodsForm filterAndViews @([id$=jsIncluded])" title="Detail View">
+                                   update="goodsForm filterAndViews" title="Detail View">
                     </p:commandLink>
                 </li>
                 <li class="#{goodController.getStyleShopType('list')}">
                     <p:commandLink styleClass="list tooltip toList"
                                    actionListener="#{goodController.updateShopType('list')}"
-                                   update="goodsForm filterAndViews @([id$=jsIncluded])" title="List View">
+                                   update="goodsForm filterAndViews" title="List View">
                     </p:commandLink>
                 </li>
             </ul>
         </article>
-    </h:form>
+    </h:panelGroup>
 
-    <h:form id="goodsForm">
+    <h:panelGroup id="goodsForm">
         <ul class="dishes #{goodController.selectedShopType.toString()}">
             <!--DISH-->
 
             <!--Grid Form-->
-
-            <p:dataGrid id="goodGrid" var="goods" value="#{goodController.lazyModel}"
-                        paginatorPosition="bottom"
-                        styleClass="goodsList #{goodController.visiblePaginator}"
-                        paginator="true"
-                        rows="#{goodController.rowsCount}"
-                        emptyMessage="" widgetVar="grid"
-                        rowIndexVar="rowIndexVar"
-                        rowsPerPageTemplate="6,12,24,48,96"
-                        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        lazy="true"
-                        rendered="#{goodController.selectedShopType.toString().equals('grid')}"
+            <p:repeat id="goodGrid" var="goods" value="#{goodController.mainListWithEntity}"
+                      styleClass="goodsList #{goodController.visiblePaginator}"
+                      rendered="#{goodController.selectedShopType.toString().equals('grid')}"
             >
-                <p:ajax event="page" update="@([id$=jsIncluded])"/>
                 <li>
                     <div class="circle medium">
                         <figure class="imgLiquidFill">
@@ -94,10 +84,16 @@
                             <span/>
                         </h:outputText>
 
-                        <p:link outcome="dishDetail" fragment="item-detail">
+                        <!--<p:link outcome="dishDetail" fragment="item-detail">-->
+                            <!--<h6><h:outputText value="#{goods.name}"/></h6>-->
+                            <!--<f:param name="dishId" value="#{goods.idGood}"/>-->
+                        <!--</p:link>-->
+                        <h:commandLink>
                             <h6><h:outputText value="#{goods.name}"/></h6>
-                            <f:param name="dishId" value="#{goods.idGood}"/>
-                        </p:link>
+                            <f:ajax listener="#{reviewController.changeGoodId(goods.idGood)}"/>
+                            <f:ajax execute="@form" render="writeShopState formGroupShop formGroupDetail formGroupDetail2 cat-menu goodsForm pagerForm"/>
+                        </h:commandLink>
+
 
                         <p:rating readonly="true"
                                   class="rate stars red"
@@ -127,9 +123,8 @@
                                    value="#{msg.add_to_cart}">
                     </p:commandLink>
                 </li>
-            </p:dataGrid>
+            </p:repeat>
             <!--/Grid Form-->
-
 
             <!--Detail Form-->
             <p:dataList id="goodDetail" var="goods" value="#{goodController.lazyModel}"
@@ -174,10 +169,15 @@
                             <span/>
                         </h:outputText>
 
-                        <p:link outcome="dishDetail" fragment="item-detail">
+                        <!--<p:link outcome="dishDetail" fragment="item-detail">-->
+                            <!--<h6><h:outputText value="#{goods.name}"/></h6>-->
+                            <!--<f:param name="dishId" value="#{goods.idGood}"/>-->
+                        <!--</p:link>-->
+                        <h:commandLink>
                             <h6><h:outputText value="#{goods.name}"/></h6>
-                            <f:param name="dishId" value="#{goods.idGood}"/>
-                        </p:link>
+                            <f:ajax listener="#{reviewController.changeGoodId(goods.idGood)}"/>
+                            <f:ajax execute="@form" render="writeShopState groupShopOrDetail cat-menu goodsForm pagerForm"/>
+                        </h:commandLink>
 
                         <p:rating readonly="true" class="rate stars red"
                                   value="#{goods.avgRating}" stars="5" cancel="false"
@@ -247,10 +247,15 @@
                     </div>
                     <article>
 
-                        <p:link outcome="dishDetail" fragment="item-detail">
+                        <!--<p:link outcome="dishDetail" fragment="item-detail">-->
+                            <!--<h6><h:outputText value="#{goods.name}"/></h6>-->
+                            <!--<f:param name="dishId" value="#{goods.idGood}"/>-->
+                        <!--</p:link>-->
+                        <h:commandLink>
                             <h6><h:outputText value="#{goods.name}"/></h6>
-                            <f:param name="dishId" value="#{goods.idGood}"/>
-                        </p:link>
+                            <f:ajax listener="#{reviewController.changeGoodId(goods.idGood)}"/>
+                            <f:ajax execute="@form" render="writeShopState groupShopOrDetail cat-menu goodsForm pagerForm"/>
+                        </h:commandLink>
 
                         <p:rating readonly="true"
                                   class="rate stars red"
@@ -268,7 +273,15 @@
             </p:dataList>
             <!--/List Form-->
         </ul>
-    </h:form>
+    </h:panelGroup>
     <!--/SHOP-->
+
+
+    <h:panelGroup id="writeShopState">
+        <h:outputScript rendered="false">
+            history.pushState({cat:"#{goodController.selectedBrandId}"} + {dish:"#{reviewController.selectedGoodId}"} + {page:"#{controller.pageNumber+1}"},
+            "Title", "?cat=" + "#{goodController.selectedBrandId}"+ "&amp;dish=" + "#{reviewController.selectedGoodId}" + "&amp;page=" + "#{controller.pageNumber+1}");
+        </h:outputScript>
+    </h:panelGroup>
 </f:view>
 </html>

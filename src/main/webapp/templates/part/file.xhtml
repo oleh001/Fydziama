@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <!--FILE UPLOAD-->
+    <!--/CATEGORIES-->
+    <h:form id="form" enctype="multipart/form-data" >
+        <h:inputFile id="file" value="#{fotoOfferController.uploadedFile}"  fileUploadListener="#{fotoOfferController.upload}" valueChangeListener="#{fotoOfferController.upload}" validator="#{fotoOfferController.upload}"/>
+        <h:inputText value="#{fotoOfferController.text}"/>
+        <h:commandButton value="Upload"
+                         actionListener="#{fotoOfferController.upload}" >
+
+        </h:commandButton>
+    </h:form>
+
+
+    <h:form>
+        <input type="file" id="myFile" size="50" onchange="myFunction()"/>
+    </h:form>
+    <!--/CATEGORIES-->
+
+    <p id="demo"/>
+    <div id="imgContainer"/>
+
+    <img id="imggg" src="" alt=""/>
+
+    <h:outputScript>
+        function myFunction(){
+
+        var x = document.getElementById("myFile");
+        var txt = "";
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        console.log(reader.result + '->' + typeof reader.result)
+        var thisImage = reader.result;
+        localStorage.setItem("imgData", thisImage);
+        };
+        reader.readAsDataURL(x.files[0]);
+
+        var dataImage = localStorage.getItem('imgData');
+        alert(dataImage);
+        console.log(dataImage);
+        var imgCtr = document.getElementById("imggg").setAttribute('src', dataImage);
+        alert(x.files[0].size);
+        $('div#imgContainer').append(imgCtr);
+
+
+        <!--if ('files' in x) {-->
+        <!--if (x.files.length == 0) {-->
+        <!--txt = "Select one or more files.";-->
+        <!--} else {-->
+        <!--for (var i = 0; i  x.files.length; i++) {-->
+        <!--txt += "<br/><strong>" + (i+1) + ". file</strong><br/>";-->
+        <!--var file = x.files[i];-->
+        <!--if ('name' in file) {-->
+        <!--txt += "name: " + file.name + "<br/>";-->
+        <!--}-->
+        <!--if ('size' in file) {-->
+        <!--txt += "size: " + file.size + " bytes <br/>";-->
+        <!--}-->
+        <!--}-->
+        <!--}-->
+        <!--}-->
+        <!--else {-->
+        <!--if (x.value == "") {-->
+        <!--txt += "Select one or more files.";-->
+        <!--} else {-->
+        <!--txt += "The files property is not supported by your browser!";-->
+        <!--txt  += "<br/>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead.-->
+        <!--}-->
+        <!--}-->
+        // document.getElementById("demo").innerHTML = txt;
+        // document.getElementById("callRemoteMethod").val = x.files[0].content;
+        }
+    </h:outputScript>
+
+    <p><strong>Tip:</strong> Use the Control or the Shift key to select multiple files.</p>
+
+</f:view>
+</html>

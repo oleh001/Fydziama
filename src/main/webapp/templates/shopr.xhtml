@@ -11,10 +11,16 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
 </head>
 
+<!--For Shop-->
 <f:metadata>
-    <f:viewParam name="category" value="#{goodController.selectedBrandId}" />
-    <f:viewParam name="category" value="#{goodController.catAll}" />
-    <f:event type="postAddToView" listener="#{goodController.attributeListener}"/>
+    <f:viewParam name="cat" value="#{goodController.selectedBrandId}"/>
+    <f:viewParam name="cat" value="#{goodController.catAll}"/>
+    <f:viewParam name="dish" value="#{reviewController.selectedGoodId}"/>
+    <f:viewAction action="#{goodController.attributeListener}"/>
+    <f:viewAction action="#{reviewController.attributeListener}"/>
+    <!--<f:event type="postAddToView" listener="#{goodController.attributeListener}"/>-->
+    <!--<f:event type="postAddToView" listener="#{reviewController.attributeListener}"/>-->
+    <!--<f:event type="postAddToView" listener="#{goodController.backOrNextStateHistory}"/>-->
 </f:metadata>
 
 <ui:composition template="template.xhtml">
@@ -38,15 +44,48 @@
 
                     </aside>
                     <article id="uppdate" class="right">
+                        <h:form id="formGroupShop">
+                            <h:panelGroup id="groupShop" rendered="#{goodController.shopTrueOrDetailFalse}">
+                                <!--SHOP DISH-->
+                                <ui:include src="part/shop.xhtml"/>
+                                <!--/SHOP DISH-->
 
-                        <!--SHOP DISH-->
-                        <ui:include src="part/shop.xhtml"/>
-                        <!--/SHOP DISH-->
+                                <!--PAGINATION-->
+                                <ui:include src="part/pagination.xhtml">
+                                    <!--Parameter for nawigation-->
+                                    <ui:param name="controller" value="#{goodController}"/>
+                                </ui:include>
+                                <!--/PAGINATION-->
+                            </h:panelGroup>
+                        </h:form>
 
-                        <!--PAGINATION-->
-                        <!--<ui:include src="part/pagination.xhtml"/>-->
-                        <!--/PAGINATION-->
+                        <h:form id="formGroupDetail">
+                            <h:panelGroup id="groupDetail" rendered="#{!goodController.shopTrueOrDetailFalse}">
+                                <!--ITEM DETAIL-->
+                                <ui:include src="part/itemDishDetail.xhtml"/>
+                                <!--/ITEM DETAIL-->
 
+                                <!--ITEM REVIEWS-->
+                                <ui:include src="part/itemDishReviews.xhtml"/>
+                                <!--/ITEM REVIEWS-->
+
+                                <!--PAGINATION-->
+                                <ui:include src="part/pagination.xhtml">
+                                    <!--Parameter for nawigation-->
+                                    <ui:param name="controller" value="#{reviewController}"/>
+                                </ui:include>
+                                <!--/PAGINATION-->
+                            </h:panelGroup>
+                        </h:form>
+
+
+                        <h:form id="formGroupDetail2">
+                            <h:panelGroup id="groupDetail2" rendered="#{!goodController.shopTrueOrDetailFalse}">
+                                <!--REVIEW INPUT-->
+                                <ui:include src="part/itemDishReviewInput.xhtml"/>
+                                <!--/REVIEW INPUT-->
+                            </h:panelGroup>
+                        </h:form>
                     </article>
                     <div class="cleaner"/>
                 </section>

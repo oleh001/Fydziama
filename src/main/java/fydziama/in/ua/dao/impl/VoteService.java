@@ -20,13 +20,13 @@ public class VoteService implements VoteDao {
     private VoteRepository voteRepository;
 
     @Override
-    public String isVisibility(List<Vote> obj, int count) {
-        return obj.size()>count?"true":"false";
+    public boolean isVisibility(List<Vote> obj, int count) {
+        return obj.size()>count;
     }
 
     @Override
-    public String isVisibility(Page<Vote> obj, int count) {
-        return obj.getTotalPages()>count?"true":"false";
+    public boolean isVisibility(Page<Vote> obj, int count) {
+        return obj.getTotalPages()>count;
     }
 
     @Override

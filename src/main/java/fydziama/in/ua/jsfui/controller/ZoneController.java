@@ -30,8 +30,8 @@ public class ZoneController extends AbstractController<Zone> {
     private Zone selectedZone;
 
     @Override
-    public String vizibilityAction() {
-        return null;
+    public boolean vizibilityAction() {
+        return false;
     }
 
     @Override
@@ -57,6 +57,7 @@ public class ZoneController extends AbstractController<Zone> {
     public void deleteAction() {
         zoneDao.delete(selectedZone);
     }
+
     public List<Zone> getAll() {
         return zoneDao.getAll(new Sort(Sort.Direction.ASC, ZONE_SEARCH_COLUMN));
     }

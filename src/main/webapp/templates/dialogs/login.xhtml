@@ -17,6 +17,7 @@
             <h:form id="login-form">
                 <h:commandLink styleClass="form-close" action="#{userController.closeDialogLogin()}">
                     <o:graphicImage name="images/form-close.png" alt="close" dataURI="true"/>
+                    <f:ajax/>
                 </h:commandLink>
 
                 <o:graphicImage name="images/form-logo.png" alt="logo" dataURI="true"/>
@@ -43,10 +44,12 @@
 
                 <a href="#" class="popup reset">#{msg.did_you_forget_your_password}</a>
 
-                <h:commandButton id="checkout_login" update = "@form"
-                                 value="#{msg.login}"
+                <h:commandButton id="checkout_login" value="#{msg.login}"
                                  actionListener="#{userController.logIn}"
-                                 oncomplete="javascript:window.location.reload()"/>
+
+                                 >
+                    <f:ajax execute="@form" render="login-form"/>
+                </h:commandButton>
 
                 <p>#{msg.you_dont_have_account}<br/>
                     <a class="register popup" href="#{request.contextPath}/templates/profile.xhtml">
@@ -57,5 +60,14 @@
         </article>
         <!--/LOGIN FORM-->
     </p:dialog>
+
+    <h:panelGroup id="renderedAll">
+        <h:outputScript rendered="true">
+            function refresh() {
+                javascript:window.location.reload();
+            }
+        </h:outputScript>
+    </h:panelGroup>
+
 </f:view>
 </html>

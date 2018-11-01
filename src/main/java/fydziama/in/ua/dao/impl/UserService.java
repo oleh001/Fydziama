@@ -20,13 +20,13 @@ public class UserService implements UserDao {
     private UserRepository userRepository;
 
     @Override
-    public String isVisibility(List<User> obj, int count) {
-        return obj.size()>count?"true":"false";
+    public boolean isVisibility(List<User> obj, int count) {
+        return obj.size()>count;
     }
 
     @Override
-    public String isVisibility(Page<User> obj, int count) {
-        return obj.getTotalPages()>count?"true":"false";
+    public boolean isVisibility(Page<User> obj, int count) {
+        return obj.getTotalPages()>count;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class UserService implements UserDao {
 
     @Override
     public User checkoutLogin(String login, String password){
-        return userRepository.findByLoginContainingIgnoreCaseAndPassword(login, password);
+        return userRepository.findByLoginIgnoreCaseAndPassword(login, password);
     }
 
 

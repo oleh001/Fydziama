@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:form id="itemDetailForm">
+    <h:panelGroup id="itemDetailForm">
         <!--ITEM DETAIL-->
         <article id="item-detail">
             <h2><span>#{msg.shop_category}</span> Name (Якась категорія)</h2>
@@ -18,7 +18,7 @@
                     <o:graphicImage name="images/menu-05.jpg" alt="item" dataURI="true"/>
                 </figure>
                 <div class="shadow"/>
-                <div class="fill #{goodController.getStyleCircle(goodController.selectedGood)}"/>
+                <div class="fill #{goodController.getStyleCircle()}"/>
             </div>
             <article>
                 <h3>#{goodController.selectedGood.name}<span>$#{goodController.selectedGood.price}</span></h3>
@@ -56,12 +56,12 @@
                 <div class="cleaner"/>
                 <p:commandLink styleClass="button red" value="#{msg.add_to_cart}"
                                actionListener="#{orderController.addToCart(goodController.selectedGood)}"
-                               update="@([id$=jsIncluded]) @([id$=menuCheckout])"
+                               update="@([id$=menuCheckout]) @([id$=itemDetailForm])"
                                rendered="#{goodController.selectedGood.hits=='FALSE'}"/>
 
                 <p:commandLink styleClass="button gold" value="#{msg.add_to_cart}"
                                actionListener="#{orderController.addToCart(goodController.selectedGood)}"
-                               update="@([id$=jsIncluded]) @([id$=menuCheckout])"
+                               update="@([id$=menuCheckout]) @([id$=itemDetailForm])"
                                rendered="#{goodController.selectedGood.hits=='TRUE'}"/>
 
                 <p class="quantity">#{orderDetailController.quantity} #{msg.quantity_name}</p>
@@ -78,6 +78,6 @@
             <div class="cleaner"/>
         </article>
         <!--/ITEM DETAIL-->
-    </h:form>
+    </h:panelGroup>
 </f:view>
 </html>

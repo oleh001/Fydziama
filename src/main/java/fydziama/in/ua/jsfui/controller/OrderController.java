@@ -2,7 +2,10 @@ package fydziama.in.ua.jsfui.controller;
 
 import com.google.common.hash.Hashing;
 import fydziama.in.ua.dao.OrderDao;
-import fydziama.in.ua.entity.*;
+import fydziama.in.ua.entity.Good;
+import fydziama.in.ua.entity.Order;
+import fydziama.in.ua.entity.OrderDetail;
+import fydziama.in.ua.entity.OrderStatus;
 import fydziama.in.ua.jsfui.model.LazyDataTable;
 import lombok.Getter;
 import lombok.Setter;
@@ -67,7 +70,7 @@ public class OrderController extends AbstractController<Order> {
     @PostConstruct
     public void init() {
         lazyModel = new LazyDataTable(this);
-        searchOrderDetail();
+//        searchOrderDetail();
     }
 
     public void save() {
@@ -80,7 +83,7 @@ public class OrderController extends AbstractController<Order> {
     }
 
     @Override
-    public String vizibilityAction() {
+    public boolean vizibilityAction() {
         return orderDao.isVisibility(orderPage, countPages);
     }
 
@@ -191,10 +194,11 @@ public class OrderController extends AbstractController<Order> {
         }
     }
 
-    public void updateZone(Zone orderZone) {
-        log.log(Level.WARNING, orderZone.getName());
-        selectedOrderStart.setZone(orderZone);
-    }
+//    public void updateZone(Zone orderZone) {
+//        log.log(Level.WARNING, orderZone.getName());
+//        log.log(Level.WARNING, selectedOrderStart.getZone().getName());
+//        selectedOrderStart.setZone(orderZone);
+//    }
 
     public Order showOrderStart() {
         setOrderStart();
@@ -263,6 +267,7 @@ public class OrderController extends AbstractController<Order> {
     }
 
     public void addToCart(Good good) {
+        log.log(Level.WARNING, good.getName());
         boolean saveGood = false;
         if (orderStartBool) {
             for (OrderDetail oldStart : selectedOrderStart.getOrderDetails()) {
@@ -297,44 +302,6 @@ public class OrderController extends AbstractController<Order> {
 
         orderDetailController.setOrderDetailList(selectedOrderStart.getOrderDetails());
         orderDetailController.updateTotalPrice();
-    }
-
-    public boolean addToCart2(Good good) {
-        boolean saveGood = false;
-        if (orderStartBool) {
-            for (OrderDetail oldStart : selectedOrderStart.getOrderDetails()) {
-                if (oldStart.getGood().getIdGood().equals(good.getIdGood())) {
-                    oldStart.setQuantity(oldStart.getQuantity() + orderDetailController.getQuantity());
-//                        selectedOrderDetail = oldStart;
-                    save(selectedOrderStart);
-                    saveGood = true;
-                    break;
-                }
-            }
-            if (!saveGood) {
-                addNewCartOrWithList(selectedOrderStart, good);
-            }
-            orderDetailController.setQuantity(1);
-        } else {
-            orderStartBool = true;
-
-            if (userController.isUserLogin()) {
-                selectedOrderStart = new Order(userController.getSelectedUser(), OrderStatus.START);
-            } else {
-                selectedOrderStart = new Order(userController.getSelectedVirtualUser(), OrderStatus.START);
-            }
-            ArrayList<OrderDetail> list = new ArrayList<>();
-            list.add(new OrderDetail(selectedOrderStart, good, orderDetailController.getQuantity()));
-            selectedOrderStart.setOrderDetails(list);
-            selectedOrderStart.setZone(zoneController.getAll().get(0));
-            save(selectedOrderStart);
-
-            orderDetailController.save(list.get(0));
-        }
-
-        orderDetailController.setOrderDetailList(selectedOrderStart.getOrderDetails());
-        orderDetailController.updateTotalPrice();
-        return false;
     }
 
     public void addNewCartOrWithList(Order order, Good good) {

@@ -6,7 +6,7 @@ a label {
 }
 
 .ui-widget{
-    font-family: 'Source Sans Pro', sans-serif !important;
+    font-family:  'Source Sans Pro', sans-serif;
     /*font-size: 1em !important;*/
 }
 
@@ -191,6 +191,8 @@ button.ui-button:hover {
 	17.6 Item Reviews / #item-reviews
 	17.7 Review Input / #review-input
 	17.8 Pager / #pager
+17. 1 UPLOAD / #upload
+    17.1.1 File / #file
 18. Promo / #promo
 19. FAQ / #faq
 20. Profile / #profile
@@ -242,6 +244,7 @@ figure {
     line-height: 0;
 }
 
+/*//////////////////////////////////////////////////////////////////////////////////////////*/
 figure > img {
     width: 100%;
     border-radius: 50%;
@@ -250,6 +253,7 @@ figure > img {
 figure > img.history_img {
     border-radius: 0;
 }
+/*//////////////////////////////////////////////////////////////////////////////////////////*/
 
 figure figcaption {
     display: none;
@@ -258,26 +262,13 @@ figure figcaption {
 /***************************************/
 /* 2. GENERAL */
 /***************************************/
-p, a {
-    font-family: 'Source Sans Pro', sans-serif;
-}
+p, a {font-family: 'Source Sans Pro', sans-serif;}
 
 h1, h2, h3,
 h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
 }
-
-/*//////////////////////////////////////*/
-/*.classh6 {*/
-    /*font-family: 'Oswald', sans-serif !important;*/
-    /*text-transform: uppercase;*/
-    /*font-size: 1.125em !important;*/
-    /*font-weight: 400;*/
-    /*color: #484848 !important;*/
-/*}*/
-
-/*////////////////////////////////////////*/
 
 h1 {
     font-size: 3em; /* 48px / 16px */
@@ -347,6 +338,7 @@ span.remarked.gold {
     color: #ffaa17;
 }
 
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
 a.button {
     display: block;
     height: 30px;
@@ -359,12 +351,13 @@ a.button {
     transition: background-color .2s ease-in-out;
     -webkit-transition: background-color .2s ease-in-out;
 }
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*Не треба*/
-a.button > label {
-    color: #fff !important;
-    font-weight: 900;
-}
+/*a.button > label {*/
+    /*color: #fff !important;*/
+    /*font-weight: 900;*/
+/*}*/
 /*Не треба*/
 
 a.button.red {
@@ -495,7 +488,7 @@ ul.social.big > li > a.social-icon.gplus {
 #specials, #team, #history,
 #phone-order, #combos,
 #stats, #contact, footer,
-#shop, #promo, #faq, #profile,
+#shop, #upload, promo, #faq, #profile,
 #checkout, #forms {
     max-width: 1170px;
     width: 90%;
@@ -516,7 +509,6 @@ form label {
     margin-right: 10px;
     float: left;
 }
-/*//////////////////////////////////////////////////////////////////////////////////////////////*/
 
 form#ctc label,
 form#delivery-info label {
@@ -540,6 +532,7 @@ form textarea {
     padding: 10px 15px;
     margin-bottom: 20px;
 }
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
 
 button {
     font-size: 0.75em; /* 12px / 16px  */
@@ -592,6 +585,7 @@ button {
 /*----------------------
   2.3.2 ERROR MESSAGES
 ----------------------*/
+/*/////////////////////////////////////////////////////////////////////////////////////*/
 .ui-state-error {
     border: 1px solid #cd0a0a !important
 }
@@ -626,7 +620,7 @@ form input.error,
 form textarea.error {
     border-color: #db2e2e;
 }
-
+/*/////////////////////////////////////////////////////////////////////////////////////*/
 /*-------------------
   2.3.3 OK MESSAGES
 -------------------*/
@@ -701,13 +695,16 @@ input[type="checkbox"]:checked + label:before,
     line-height: 10px;
     text-align: center;
 }
+/*/////////////////////////////////////////////////////////////////////////////////*/
 
 /*--------------------
   2.4 FORM POPUP BOX
 --------------------*/
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 .ui-dialog-content {
     padding: 0 !important;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .form-box-overlay {
     position: fixed;
@@ -720,6 +717,7 @@ input[type="checkbox"]:checked + label:before,
     display: none;
 }
 
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 .form-box {
     width: 400px;
     background-color: #fff;
@@ -732,6 +730,7 @@ input[type="checkbox"]:checked + label:before,
     margin-left: 0 !important;
     display: block;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .form-box img[alt="close"] {
     position: absolute;
@@ -839,6 +838,13 @@ input[type="checkbox"]:checked + label:before,
     margin-bottom: 28px;
 }
 
+.form-box.register form + a {
+    float: left;
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 .form-box form a.popup.reset {
     float: right;
     font-size: 0.875em; /* 14px / 16px */
@@ -848,24 +854,10 @@ input[type="checkbox"]:checked + label:before,
     margin-bottom: 28px;
 }
 
-.form-box.register form + a {
-    float: left;
-    margin-left: 5px;
-    margin-top: 2px;
-}
-
 .form-box.register form a.popup.reset {
     float: left;
     margin-left: 5px;
     margin-top: 2px;
-}
-
-.form-box > p {
-    font-size: 0.875em; /* 14px / 16px */
-    font-weight: 300;
-    color: #a0a0a0;
-    line-height: 1.3em;
-    text-align: center;
 }
 
 .form-box p {
@@ -876,12 +868,21 @@ input[type="checkbox"]:checked + label:before,
     text-align: center;
 }
 
-.form-box > p > a {
+.form-box p a {
     font-weight: 600;
     color: #db2e2e;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-.form-box p a {
+.form-box > p {
+    font-size: 0.875em; /* 14px / 16px */
+    font-weight: 300;
+    color: #a0a0a0;
+    line-height: 1.3em;
+    text-align: center;
+}
+
+.form-box > p > a {
     font-weight: 600;
     color: #db2e2e;
 }
@@ -1121,7 +1122,6 @@ div.circle.large div.fill {
 /*-------------------
   4.1 GRID
 -------------------*/
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 ul.dishes {
     width: 1170px;
     margin: 0 auto;
@@ -1129,13 +1129,14 @@ ul.dishes {
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 ul.dishes li {
-    /*float: left;*/
-    /*margin: 0 30px 30px 0;*/
+    float: left;
+    margin: 0 30px 30px 0;
     padding-top: 80px;
     position: relative;
-    width: 95%;
-    margin: auto;
+    /*width: 95%;*/
+    /*margin: auto;*/
 }
+
 #specialDishForm li {
     float: left;
     margin: 0 30px 30px 0;
@@ -1301,7 +1302,6 @@ ul.rate.stars.gold > li {
 ul.rate.hearts.gold > li {
     background-image: url('../images/heart-gold.png');
 }
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*--------------
   4.2 DETAIL
@@ -1394,10 +1394,8 @@ ul.dishes.detail li > a.button {
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 ul.dishes.list li {
     float: none;
-    /*margin: 0 30px 30px 0;*/
     margin-right: 0;
     padding: 5px 0 5px 65px;
-    /*width: 100%;*/
 }
 
 ul.dishes.list li > h6 {
@@ -1453,41 +1451,62 @@ ul.dishes.list li > article > p {
 /*-------------
   4.4 PAGER
 -------------*/
-/*#pager {*/
-    /*margin: 0 auto;*/
-/*}*/
+/*////////////////////////////////////////////////////////////////////////////////*/
+#pager > li > a.disabledtrue{
+    pointer-events: none;
+    cursor: default;
+    color: #999;
+}
 
-/*#pager > li {*/
-    /*float: left;*/
-    /*margin-right: 10px;*/
-/*}*/
+#pager > li > a.disabledtrue:hover{
+    opacity: .50;
+}
 
-/*#pager > li:last-child {*/
-    /*margin-right: 0;*/
-/*}*/
+#pager > li > a.first-page,
+#pager > li > a.last-page{
+    font-size: 1.5em;
+    line-height: 25px;
+}
+/*////////////////////////////////////////////////////////////////////////////////*/
 
-/*#pager > li > a {*/
-    /*display: block;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*border-radius: 50%;*/
-    /*border: 1px solid #e3e3e3;*/
+#pager {
+    margin: 0 auto;
+}
+
+#pager > li {
+    float: left;
+    margin-right: 10px;
+}
+
+#pager > li:last-child {
+    margin-right: 0;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////*/
+#pager > li > a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #e3e3e3;
     /*font-size: 0.75em; !* 12px / 16px *!*/
-    /*font-weight: 400;*/
-    /*color: #a0a0a0;*/
-    /*text-align: center;*/
-    /*line-height: 30px;*/
-    /*transition: all .3s ease-in-out;*/
-    /*-webkit-transition: all .3s ease-in-out;*/
-/*}*/
+    font-size: 1em; /* 12px / 16px */
+    font-weight: 400;
+    color: #a0a0a0;
+    text-align: center;
+    line-height: 25px;
+    transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+}
+/*////////////////////////////////////////////////////////////////////////////////////*/
 
-/*#pager > li.selected > a,*/
-/*#pager > li > a:hover {*/
-    /*color: #fff;*/
-    /*font-weight: 700;*/
-    /*border-color: #db2e2e;*/
-    /*background-color: #db2e2e;*/
-/*}*/
+#pager > li.selected > a,
+#pager > li > a:hover {
+    color: #fff;
+    font-weight: 700;
+    border-color: #db2e2e;
+    background-color: #db2e2e;
+}
 
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 .ui-paginator, .ui-paginator-bottom {
@@ -1615,11 +1634,14 @@ ul.dishes.list li > article > p {
     left: -22px;
 }
 
-#header-top > ul.social {
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#header-top ul.social {
     float: right;
     width: 115px;
     margin: 10px 25px 0 0;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #header-top article {
@@ -2817,6 +2839,7 @@ ul.cat-menu > li > a.brand-active {
     color: #db2e2e;
     padding-left: 35px;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*-------------------
   17.2 NEW DISHES
@@ -2864,6 +2887,7 @@ ul.new-dishes > li > p {
     position: relative;
 }
 
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
 #shop > article ul.dishes {
     width: 870px;
     margin: 30px auto;
@@ -2873,6 +2897,7 @@ ul.new-dishes > li > p {
 #shop > article ul.dishes.grid li:nth-child(3n+3) {
     margin-right: 0;
 }
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*--------------
   17.4 VIEWS
@@ -3055,21 +3080,14 @@ ul.views > li > a.list {
 -------------------*/
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #shop #item-reviews article {
-
-}
-
-#shop #item-reviews .ui-datalist-item {
     padding: 30px 0 25px;
-    border-bottom: 1px solid #d2d2d2 !important;
+    border-bottom: 1px solid #d2d2d2;
 }
 
-#shop #item-reviews .ui-datalist-item:last-child {
-    padding-bottom: 0;
-    border-bottom: none !important;
-    margin-bottom: 40px;
+#shop #item-reviews article:last-of-type {
+    border-bottom: none;
+    margin-bottom: 10px;
 }
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #shop #item-reviews article > h6 {
     color: #282828;
@@ -3079,16 +3097,9 @@ ul.views > li > a.list {
     font-weight: 300;
 }
 
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #shop #item-reviews ul.rate {
     margin: 6px 0 10px;
 }
-
-#shop #item-reviews .ui-rating {
-    margin: 6px 0 10px;
-}
-
-/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #shop #item-reviews article > p {
     font-size: 0.875em; /* 14px / 16px */
@@ -3100,6 +3111,24 @@ ul.views > li > a.list {
 #shop #item-reviews #pager {
     margin-bottom: 30px;
 }
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#shop #item-reviews .ui-datalist-item {
+    padding: 30px 0 25px;
+    border-bottom: 1px solid #d2d2d2 !important;
+}
+
+#shop #item-reviews .ui-datalist-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none !important;
+    margin-bottom: 40px;
+}
+
+#shop #item-reviews .ui-rating {
+    margin: 6px 0 10px;
+}
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /*-------------------
   17.7 REVIEW INPUT
@@ -3124,7 +3153,6 @@ ul.views > li > a.list {
     font-weight: 600;
     color: #db2e2e;
 }
-
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #shop #review-input textarea {
@@ -3143,10 +3171,12 @@ ul.views > li > a.list {
     margin: 20px 10px 0 0;
 }
 
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #shop #review-input > article > div.rate {
     float: left;
     margin: 20px 35px 0 0;
 }
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #shop #review-input > article > ul.rate > li {
     cursor: pointer;
@@ -3162,10 +3192,68 @@ ul.views > li > a.list {
 /*--------------
   17.8 PAGER
 --------------*/
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
 #shop #pager {
     overflow: hidden;
-    width: 190px;
+    width: 300px;
 }
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/***************************************/
+/* 17. 1 UPLOAD */
+/***************************************/
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+#file-upload {
+    background-color: #fff;
+}
+
+#upload {
+    padding: 80px 0 100px;
+}
+
+#upload h2 {
+    font-size: 1.875em; /* 30px / 16px */
+}
+
+#upload > aside h2 + hr {
+    width: 50%;
+}
+
+#upload > aside h2 + hr + hr {
+    margin-bottom: 15px;
+}
+
+#upload > aside {
+    width: 270px;
+}
+
+#upload > .left {
+    float: left;
+}
+
+#upload > .right {
+    float: right;
+}
+
+/*-----------
+      19 FILE
+-----------*/
+#upload #file > article {
+    /*float: none;*/
+    width: 870px;
+}
+
+#upload img[alt="banner"] {
+    margin-top: 45px;
+}
+
+#upload img[alt*="banner"] {
+    float: left;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////////////////////*/
+
 
 /***************************************/
 /* 18. PROMO */
@@ -3398,6 +3486,7 @@ ul.views > li > a.list {
 #delivery-info div:nth-child(even) {
     float: left;
 }
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 #delivery-info textarea {
     height: 140px;
@@ -3410,7 +3499,6 @@ ul.views > li > a.list {
 #delivery-info label[for="autocomplete"] {
     display: inline-block;
 }
-/*//////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 /***************************************/
 /* 21. CHECKOUT */
@@ -3566,47 +3654,48 @@ ul.views > li > a.list {
     margin-bottom: 30px;
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-.cart-header {
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
+#cart-header, .cart-header {
     border-bottom: 1px solid #d2d2d2;
     padding-bottom: 10px;
     overflow: hidden;
 }
 
-.cart-header > p {
+#cart-header > p, .cart-header > p {
     font-size: 0.875em; /* 14px / 16px */
     font-weight: 400;
     color: #282828;
     float: left;
 }
 
-.cart-header > p:nth-child(1) {
+#cart-header > p:nth-child(1), .cart-header > p:nth-child(1) {
     width: 70px;
     margin-right: 30px;
 }
 
-.cart-header > p:nth-child(2) {
+#cart-header > p:nth-child(2), .cart-header > p:nth-child(2){
     width: 270px;
     margin-right: 65px;
 }
 
-.cart-header > p:nth-child(3) {
+#cart-header > p:nth-child(3), .cart-header > p:nth-child(3){
     width: 65px;
     margin-right: 30px;
     margin-left: 8px;
 }
 
-.cart-header > p:nth-child(4) {
+#cart-header > p:nth-child(4), .cart-header > p:nth-child(4){
     width: 55px;
     margin-right: 60px;
 }
 
-.cart-header > p:nth-child(5) {
+#cart-header > p:nth-child(5), .cart-header > p:nth-child(5){
     width: 60px;
     margin-right: 40px;
 }
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////*/
 
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 #cart ul {
     margin-bottom: 45px;
 }
@@ -3614,7 +3703,9 @@ ul.views > li > a.list {
 #cart ul > li {
     border-bottom: 1px solid #d2d2d2;
     padding: 15px 0 12px 6px;
+    /*///////////////////////////////////////////*/
     /*height: 80px;*/
+    /*///////////////////////////////////////////*/
     overflow: hidden;
     position: relative;
 }
@@ -3664,6 +3755,7 @@ div.quantity {
     width: 68px;
     margin-right: 45px;
 }
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 div.quantity > div {
     width: 30px;
@@ -4166,21 +4258,23 @@ a.counter.down {
         width: 67%;
     }
 
-    #shop > article > ul.dishes {
+    /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+    #shop > article ul.dishes {
         width: 600px;
     }
 
-    #shop > article > ul.dishes.list {
+    #shop > article ul.dishes.list {
         width: 100%;
     }
 
-    #shop > article > ul.dishes.grid > li:nth-child(odd) {
+    #shop > article ul.dishes.grid > li:nth-child(odd) {
         margin-right: 60px;
     }
 
-    #shop > article > ul.dishes.grid > li:nth-child(even) {
+    #shop > article ul.dishes.grid > li:nth-child(even) {
         margin-right: 0;
     }
+    /*///////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
     #shop ul.dishes.detail div.price,
     #shop ul.dishes.detail a.button {
@@ -4477,17 +4571,19 @@ a.counter.down {
         width: 100%;
     }
 
-    #shop > article > ul.dishes.grid {
+    /*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
+    #shop > article ul.dishes.grid {
         width: 600px;
     }
 
-    #shop > article > ul.dishes.grid > li:nth-child(odd) {
+    #shop > article ul.dishes.grid > li:nth-child(odd) {
         margin-right: 60px;
     }
 
-    #shop > article > ul.dishes.grid > li:nth-child(even) {
+    #shop > article ul.dishes.grid > li:nth-child(even) {
         margin-right: 0;
     }
+    /*/////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
     #shop > aside {
         float: none;
@@ -4623,7 +4719,7 @@ a.counter.down {
         right: 180px;
     }
 
-    #checkout .cart-header {
+    #checkout #cart-header {
         display: none;
     }
 
@@ -4666,9 +4762,11 @@ a.counter.down {
     /*-----------------
       5.1 HEADER-TOP
     -----------------*/
-    #header-top > ul.social {
+    /*///////////////////////////////////////////////////////////////////////*/
+    #header-top ul.social {
         display: none;
     }
+    /*///////////////////////////////////////////////////////////////////////*/
 
     /*---------------
       11. COMBOS
@@ -4736,14 +4834,15 @@ a.counter.down {
     /*-------------------
       17.3 DISH GALLERY
     -------------------*/
-    #shop > article > ul.dishes.grid {
+    /*////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+    #shop > article ul.dishes.grid {
         width: 570px;
     }
 
-    #shop > article > ul.dishes.grid > li:nth-child(odd) {
+    #shop > article ul.dishes.grid > li:nth-child(odd) {
         margin-right: 30px;
     }
-
+    /*//////////////////////////////////////////////////////////////////////////////////////////////////////////*/
     #shop ul.dishes.detail {
         width: 270px;
     }
@@ -4837,7 +4936,7 @@ a.counter.down {
         font-size: 40px;
     }
 
-    #header-bottom h1 > span.remarked {
+    #header-bottom h1 span.remarked {
         display: block;
         margin-top: 10px;
     }
@@ -4908,14 +5007,15 @@ a.counter.down {
     /*-------------------
       17.3 DISH GALLERY
     -------------------*/
-    #shop > article > ul.dishes.grid {
+    /*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
+    #shop > article ul.dishes.grid {
         width: 270px;
     }
 
-    #shop > article > ul.dishes.grid > li {
+    #shop > article ul.dishes.grid > li {
         margin-right: 0;
     }
-
+    /*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
     /*--------------
       17.4 VIEWS
     --------------*/
@@ -5144,27 +5244,28 @@ a.counter.down {
     /*-------------------
       17.3 DISH GALLERY
     -------------------*/
-    #shop > article > ul.dishes.list > li hr {
+    /*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
+    #shop > article ul.dishes.list > li hr {
         display: none;
     }
 
-    #shop > article > ul.dishes.list ul.rate {
+    #shop > article ul.dishes.list ul.rate {
         clear: left;
         margin-bottom: 5px;
     }
 
-    #shop > article > ul.dishes.list > li > article h6 {
+    #shop > article ul.dishes.list > li > article h6 {
         line-height: 1.3em;
     }
 
-    #shop > article > ul.dishes.list > li > article {
+    #shop > article ul.dishes.list > li > article {
         padding-right: 0;
     }
 
-    #shop > article > ul.dishes.list > li > h6 {
+    #shop > article ul.dishes.list > li > h6 {
         position: relative;
     }
-
+    /*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
     /*--------------
       17.4 VIEWS
     --------------*/

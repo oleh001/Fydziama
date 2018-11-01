@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import java.io.Serializable;
 
 
-public abstract class AbstractController<T> implements Serializable {
+public abstract class AbstractController<T> extends PagerController<T> implements Serializable{
 
     public static final int DEFAULT_PAGE_SIZE = 6;
     public int rowsCount = DEFAULT_PAGE_SIZE;
@@ -16,7 +16,7 @@ public abstract class AbstractController<T> implements Serializable {
 
     public String visiblePaginator;
 
-    public abstract String vizibilityAction();
+    public abstract boolean vizibilityAction();
 
     // search all
     public abstract Page<T> search(int first, int count, String sortField, Sort.Direction sortDirection);

@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
@@ -14,23 +15,52 @@
             <hr/>
             <ul class="cat-menu">
                 <li>
-                    <p:commandLink styleClass="cat-menu-a brand-name #{goodController.styleAction(0)}"
-                                   actionListener="#{goodController.showAll()}"
-                                   update="@([id$=goodsForm]) cat-menu @([id$=jsIncluded])"
-                                   value="#{msg.all_dishes}"/>
+                    <h:commandLink styleClass="cat-menu-a brand-name #{goodController.styleAction(0)}"
+                                   value="#{msg.all_dishes}"
+                                   actionListener="#{goodController.showAllMenu()}">
+                        <f:ajax listener="#{goodController.showAllMenu()}"/>
+                        <f:ajax execute="@form"
+                                render="writeStateAndUrl groupShopOrDetail formGroupShop formGroupDetail formGroupDetail2 cat-menu goodsForm pagerForm"/>
+                    </h:commandLink>
                 </li>
 
                 <p:repeat value="#{brandController.all}" var="brands">
                     <li>
-                        <p:commandLink styleClass="cat-menu-a brand-name #{goodController.styleAction(brands.idBrand)}"
-                                       actionListener="#{goodController.showGoodsByBrand(brands.idBrand)}"
-                                       update="@([id$=goodsForm]) cat-menu @([id$=jsIncluded])"
-                                       value="#{brands.brand}"/>
+                        <h:commandLink styleClass="cat-menu-a brand-name  #{goodController.styleAction(brands.idBrand)}"
+                                       value="#{brands.brand}"
+                                       actionListener="#{goodController.showGoodsByBrandMenu(brands.idBrand)}">
+                            <f:ajax execute="@form"
+                                    render="writeStateAndUrl groupShopOrDetail formGroupShop formGroupDetail formGroupDetail2 cat-menu goodsForm pagerForm"/>
+                        </h:commandLink>
                     </li>
                 </p:repeat>
+
+                <!--hidden action fired when user navigates in history-->
+                <p:remoteCommand name="commandName"
+                                 actionListener="#{goodController.backOrNextStateHistoryConvertUrl()}"
+                                 />
+
+                <h:inputHidden id="thisUrl" value="#{goodController.url}"/>
             </ul>
         </article>
     </h:form>
+
+    <h:outputScript>
+        window.onpopstate = readState;
+
+        function readState() {
+            var restultState = JSON.stringify(event.state)
+            document.getElementById("cat-menu:thisUrl").value = document.location;
+            commandName();
+        }
+    </h:outputScript>
+
+    <h:panelGroup id="writeMenuState">
+        <h:outputScript rendered="false">
+            history.pushState({cat:"#{goodController.selectedBrandId}"} + {dish:0} + {page:1},
+            "Title", "?cat=" + "#{goodController.selectedBrandId}"+ "&amp;dish=0" + "&amp;page=" + "1");
+        </h:outputScript>
+    </h:panelGroup>
     <!--/CATEGORIES-->
 </f:view>
 </html>

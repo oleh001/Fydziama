@@ -9,7 +9,6 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 // JPA
 @Entity
@@ -46,11 +45,11 @@ public class Review {
 
     @Column(name = "about_fydziama")
     @Enumerated(EnumType.STRING)
-    private GoodVisible aboutFydziama;
+    private Visible aboutFydziama;
 
     @Column(name = "the_best")
     @Enumerated(EnumType.STRING)
-    private GoodVisible theBest;
+    private Visible theBest;
 
     private int rating;
 

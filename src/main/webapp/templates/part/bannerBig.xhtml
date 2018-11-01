@@ -3,9 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:o="http://omnifaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <o:graphicImage name="images/banner-big.png" alt="banner" dataURI="true"/>
+    <p:repeat value="#{bannerController.getBannerType('BIG')}" var="bannerBig">
+        <o:graphicImage name="images/#{bannerBig.image}" alt="banner" dataURI="true"/>
+    </p:repeat>
 </f:view>
 </html>

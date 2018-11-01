@@ -11,17 +11,38 @@
     <h:panelGroup id="panelHeaderTop">
         <div id="header-top-wrap">
             <section id="header-top">
-                <a href="mailto:questions@redsamurai.com">questions@redsamurai.com</a>
-                <p>(096) 183-33-45 | (066) 015-92-54</p>
-                <ul class="social">
-                    <li><a href="#" class="social-icon fb"/></li>
-                    <li><a href="#" class="social-icon twt"/></li>
-                    <li><a href="#" class="social-icon gplus"/></li>
-                </ul>
+                <a href="mailto:#{allDataController.allData.emailAddress}">
+                    <h:outputText value="#{allDataController.allData.emailAddress}"/>
+                </a>
 
+                <p>
+                    <h:outputText value="#{allDataController.allData.phoneNumber}"/>
+                </p>
+                <h:form>
+                    <ul class="social">
+                        <li><h:outputLink rendered="#{allDataController.facebook.length()>0}"
+                                          value="#{allDataController.facebook}" class="social-icon fb" target="_blank"/>
+                        </li>
+                        <li><h:outputLink rendered="#{allDataController.twitter.length()>0}"
+                                          value="#{allDataController.twitter}" class="social-icon twt" target="_blank"/>
+                        </li>
+                        <li><h:outputLink rendered="#{allDataController.googlePlus.length()>0}"
+                                          value="#{allDataController.googlePlus}" class="social-icon gplus"
+                                          target="_blank"/></li>
+
+                        <li><h:outputLink rendered="#{allDataController.instagram.length()>0}"
+                                          value="#{allDataController.instagram}" class="social-icon instagram"
+                                          target="_blank"/></li>
+
+                        <!--<li><a href="#{allDataController.facebook}" class="social-icon fb"/></li>-->
+                        <!--<li><a href="#{allDataController.twitter}" class="social-icon twt"/></li>-->
+                        <!--<li><a href="#{allDataController.googlePlus}" class="social-icon gplus"/></li>-->
+                    </ul>
+                </h:form>
                 <h:form id="formLogin" rendered="#{!userController.userLogin}">
                     <article id="login">
-                        <p:commandLink value="#{msg.login}" styleClass="login popup" actionListener="#{userController.openDialogLogin()}"
+                        <p:commandLink value="#{msg.login}" styleClass="login popup"
+                                       actionListener="#{userController.openDialogLogin()}"
                                        update="@([id$=dialogLoginUser])"/>
 
                         <p>#{msg.not_a_member}
@@ -34,8 +55,10 @@
                 <h:form id="formLogout" rendered="#{userController.userLogin}">
                     <article id="logout">
                         <!--<a href="#">#{msg.logout}</a>-->
-                        <h:commandLink value="#{msg.logout}" action="#{userController.logout()}"
-                                       oncomplete="javascript:window.location.reload()"/>
+                        <h:commandLink value="#{msg.logout}" actionListener="#{userController.logout()}"
+                                       onclick="javascript:window.location.reload()">
+                           <f:ajax/>
+                        </h:commandLink>
 
                         <p>#{msg.welcome_back}
                             <a href="#{request.contextPath}/templates/profile.xhtml">
@@ -48,5 +71,12 @@
         </div>
     </h:panelGroup>
     <!--/HEADER-TOP-->
+
+    <h:panelGroup id="writeStateAndUrl">
+        <h:outputScript>
+            history.pushState({cat:"#{goodController.selectedBrandId}"} + {dish:"#{reviewController.selectedGoodId}"} + {page:"#{controller.pageNumber+1}"},
+            "Title", "?cat=#{goodController.selectedBrandId}" + "&amp;dish=#{reviewController.selectedGoodId}" + "&amp;page=#{controller.pageNumber+1}");
+        </h:outputScript>
+    </h:panelGroup>
 </f:view>
 </html>

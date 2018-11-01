@@ -1,6 +1,6 @@
 package fydziama.in.ua.entity;
 
-public enum GoodVisible {
+public enum Visible {
     TRUE,
     FALSE
 }

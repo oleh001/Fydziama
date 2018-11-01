@@ -16,10 +16,12 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.ViewHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -78,7 +80,7 @@ public class UserController extends AbstractController<User> {
     }
 
     @Override
-    public String vizibilityAction() {
+    public boolean vizibilityAction() {
         return userDao.isVisibility(userPages, countPages);
     }
 
@@ -122,6 +124,7 @@ public class UserController extends AbstractController<User> {
 
     public void closeDialogLogin() {
         RequestContext.getCurrentInstance().execute("PF('dialogLoginUser').hide()");
+        log.log(Level.WARNING, "23456789iujhgfdcvcbfgtytuyhg");
     }
 
     public void closeDialogRregistration() {
@@ -156,6 +159,7 @@ public class UserController extends AbstractController<User> {
 
     public void userTrueOrFalse(boolean bool) {
         userLogin = bool;
+        log.log(Level.WARNING, "           -          " + userLogin + "    " + bool);
     }
 
     public void registration() {
@@ -194,19 +198,20 @@ public class UserController extends AbstractController<User> {
         log.log(Level.WARNING, String.valueOf(userLogin));
         if (String.valueOf(userLogin).equals("null")) {
             log.log(Level.WARNING, "222");
-//                ((UIInput) component).setValid(false);
 
             String message = ResourceBundle.getBundle("fydziama").getString("wrong_username_or_password");
             FacesContext.getCurrentInstance().addMessage("login-form:user_login", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", message));
+            FacesContext.getCurrentInstance().addMessage("formche:user", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", message));
         } else {
             log.log(Level.WARNING, "333");
             selectedUser = userLogin;
             userTrueOrFalse(true);
             saveOrDeleteInputUser(userCheckedLogin);
             RequestContext.getCurrentInstance().execute("PF('dialogLoginUser').hide()");
-
+            log.log(Level.WARNING, "333");
             orderController.searchOrderDetail();
             reviewController.newReview(selectedUser);
+            refreshPage();
         }
         log.log(Level.WARNING, "444");
         return null;
@@ -219,6 +224,15 @@ public class UserController extends AbstractController<User> {
 //        orderController.setOrderStartBool(false);
         orderController.searchOrderDetail();
         reviewController.newReview(selectedVirtualUser);
+    }
+
+    public void refreshPage(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        String viewId = context.getViewRoot().getViewId();
+        ViewHandler handler = context.getApplication().getViewHandler();
+        UIViewRoot root = handler.createView(context, viewId);
+        root.setViewId(viewId);
+        context.setViewRoot(root);
     }
 
     public void createVirtualUser() {
@@ -240,6 +254,7 @@ public class UserController extends AbstractController<User> {
 
     public void saveOrDeleteInputUser(boolean bool) {
         if (!bool) {
+            log.log(Level.WARNING, "333444");
             userNameLogin = null;
             userPasswordLogin = null;
         }

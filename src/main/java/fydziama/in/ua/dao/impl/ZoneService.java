@@ -20,13 +20,13 @@ public class ZoneService implements ZoneDao {
     private ZoneRepository zoneRepository;
 
     @Override
-    public String isVisibility(List<Zone> obj, int count) {
-        return obj.size()>count?"true":"false";
+    public boolean isVisibility(List<Zone> obj, int count) {
+        return obj.size()>count;
     }
 
     @Override
-    public String isVisibility(Page<Zone> obj, int count) {
-        return obj.getTotalPages()>count?"true":"false";
+    public boolean isVisibility(Page<Zone> obj, int count) {
+        return obj.getTotalPages()>count;
     }
 
     @Override

@@ -44,7 +44,7 @@ public class FaqController extends AbstractController<Faq>  {
     }
 
     @Override
-    public String vizibilityAction() {
+    public boolean vizibilityAction() {
         return faqDao.isVisibility(faqPages,countPages);
     }
 

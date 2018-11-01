@@ -1,6 +1,6 @@
 package fydziama.in.ua.spring.repository;
 
-import fydziama.in.ua.entity.GoodVisible;
+import fydziama.in.ua.entity.Visible;
 import fydziama.in.ua.entity.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,5 +20,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     Page<Review> findByGoodIdGoodOrderByReviewDateDesc(long idGood, Pageable pageable);
 
-    List<Review> findByTheBestEquals(GoodVisible bool);
+    List<Review> findByTheBestEquals(Visible bool);
 }

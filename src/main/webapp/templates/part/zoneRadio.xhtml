@@ -14,10 +14,12 @@
             <hr/>
             <hr/>
 
-            <h:selectOneRadio id="console" value="#{orderController.selectedOrderStart.zone}">
+            <h:selectOneRadio id="console" value="#{orderController.selectedOrderStart.zone}" converter="#{zoneConverter}">
                 <f:selectItems value="#{zoneController.all}" var="zone" itemLabel="#{zone.name}"
                                itemValue="#{zone}"/>
-                <p:ajax update="zoneForm" listener="#{orderController.updateZone(zone)}"/>
+
+                <!--For UPDATE Zone in selectedOrderStart-->
+                <p:ajax update="zoneForm" />
             </h:selectOneRadio>
 
             <p><span>#{msg.remember}</span> #{msg.checkout_cart_zone_remember_text}</p>

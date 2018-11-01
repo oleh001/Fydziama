@@ -36,8 +36,8 @@ public class MessageController  extends AbstractController<Message>{
     }
 
     @Override
-    public String vizibilityAction() {
-        return "true";
+    public boolean vizibilityAction() {
+        return true;
     }
 
     @Override

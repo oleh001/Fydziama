@@ -2,7 +2,7 @@ package fydziama.in.ua.dao.impl;
 
 import fydziama.in.ua.dao.FaqDao;
 import fydziama.in.ua.entity.Faq;
-import fydziama.in.ua.entity.GoodVisible;
+import fydziama.in.ua.entity.Visible;
 import fydziama.in.ua.spring.repository.FaqRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,13 +21,13 @@ public class FaqService implements FaqDao {
     private FaqRepository faqRepository;
 
     @Override
-    public String isVisibility(List<Faq> obj, int count) {
-        return obj.size()>count?"true":"false";
+    public boolean isVisibility(List<Faq> obj, int count) {
+        return obj.size()>count;
     }
 
     @Override
-    public String isVisibility(Page<Faq> obj, int count) {
-        return obj.getTotalPages()>count?"true":"false";
+    public boolean isVisibility(Page<Faq> obj, int count) {
+        return obj.getTotalPages()>count;
     }
 
     @Override
@@ -73,11 +73,11 @@ public class FaqService implements FaqDao {
 
     @Override
     public List<Faq> findBySteps() {
-        return faqRepository.findByStepOrderByPosition(GoodVisible.TRUE);
+        return faqRepository.findByStepOrderByPosition(Visible.TRUE);
     }
 
     @Override
     public List<Faq> findByQuestions() {
-        return faqRepository.findByStepOrderByPosition(GoodVisible.FALSE);
+        return faqRepository.findByStepOrderByPosition(Visible.FALSE);
     }
 }

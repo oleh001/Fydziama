@@ -14,14 +14,26 @@
             <hr/>
             <ul class="cat-menu">
                 <li>
-                    <h:link styleClass="cat-menu-a detail brand-name  #{goodController.styleAction(0)}"
-                            outcome="shopr" fragment="cat-menu"
-                            value="#{msg.all_dishes}" >
-                        <f:param value="0" name="category"/>
-                    </h:link>
+                    <h:commandLink styleClass="cat-menu-a detail brand-name  #{goodController.styleAction(0)}"
+                                   action="#{goodController.toShoprUrlReturn(0)}" fragment="cat-menu"
+                                   value="#{msg.all_dishes}" >
+                    </h:commandLink>
+
+
+                     <!--<h:link styleClass="cat-menu-a detail brand-name  #{goodController.styleAction(0)}"-->
+                             <!--action="#{goodController.toShoprUrlReturn(0)}" fragment="cat-menu"-->
+                            <!--value="#{msg.all_dishes}" >-->
+                        <!--<f:param value="0" name="category"/>-->
+                    <!--</h:link>-->
                 </li>
+
                 <p:repeat value="#{brandController.all}" var="brands">
                     <li>
+                        <h:commandLink styleClass="cat-menu-a detail brand-name  #{goodController.styleAction(brands.idBrand)}"
+                                action="#{goodController.toShoprUrlReturn(brands.idBrand)}" fragment="cat-menu"
+                                value="#{brands.brand}" >
+                        </h:commandLink>
+
                         <h:link styleClass="cat-menu-a detail brand-name  #{goodController.styleAction(brands.idBrand)}"
                                 outcome="shopr" fragment="cat-menu"
                                 value="#{brands.brand}" >

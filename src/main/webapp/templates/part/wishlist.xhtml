@@ -31,10 +31,18 @@
                                 </div>
                             </p:commandLink>
                         </div>
-                        <h:link outcome="dishDetail" fragment="item-detail">
-                            <f:param name="dishId" value="#{wishlist.good.idGood}"/>
+
+                        <!--<h:link outcome="dishDetail" fragment="item-detail">-->
+                        <!--<f:param name="dishId" value="#{wishlist.good.idGood}"/>-->
+                        <!--<h6><h:outputText value="#{wishlist.good.name}"/></h6>-->
+                        <!--</h:link>-->
+
+                        <h:commandLink action="shopr?faces-redirect=true"
+                                       actionListener="#{reviewController.changeGoodId(wishlist.good.idGood)}">
                             <h6><h:outputText value="#{wishlist.good.name}"/></h6>
-                        </h:link>
+
+                        </h:commandLink>
+
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temp</p>
                     </li>
                 </p:repeat>

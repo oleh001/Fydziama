@@ -6,12 +6,11 @@
       xmlns:o="http://omnifaces.org/ui"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<head>
-    <title>Red Samurai | Shop</title>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
-</head>
 
 <ui:composition template="template.xhtml">
+
+    <ui:define name="title">Fydziama | Detail</ui:define>
+
     <ui:define name="content">
         <f:view>
             <!-- facebook like widget -->
@@ -28,7 +27,7 @@
 
             <f:metadata>
                 <f:viewParam name="dishId" value="#{reviewController.selectedGoodId}"/>
-                <f:event type="postAddToView" listener="#{reviewController.loadData}"/>
+                <f:event type="postAddToView" listener="#{reviewController.attributeListener}"/>
             </f:metadata>
 
             <!--SHOP-->

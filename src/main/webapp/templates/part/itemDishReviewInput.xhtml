@@ -8,7 +8,7 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <f:view>
     <!--REVIEW INPUT-->
-    <h:form id="reviewDishForm">
+    <h:panelGroup id="reviewDishForm">
         <article id="review-input">
             <h2>#{msg.write} <span>#{msg.review}</span></h2>
             <hr/>
@@ -45,7 +45,7 @@
                                value="#{msg.post_your_review}"/>
             </article>
         </article>
-    </h:form>
+    </h:panelGroup>
     <!--/REVIEW INPUT-->
 </f:view>
 </html>

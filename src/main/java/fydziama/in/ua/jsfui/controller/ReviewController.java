@@ -19,6 +19,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.List;
+import java.util.logging.Level;
 
 @ManagedBean
 @SessionScoped
@@ -26,14 +27,16 @@ import java.util.List;
 @Getter
 @Setter
 @Log
-public class ReviewController  extends AbstractController<Review> {
+public class ReviewController extends AbstractController<Review> {
 
     public static final String REVIEW_SEARCH_COLUMN = "reviewDate";
-    public static final Sort.Direction REVIEW_SORT_DIRECTION= Sort.Direction.DESC;
+    public static final Sort.Direction REVIEW_SORT_DIRECTION = Sort.Direction.DESC;
 
     private static final int DEFAULT_PAGE_SIZE = 6;
     private static final int MIN_PAGE_SIZE = 6;
     private int rowsCount = DEFAULT_PAGE_SIZE;
+
+    private boolean visibleHistoryPushState=false;
 
     @Autowired
     private ReviewDao reviewDao;
@@ -53,13 +56,14 @@ public class ReviewController  extends AbstractController<Review> {
     private User user;
 
     private Good selectedGood;
-    private long selectedGoodId;
+    private long selectedGoodId = 0L;
 
     private Review selectedReview;
 
     private LazyDataTable<Review> lazyModel;
 
     private Page<Review> reviewPages;
+
 
     private String visiblePaginator;
     private List<Review> theBestReview;
@@ -71,20 +75,20 @@ public class ReviewController  extends AbstractController<Review> {
 //        }else {
 //            user = userDao.get(0L);
 //        }
-        selectedReview=new Review(4);
+        selectedReview = new Review(4);
         lazyModel = new LazyDataTable(this);
     }
 
     @Override
-    public String vizibilityAction() {
-        return reviewDao.isVisibility(reviewPages,MIN_PAGE_SIZE);
+    public boolean vizibilityAction() {
+        return reviewDao.isVisibility(paginationPages, countPages);
     }
 
     public void save() {
         selectedReview.setGood(selectedGood);
         reviewDao.save(selectedReview);
 
-        selectedReview=new Review(user, selectedGood,4 );
+        selectedReview = new Review(user, selectedGood, 4);
     }
 
     @Override
@@ -96,11 +100,12 @@ public class ReviewController  extends AbstractController<Review> {
         if (sortDirection == null) {
             sortDirection = REVIEW_SORT_DIRECTION;
         }
-        reviewPages = reviewDao.searchGood(pageNumber, pageSize, sortField, sortDirection, selectedReview.getGood().getIdGood());
+        paginationPages = reviewDao.searchGood(pageNumber, pageSize, sortField, sortDirection, selectedReview.getGood().getIdGood());
 
-        visiblePaginator="visible" + vizibilityAction();
+//        visiblePaginator="visible" + vizibilityAction();
+        pagePagginationVisible = vizibilityAction();
 
-        return reviewPages;
+        return paginationPages;
     }
 
     @Override
@@ -108,18 +113,18 @@ public class ReviewController  extends AbstractController<Review> {
         selectedReview = new Review(4);
     }
 
-    public void newReview(User user){
-        this.user=user;
-        if (selectedGood!=null) {
-            selectedReview = new Review(user, selectedGood,4);
-        }else {
-            selectedReview = new Review(user,4);
+    public void newReview(User user) {
+        this.user = user;
+        if (selectedGood != null) {
+            selectedReview = new Review(user, selectedGood, 4);
+        } else {
+            selectedReview = new Review(user, 4);
         }
     }
 
     @Override
     public void editAction() {
-        selectedGood=selectedReview.getGood();
+        selectedGood = selectedReview.getGood();
     }
 
     @Override
@@ -131,15 +136,51 @@ public class ReviewController  extends AbstractController<Review> {
         return reviewDao.getAll(new Sort(Sort.Direction.ASC, REVIEW_SEARCH_COLUMN));
     }
 
-    public void loadData(){
+    public void showAll() {
+        pageNumber = 0;
+        defaultSearch();
+    }
+
+    public void loadData() {
 //        goodController.setShowShop(false);
         selectedGood = goodDao.get(selectedGoodId);
         selectedReview.setGood(selectedGood);
         goodController.setSelectedGood(selectedGoodId);
     }
 
+    public void attributeListener() {
+        if (selectedGoodId != 0L) {
+            selectedGood = goodDao.get(selectedGoodId);
+            selectedReview.setGood(selectedGood);
+            goodController.setSelectedGood(selectedGoodId);
+
+            goodController.shopTrueOrDetailFalse=false;
+//        pageNumber = 0;
+            log.log(Level.WARNING, "1111111111111111111111");
+            defaultSearch();
+        }else{
+            goodController.shopTrueOrDetailFalse=true;
+        }
+        log.log(Level.WARNING, "222222222222222222222222");
+    }
+
     public List<Review> getTheBestReview() {
-        theBestReview=reviewDao.findByTheBestEquals();
+        theBestReview = reviewDao.findByTheBestEquals();
         return theBestReview;
+    }
+
+    public void changeGoodId(long id) {
+        selectedGoodId=id;
+        pageNumber=0;
+//        selectedGood = goodDao.get(selectedGoodId);
+//        selectedReview.setGood(selectedGood);
+//        goodController.setSelectedGood(selectedGoodId);
+//
+//        goodController.shopTrueOrDetailFalse = false;
+        log.log(Level.WARNING, selectedGoodId + " " + String.valueOf(id) + "    dfg    dfghf");
+        log.log(Level.WARNING, String.valueOf(goodController.shopTrueOrDetailFalse) + "    dfg    dfghf");
+//        defaultSearch();
+
+        attributeListener();  // Мабуть не треба бо на shopr сторінці він знову запускається
     }
 }

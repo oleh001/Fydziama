@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1"
          metadata-complete="true">
+
     <servlet>
         <servlet-name>facesServlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -21,9 +22,111 @@
         <location>/index.xhtml</location>
     </error-page>
 
+    <servlet-mapping>
+        <servlet-name>facesServlet</servlet-name>
+        <url-pattern>*.jsf</url-pattern>
+    </servlet-mapping>
+
+
+
+
+    <!--<listener>-->
+        <!--<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+    <!--</listener>-->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <!--<context-param>-->
+        <!--<param-name>primefaces.UPLOADER</param-name>-->
+        <!--<param-value>auto</param-value>-->
+    <!--</context-param>-->
+
+    <!--<context-param>-->
+        <!--<param-name>primefaces.UPLOADER</param-name>-->
+        <!--<param-value>native</param-value>-->
+    <!--</context-param>-->
+
+
+    <!--<context-param>-->
+        <!--<param-name>primefaces.UPLOADER</param-name>-->
+        <!--<param-value>commons</param-value>-->
+    <!--</context-param>-->
+
+
+
+    <!--<filter>-->
+        <!--<filter-name>PrimeFaces FileUpload Filter</filter-name>-->
+        <!--<filter-class>-->
+            <!--org.primefaces.webapp.filter.FileUploadFilter-->
+        <!--</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>PrimeFaces FileUpload Filter</filter-name>-->
+        <!--<servlet-name>facesServlet</servlet-name>-->
+    <!--</filter-mapping>-->
+
+    <!--<filter>-->
+        <!--<filter-name>PrimeFaces FileUpload Filter</filter-name>-->
+        <!--<filter-class>-->
+            <!--org.primefaces.webapp.filter.FileUploadFilter-->
+        <!--</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>PrimeFaces FileUpload Filter</filter-name>-->
+        <!--<servlet-name>facesServlet</servlet-name>-->
+    <!--</filter-mapping>-->
+
+    <!--<servlet>-->
+        <!--<servlet-name>FotoOfferController</servlet-name>-->
+        <!--&lt;!&ndash;<servlet-class>fydziama.in.ua.jsfui.controller.ActionRegistrationServlet</servlet-class>&ndash;&gt;-->
+        <!--<multipart-config>-->
+            <!--<max-file-size>10485760</max-file-size>-->
+            <!--<max-request-size>20971520</max-request-size>-->
+            <!--<file-size-threshold>5242880</file-size-threshold>-->
+        <!--</multipart-config>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>FotoOfferController</servlet-name>-->
+        <!--<url-pattern>/templates/fileUpload</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <!--<servlet>-->
+        <!--<servlet-name>FotoOfferController</servlet-name>-->
+        <!--<servlet-class>fydziama.in.ua.jsfui.controller.FotoOfferController</servlet-class>-->
+        <!--<multipart-config>-->
+            <!--<max-file-size>10485760</max-file-size>-->
+            <!--<max-request-size>20971520</max-request-size>-->
+            <!--<file-size-threshold>5242880</file-size-threshold>-->
+        <!--</multipart-config>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>FotoOfferController</servlet-name>-->
+        <!--<url-pattern>/templates/fileUpload</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+    <!--<context-param>-->
+        <!--<param-name>primefaces.UPLOADER</param-name>-->
+        <!--<param-value>auto|native|commons</param-value>-->
+    <!--</context-param>-->
+
+
+
+    <!--<filter>-->
+        <!--<filter-name>PrimeFacesFileUploadFilter</filter-name>-->
+        <!--<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>PrimeFacesFileUploadFilter</filter-name>-->
+        <!--<servlet-name>facesServlet</servlet-name>-->
+    <!--</filter-mapping>-->
+
     <!--for Data-->
     <context-param>
         <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
         <param-value>true</param-value>
     </context-param>
+
+
+
 </web-app>

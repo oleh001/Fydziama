@@ -8,107 +8,85 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
 <f:view>
-    <!--HEADER-BOTTOM-->
-    <div id="header-bottom-wrap">
-        <section id="header-bottom">
+    <h:form>
+        <!--HEADER-BOTTOM-->
+        <div id="header-bottom-wrap">
+            <section id="header-bottom">
 
-            <h1 class="wow fadeInLeft">#{msg.the_best}
-                <span class="remarked">#{msg.asian_cuisine}</span>
-                <span class="right">#{msg.in_all_the_city}</span>
-            </h1>
-            <a href="#" class="order wow bounceInDown" data-wow-delay=".5s">#{msg.start_your_online_order}</a>
-            <o:graphicImage styleClass="wow fadeInRight" name="images/asian-girl.png" alt="asian-girl"
-                            dataURI="true"/>
-            <!--MAIN-SLIDER-->
-            <div id="main-slider-wrap">
-                <div class="bx-wrapper">
-                    <div class="bx-viewport">
-                        <ul id="main-slider">
-                            <!--SLIDE-->
-                            <li>
-                                <div class="circle small">
-                                    <figure class="imgLiquidFill">
-                                        <o:graphicImage name="images/menu-03.jpg" alt="dish" dataURI="true"/>
-                                    </figure>
-                                    <div class="shadow"/>
-                                    <div class="fill"/>
-                                </div>
-                                <article class="promo">
-                                    <h6>Try Our <span class="remarked">Chef’s Recommendation!</span></h6>
-                                    <p>Lorem ipsum
-                                        <span>dolor sit amet</span>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
-                                    </p>
-                                </article>
-                                <article class="price">
-                                    <h3>$55</h3>
-                                    <p>Valid for Month</p>
-                                    <a href="#" class="button red">#{msg.add_to_cart}</a>
-                                </article>
-                            </li>
-                            <!--/SLIDE-->
+                <h1 class="wow fadeInLeft">#{msg.the_best}
+                    <span class="remarked">#{msg.asian_cuisine}</span>
+                    <span class="right">#{msg.in_all_the_city}</span>
+                </h1>
+                <h:link outcome="/templates/shopr" styleClass="order wow bounceInDown" data-wow-delay=".5s"
+                        value="#{msg.start_your_online_order}"/>
 
-                            <!--SLIDE-->
-                            <li>
-                                <div class="circle small">
-                                    <figure class="imgLiquidFill">
-                                        <o:graphicImage name="images/menu-02.jpg" alt="dish" dataURI="true"/>
-                                    </figure>
-                                    <div class="shadow"/>
-                                    <div class="fill"/>
-                                </div>
-                                <article class="promo">
-                                    <h6>Check Today's <span class="remarked">Featured Dish</span></h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        <span>incididunt ut</span> labore et dolore magna aliqua. Ut enim ad minim.</p>
-                                </article>
-                                <article class="price">
-                                    <h3>$120</h3>
-                                    <p>Only for Today</p>
-                                    <a href="#" class="button red">#{msg.add_to_cart}</a>
-                                </article>
-                            </li>
-                            <!--/SLIDE-->
+                <o:graphicImage styleClass="wow fadeInRight" name="images/asian-girl.png" alt="asian-girl"
+                                dataURI="true"/>
+                <!--MAIN-SLIDER-->
+                <div id="main-slider-wrap">
+                    <div class="bx-wrapper">
+                        <div class="bx-viewport">
+                            <ul id="main-slider">
+                                <!--SLIDE-->
+                                <p:repeat value="#{recomendationController.initialization()}" var="recomend">
+                                    <li>
+                                        <div class="circle small">
+                                            <figure class="imgLiquidFill">
+                                                <o:graphicImage name="images/#{recomend.good.image}" alt="dish"
+                                                                dataURI="true"/>
+                                            </figure>
+                                            <div class="shadow"/>
+                                            <div class="fill"/>
+                                        </div>
+                                        <article class="promo">
+                                            <h6>#{recomend.name1} <span class="remarked">#{recomend.name2}</span></h6>
+                                            <p>#{recomend.good.name}. #{recomend.good.anons}
+                                                <span/>
+                                            </p>
+                                        </article>
+                                        <article class="price">
+                                            <h3>$#{recomend.good.price}</h3>
 
-                            <!--SLIDE-->
-                            <li>
-                                <div class="circle small">
-                                    <figure class="imgLiquidFill">
-                                        <o:graphicImage name="images/menu-01.jpg" alt="dish" dataURI="true"/>
-                                    </figure>
-                                    <div class="shadow"/>
-                                    <div class="fill"/>
-                                </div>
-                                <article class="promo">
-                                    <h6>Week's <span class="remarked">Special Combo</span></h6>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate alias quibusdam suscipit ea non consequuntur
-                                        <span>fugit hic</span> quia deleniti odit.</p>
-                                </article>
-                                <article class="price">
-                                    <h3>$90</h3>
-                                    <p>Valid for Week</p>
-                                    <a href="#" class="button red">#{msg.add_to_cart}</a>
-                                </article>
-                            </li>
-                            <!--/SLIDE-->
-                        </ul>
+                                            <p>#{recomend.special}</p>
+
+                                            <p:commandLink styleClass="button red"
+                                                           actionListener="#{orderController.addToCart(recomend.good)}"
+                                                           update="@([id$=menuItemUp]) @([id$=menuItem]) @([id$=menuTotal])"
+                                                           rendered="#{recomend.good.hits=='FALSE'}"
+                                                           value="#{msg.add_to_cart}">
+                                            </p:commandLink>
+
+                                            <p:commandLink styleClass="button gold"
+                                                           actionListener="#{orderController.addToCart(recomend.good)}"
+                                                           update="@([id$=menuItemUp]) @([id$=menuItem]) @([id$=menuTotal])"
+                                                           rendered="#{recomend.good.hits=='TRUE'}"
+                                                           value="#{msg.add_to_cart}">
+                                            </p:commandLink>
+                                        </article>
+                                    </li>
+
+                                </p:repeat>
+
+                            </ul>
+                        </div>
+                        <div class="bx-controls"/>
                     </div>
-                    <div class="bx-controls"/>
-                </div>
-                <!--SLIDER CONTROLS-->
-                <span id="previous" class="arrow left">
+                    <!--SLIDER CONTROLS-->
+                    <span id="previous" class="arrow left">
                     <!--<a class="bx-prev">-->
                         <!--<o:graphicImage name="images/arrow-left.png" dataURI="true"/>-->
-                    <!--</a>-->
+                        <!--</a>-->
                 </span>
-                <span id="next" class="arrow right">
+                    <span id="next" class="arrow right">
                     <!--<a class="bx-next">-->
                         <!--<o:graphicImage name="images/arrow-right.png" dataURI="true"/>-->
-                    <!--</a>-->
+                        <!--</a>-->
                 </span>
-            </div>
-            <!--/MAIN-SLIDER-->
-        </section>
-    </div>
-    <!--/HEADER-BOTTOM-->
+                </div>
+                <!--/MAIN-SLIDER-->
+            </section>
+        </div>
+        <!--/HEADER-BOTTOM-->
+    </h:form>
 </f:view>
 </html>
